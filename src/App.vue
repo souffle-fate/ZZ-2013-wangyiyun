@@ -1,32 +1,56 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <router-view />
+    <van-tabbar route v-model="active" active-color="deeppink">
+      <van-tabbar-item :to="{ name: 'Home' }" @click="active = 0" icon="home-o"
+        >首页</van-tabbar-item
+      >
+      <van-tabbar-item :to="{ name: 'About' }" @click="active = 1" icon="search"
+        >标签</van-tabbar-item
+      >
+      <van-tabbar-item
+        :to="{ name: 'List' }"
+        @click="active = 2"
+        icon="friends-o"
+        >标签</van-tabbar-item
+      >
+      <van-tabbar-item
+        :to="{ name: 'Cart' }"
+        @click="active = 3"
+        icon="setting-o"
+        >标签</van-tabbar-item
+      >
+      <van-tabbar-item
+        :to="{ name: 'User' }"
+        @click="active = 4"
+        icon="setting-o"
+        >标签</van-tabbar-item
+      >
+    </van-tabbar>
   </div>
 </template>
+<script>
+export default {
+  name: "App",
+  data() {
+    return {
+      active: 0,
+    };
+  },
+};
+</script>
 
 <style>
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+  width: 100%;
+  height: 100%;
+  /* background-color: gray; */
 }
 </style>
