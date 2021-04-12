@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <router-view />
-    <van-tabbar route v-model="active" active-color="deeppink">
+    <van-tabbar
+      route
+      v-model="active"
+      active-color="deeppink"
+      v-if="$route.meta.showTabbar"
+    >
       <van-tabbar-item :to="{ name: 'Home' }" @click="active = 0" icon="home-o"
         >首页</van-tabbar-item
       >
@@ -27,6 +32,7 @@
         >标签</van-tabbar-item
       >
     </van-tabbar>
+    <Footer v-if="$route.meta.showTabbar"></Footer>
   </div>
 </template>
 <script>
@@ -37,6 +43,7 @@ export default {
       active: 0,
     };
   },
+  components: {},
 };
 </script>
 
