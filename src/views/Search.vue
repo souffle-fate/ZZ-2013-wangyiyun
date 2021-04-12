@@ -17,21 +17,33 @@
       background="#ec4141"
       placeholder="请输入歌名"
       class="searchMusic"
-      :title="MusicList"
+      @search="onSearch"
     >
       <template #action>
         <div @click="search(value)">搜索</div>
       </template>
     </van-search>
+
     <!-- 热搜榜单 -->
-    <el-card class="box-card">
+    <!-- <el-card class="box-card">
       <div v-for="(item, index) in hotMusicList" :key="index" class="text item">
         {{ index + 1 }} {{ item.searchWord }}
         <img :src="item.iconUrl" alt="" class="songImg" />
         <span class="hotHeight"> {{ item.score }} </span>
         <p class="songIntroduction">{{ item.content }}</p>
       </div>
-    </el-card>
+    </el-card> -->
+    <!-- 搜索歌曲 -->
+    <div
+      class="MusicList"
+      v-for="(item, index) in MusicList"
+      :key="index"
+      @click="MusicListXQ"
+    >
+      <p>{{ item.name }}</p>
+      <span>{{ item.artists[0].name }}-</span>
+      <span>{{ item.album.name }}-</span>
+    </div>
   </div>
 </template>
 
@@ -59,9 +71,14 @@ export default {
   watch: {},
   //方法集合
   methods: {
-    async search(val) {
+    MusicListXQ() {
+      // const res = await reqMusicDetails({});
+      this.$router.push("/musiclist");
+    },
+    async onSearch(val) {
       const result = await reqSearchMusic({ keywords: val });
       //   alert(val);
+      console.log(result);
       if (result.status === 200) {
         if (result.data.code === 400) {
           console.log(111);
@@ -69,9 +86,10 @@ export default {
           console.log(result.data.code);
           // console.log(result.data.result.songs);
           this.MusicList = result.data.result.songs;
+          console.log(this.MusicList);
           // console.log(this.MusicList);
           //   跳转到歌曲搜索详情
-          //   this.$router.push("/musiclist");
+          // this.$router.push("/musiclist");
         }
       }
     },
@@ -80,6 +98,7 @@ export default {
       if (result.status === 200) {
         // console.log(result.data);
         this.hotMusicList = result.data.data;
+        console.log(this.hotMusicList);
       }
     },
     onClickLeft() {
@@ -91,7 +110,7 @@ export default {
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
-    this.search();
+    this.onSearch(this.value);
     this.reqSearchHotMic();
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
@@ -142,5 +161,9 @@ export default {
 }
 .songImg {
   width: 14px;
+}
+/* 搜索框款渲染样式 */
+.MusicList {
+  background: olivedrab;
 }
 </style>

@@ -9,6 +9,7 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+    meta:{showtabbar:true}
   },
   {
     path: "/about",
@@ -18,32 +19,38 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
+      meta:{showtabbar:true}
   },
   {
     path: "/cart",
     name: "Cart",
     component: () => import("../views/Cart.vue"),
+    meta:{showtabbar:true}
   },
   {
     path: "/list",
     name: "List",
     component: () => import("../views/List.vue"),
+    meta:{showtabbar:true}
   },
   {
     path: "/user",
     name: "User",
     component: () => import("../views/User.vue"),
+    meta:{showtabbar:true}
   },
   {
-    path: "/search",
+    path: "/search/",
     name: "Search",
     component: () => import("../views/Search.vue"),
+    meta:{showtabbar:false}
   },
   // MusicList
   {
     path: "/musiclist",
     name: "MusicList",
     component: () => import("../views/MusicList.vue"),
+    meta:{showtabbar:false}
   },
 ];
 

@@ -1,6 +1,7 @@
 <template>
   <div id="box">
     <!-- <div @aaa="MusicList"></div> -->
+    歌曲详情
   </div>
 </template>
 
