@@ -1,13 +1,10 @@
 <template>
-  <div>666</div>
+  <div>user</div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
-
 </style>
