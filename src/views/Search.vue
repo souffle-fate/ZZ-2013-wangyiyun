@@ -145,11 +145,11 @@ export default {
   color: white;
   border: none;
 }
-.searchMusic {
-  /* position: fixed; */
-  /* top: 0; */
-  /* left: 0; */
-}
+/* .searchMusic { */
+/* position: fixed; */
+/* top: 0; */
+/* left: 0; */
+/* } */
 .hotHeight {
   color: #999;
   font-size: 10px;

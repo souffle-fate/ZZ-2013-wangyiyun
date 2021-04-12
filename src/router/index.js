@@ -9,7 +9,9 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
-    meta:{showtabbar:true}
+    meta: {
+      showTabbar: true  // false删除底部导航
+    }
   },
   {
     path: "/about",
@@ -19,38 +21,67 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
-      meta:{showtabbar:true}
+    meta: {
+      showTabbar: true  // false删除底部导航
+    }
   },
   {
     path: "/cart",
     name: "Cart",
     component: () => import("../views/Cart.vue"),
-    meta:{showtabbar:true}
+    meta: {
+      showTabbar: true  // false删除底部导航
+    }
   },
   {
     path: "/list",
     name: "List",
     component: () => import("../views/List.vue"),
-    meta:{showtabbar:true}
+    meta: {
+      showTabbar: true  // false删除底部导航
+    }
   },
   {
     path: "/user",
     name: "User",
     component: () => import("../views/User.vue"),
-    meta:{showtabbar:true}
+    meta: {
+      showTabbar: true  // false删除底部导航
+    }
   },
   {
     path: "/search/",
     name: "Search",
     component: () => import("../views/Search.vue"),
-    meta:{showtabbar:false}
+    meta: {
+      showTabbar: true  // false删除底部导航
+    }
   },
+
   // MusicList
   {
     path: "/musiclist",
     name: "MusicList",
     component: () => import("../views/MusicList.vue"),
-    meta:{showtabbar:false}
+    meta: {
+      showTabbar: true  // false删除底部导航
+    }
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: () => import("../views/Login.vue"),
+    meta: {
+      showTabbar: false  // false删除底部导航
+    }
+  },
+  {
+    path: "/enter",
+    name: "Enter",
+    component: () => import("../views/Enter"),
+    meta: {
+      showTabbar: false  // false删除底部导航
+    }
   },
 ];
 
