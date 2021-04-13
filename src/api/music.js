@@ -20,3 +20,15 @@ export const reqInfo = (data) => get("/user/detail", data);
 export const reqDynamic = (data) => get("/playlist/detail/dynamic", data);
 
 
+
+// 歌曲评论
+export const reqMusicComment = (data) => get("/comment/music", data);
+//必选参数 : id: 音乐 id    可选参数 : limit: 取出评论数量 , 默认为 20
+
+//获取音乐 url
+export const reqMusicUrl = (data) => get("/song/url", data);
+// 必选参数 : id : 音乐 id
+
+// 获取歌词
+export const reqMusicLyrics = (data) => get("/lyric", data);
+// /lyric  必选参数 : id: 音乐 id

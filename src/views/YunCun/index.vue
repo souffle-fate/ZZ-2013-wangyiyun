@@ -1,10 +1,9 @@
 <template>
-  <div class="user"></div>
+  <div id="yuncun">yuncun</div>
 </template>
 
 <script>
 export default {};
 </script>
 
-<style scoped>
-</style>
+<style></style>
