@@ -16,4 +16,7 @@ export const reqInfoFollows = (data) => get("/user/follows", data);
 export const reqInfoplaylist = (data) => get("/user/playlist", data);
 // 获取用户详情/user/detail
 export const reqInfo = (data) => get("/user/detail", data);
+// 获取歌单详情/playlist/detail/dynamic
+export const reqDynamic = (data) => get("/playlist/detail/dynamic", data);
+
 

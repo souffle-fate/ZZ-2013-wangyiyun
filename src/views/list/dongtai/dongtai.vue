@@ -1,6 +1,6 @@
 <template>
   <div class="dongtai">
-    <p></p>
+    <p>暂时还没有动态哦</p>
   </div>
 </template>
 
@@ -11,10 +11,16 @@ export default {
     return {};
   },
   methods: {
+    // 获取用户动态
     async getEvent() {
-      const result = await reqEvent();
+      const result = await reqEvent({
+        uid: 32953014,
+      });
       console.log(result);
     },
+  },
+  created() {
+    this.getEvent();
   },
   components: {},
 };
@@ -22,6 +28,12 @@ export default {
 
 <style scoped>
 .dongtai {
-  background: #f3f3f3;
+  padding-bottom: 70px;
+}
+.dongtai p {
+  font-size: 12px;
+  color: #999999;
+  margin-top: 30px;
+  text-align: center;
 }
 </style>

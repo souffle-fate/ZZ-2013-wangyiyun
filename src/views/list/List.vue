@@ -1,26 +1,28 @@
 <template>
   <div class="list">
     <div class="img">
-      <img
-        src="https://t7.baidu.com/it/u=1595072465,3644073269&fm=193&f=GIF"
-        alt=""
-      />
+      <img :src="backgroundUrl" alt="" />
       <div class="message">
         <div class="headPortrait">
           <div class="img fl" style="margin-left: 10px">
-            <img src="../../assets/foxandrabbit.jpg" alt="" />
+            <img :src="avatarUrl" alt="" />
           </div>
-          <div class="fr">
-            <el-button
-              plain
+          <div class="fr" @click="redact">
+            <p
               class="el-icon-edit"
               style="
+                width: 72px;
+                height: 32px;
+                text-align: center;
+                line-height: 32px;
+                border: solid 0px;
                 background-color: rgba(255, 255, 255, 0.5);
-                color: white;
                 margin-top: 20px;
+                margin-right: 10px;
               "
-              >编辑</el-button
             >
+              编辑
+            </p>
           </div>
         </div>
         <div class="geren" style="margin-left: 10px">
@@ -61,6 +63,8 @@ export default {
       username: "西班牙大鱿鱼",
       active: 0,
       level: 0,
+      avatarUrl: "",
+      backgroundUrl: "",
     };
   },
   //计算属性 类似于data概念
@@ -73,7 +77,7 @@ export default {
       console.log(tab, event);
     },
     async getInfo() {
-      let uid = localStorage.getItem("uid", 32953014);
+      let uid = localStorage.setItem("uid", 32953014);
       console.log(uid);
       const result = await reqInfo({ uid: 32953014 });
       const obj = result;
@@ -81,6 +85,12 @@ export default {
       this.username = obj.data.profile.nickname;
       console.log(this.username);
       this.level = obj.data.level;
+      this.avatarUrl = obj.data.profile.avatarUrl;
+      this.backgroundUrl = obj.data.profile.backgroundUrl;
+    },
+    redact() {
+      let uid = localStorage.getItem("uid");
+      this.$router.push(`/updateuser/${uid}`);
     },
   },
   //生命周期 - 创建完成（可以访问当前this实例）

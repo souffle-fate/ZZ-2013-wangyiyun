@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <router-view />
-    <van-tabbar route v-model="active" active-color="deeppink">
+    <van-tabbar
+      route
+      v-model="active"
+      active-color="deeppink"
+      v-if="$route.meta.showTabbar"
+    >
       <van-tabbar-item :to="{ name: 'Home' }" @click="active = 0" icon="home-o"
         >首页</van-tabbar-item
       >
@@ -9,7 +14,7 @@
         >标签</van-tabbar-item
       >
       <van-tabbar-item
-        :to="{ name: 'List' }"
+        :to="{ name: 'Music' }"
         @click="active = 2"
         icon="friends-o"
         >标签</van-tabbar-item

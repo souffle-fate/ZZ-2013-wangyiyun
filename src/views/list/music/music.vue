@@ -25,8 +25,15 @@
       <div class="title">
         <p>歌单({{ num }})</p>
       </div>
-      <div class="main" v-for="(item, index) in arr" :key="index">
-        <span><img :src="arr[index].coverImgUrl" alt="" /></span>
+      <div
+        class="main"
+        v-for="(item, index) in arr"
+        :key="index"
+        @click="getmusiclist(item.id)"
+      >
+        <span :id="arr[index].id"
+          ><img :src="arr[index].coverImgUrl" alt=""
+        /></span>
         <p style="margin-left: 11px">
           <i
             style="
@@ -83,6 +90,11 @@ export default {
       const result = await reqInfoplaylist({ uid: 32953014 });
       const arr = result.data.playlist;
       this.arr = arr;
+      console.log(arr[0].id);
+    },
+    async getmusiclist(id) {
+      console.log(id);
+      this.$router.push(`/gedan/${id}`);
     },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
@@ -112,7 +124,7 @@ img {
   font-size: 13px;
   color: #999999;
   min-height: 300px;
-  padding-bottom: 55px;
+  padding-bottom: 70px;
 }
 .music .title p {
   height: 25px;
