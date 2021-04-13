@@ -86,28 +86,28 @@ const routes = [
   {
     path: '/diantai',
     name: "Diantai",
-    component: () => import('../views/Lists/diantai'),
+    component: () => import('../views/User/diantai'),
     meta: {
       showTabbar: false  // false删除底部导航
     }
   }, {
     path: '/bendi',
     name: "Bendi",
-    component: () => import('../views/Lists/bendi'),
+    component: () => import('../views/User/bendi'),
     meta: {
       showTabbar: false  // false删除底部导航
     }
   }, {
     path: '/shocang',
     name: "Shocang",
-    component: () => import('../views/Lists/shocang'),
+    component: () => import('../views/User/shocang'),
     meta: {
       showTabbar: false  // false删除底部导航
     }
   }, {
     path: '/xiazai',
     name: "Xiazai",
-    component: () => import('../views/Lists/xiazai'),
+    component: () => import('../views/User/xiazai'),
     meta: {
       showTabbar: false  // false删除底部导航
     }
@@ -115,7 +115,7 @@ const routes = [
   {
     path: '/zueijin',
     name: "Zueijin",
-    component: () => import('../views/Lists/zueijin'),
+    component: () => import('../views/User/zueijin'),
     meta: {
       showTabbar: false  // false删除底部导航
     }

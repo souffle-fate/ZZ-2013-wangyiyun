@@ -21,7 +21,7 @@ export default {
 
   methods: {
     onClickLeft() {
-      this.$router.push("/list");
+      this.$router.push("/user");
     },
     onClickRight() {
       console.log("按钮");

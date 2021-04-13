@@ -134,7 +134,7 @@ var routes = [{
   name: "Diantai",
   component: function component() {
     return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/Lists/diantai'));
+      return _interopRequireWildcard(require('../views/User/diantai'));
     });
   },
   meta: {
@@ -146,7 +146,7 @@ var routes = [{
   name: "Bendi",
   component: function component() {
     return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/Lists/bendi'));
+      return _interopRequireWildcard(require('../views/User/bendi'));
     });
   },
   meta: {
@@ -158,7 +158,7 @@ var routes = [{
   name: "Shocang",
   component: function component() {
     return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/Lists/shocang'));
+      return _interopRequireWildcard(require('../views/User/shocang'));
     });
   },
   meta: {
@@ -170,7 +170,7 @@ var routes = [{
   name: "Xiazai",
   component: function component() {
     return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/Lists/xiazai'));
+      return _interopRequireWildcard(require('../views/User/xiazai'));
     });
   },
   meta: {
@@ -182,7 +182,7 @@ var routes = [{
   name: "Zueijin",
   component: function component() {
     return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/Lists/zueijin'));
+      return _interopRequireWildcard(require('../views/User/zueijin'));
     });
   },
   meta: {

@@ -1,7 +1,7 @@
 <template>
-  <div class="shocang">
+  <div class="diantai">
     <van-nav-bar
-      title="我的收藏"
+      title="我的电台"
       left-text="返回"
       right-text="按钮"
       left-arrow
@@ -21,7 +21,7 @@ export default {
 
   methods: {
     onClickLeft() {
-      this.$router.push("/list");
+      this.$router.push("/user");
     },
     onClickRight() {
       console.log("按钮");

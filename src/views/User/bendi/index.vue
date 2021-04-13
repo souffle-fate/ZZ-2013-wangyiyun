@@ -1,13 +1,14 @@
 <template>
-  <div class="diantai">
+  <div class="bendi">
     <van-nav-bar
-      title="我的电台"
+      title="本地音乐"
       left-text="返回"
       right-text="按钮"
       left-arrow
       @click-left="onClickLeft"
       @click-right="onClickRight"
     />
+    <van-empty description="未扫描到本地音乐" />
   </div>
 </template>
 <script>
@@ -21,7 +22,7 @@ export default {
 
   methods: {
     onClickLeft() {
-      this.$router.push("/list");
+      this.$router.push("/user");
     },
     onClickRight() {
       console.log("按钮");
