@@ -6,12 +6,28 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path:'/',
+    name: "Home",
+    redirect:'/home',
+    meta: {
+      showTabbar: true  // false删除底部导航
+  },
+},
+  {
+    path: "/home",
     name: "Home",
     component: Home,
     meta: {
       showTabbar: true  // false删除底部导航
-    }
+    },
+    children:[
+      {
+        path:"fm",
+        name:"Fm",
+        component:() => import("../views/home/fm"),
+      },
+    ]
+    
   },
   {
     path: "/about",
@@ -26,7 +42,7 @@ const routes = [
     }
   },
   {
-    path: "/cart",
+    path: "/cart/",
     name: "Cart",
     component: () => import("../views/Cart.vue"),
     meta: {
@@ -60,7 +76,7 @@ const routes = [
 
   // MusicList
   {
-    path: "/musiclist",
+    path: "/musiclist/:id",
     name: "MusicList",
     component: () => import("../views/MusicList.vue"),
     meta: {
@@ -86,7 +102,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  routes,
+  routes
 });
 
 export default router;

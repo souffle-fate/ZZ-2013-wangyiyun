@@ -23,6 +23,8 @@
         <div @click="search(value)">搜索</div>
       </template>
     </van-search>
+    <!-- 搜索建议 -->
+    <!-- <div class="Searproposal">1111</div> -->
 
     <!-- 热搜榜单 -->
     <!-- <el-card class="box-card">
@@ -38,7 +40,7 @@
       class="MusicList"
       v-for="(item, index) in MusicList"
       :key="index"
-      @click="MusicListXQ"
+      @click="MusicListXQ(item.id)"
     >
       <p>{{ item.name }}</p>
       <span>{{ item.artists[0].name }}-</span>
@@ -52,6 +54,8 @@
 //例如：import 《组件名称》 from '《组件路径》';
 // import { Search } from "vant";
 import { reqSearchMusic, reqSearchHotMusic } from "../api/music";
+// import { reqSearchproposal } from "../api/search";
+
 import { Toast } from "vant";
 export default {
   //import引入的组件需要注入到对象中才能使用
@@ -63,6 +67,7 @@ export default {
       value: "",
       hotMusicList: "",
       MusicList: "",
+      type: 1,
     };
   },
   //计算属性 类似于data概念
@@ -71,22 +76,38 @@ export default {
   watch: {},
   //方法集合
   methods: {
-    MusicListXQ() {
+    // 搜索歌曲建议接口
+    // reqSearch() {
+    //   console.log("qwertyui");
+    // },
+    // async reqSearch(value) {
+    //   // console.log(value, 11111);
+    //   const res = await reqSearchproposal({ keywords: value, type: this.type });
+    //   console.log(res);
+    // },
+
+    MusicListXQ(id) {
       // const res = await reqMusicDetails({});
-      this.$router.push("/musiclist");
+      this.$router.push({
+        path: `/musiclist/${id}`,
+      });
+      // alert(id);
+      console.log(11);
     },
+
+    //搜索歌曲
     async onSearch(val) {
       const result = await reqSearchMusic({ keywords: val });
       //   alert(val);
-      console.log(result);
+      // console.log(result);
       if (result.status === 200) {
         if (result.data.code === 400) {
-          console.log(111);
+          // console.log(111);
         } else {
           console.log(result.data.code);
           // console.log(result.data.result.songs);
           this.MusicList = result.data.result.songs;
-          console.log(this.MusicList);
+          // console.log(this.MusicList);
           // console.log(this.MusicList);
           //   跳转到歌曲搜索详情
           // this.$router.push("/musiclist");
@@ -98,7 +119,7 @@ export default {
       if (result.status === 200) {
         // console.log(result.data);
         this.hotMusicList = result.data.data;
-        console.log(this.hotMusicList);
+        // console.log(this.hotMusicList);
       }
     },
     onClickLeft() {
@@ -112,6 +133,7 @@ export default {
   created() {
     this.onSearch(this.value);
     this.reqSearchHotMic();
+    // this.reqSearch(this.value);
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
@@ -163,7 +185,6 @@ export default {
   width: 14px;
 }
 /* 搜索框款渲染样式 */
-.MusicList {
-  background: olivedrab;
-}
+
+/* 搜索建议 */
 </style>

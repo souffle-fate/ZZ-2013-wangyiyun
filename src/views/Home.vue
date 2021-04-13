@@ -1,8 +1,10 @@
 <template>
   <div class="home">
+    <router-view></router-view>
     <div class="home-barder">
       <van-icon class="wap-nav" name="wap-nav" />
       <van-search
+        class="search"
         v-model="value"
         placeholder="请输入搜索关键词"
         @click="url_search"
@@ -14,12 +16,13 @@
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
       <van-swipe-item v-for="(item, index) in reqBannerswips" :key="index">
         <img :src="item.imageUrl" alt="" />
+        <!-- <p>{{ item.encodeId }}</p> -->
       </van-swipe-item>
     </van-swipe>
     <!-- 音乐分类 -->
 
     <div class="MusicCategory">
-      <div class="MusicCategorySmall">
+      <div class="MusicCategorySmall" @click="goFM">
         <div class="MusicCategorySmallIcon">
           <van-icon class="video" name="video-o" />
         </div>
@@ -27,21 +30,21 @@
       </div>
       <div class="MusicCategorySmall">
         <div class="MusicCategorySmallIcon">
-          <van-icon name="video-o" />
+          <van-icon name="notes-o" />
         </div>
-        <div class="MusicCategorySmallDesc">私人FM</div>
+        <div class="MusicCategorySmallDesc">每日推荐</div>
       </div>
       <div class="MusicCategorySmall">
         <div class="MusicCategorySmallIcon">
-          <van-icon name="video-o" />
+          <van-icon name="bullhorn-o" />
         </div>
-        <div class="MusicCategorySmallDesc">私人FM</div>
+        <div class="MusicCategorySmallDesc">歌单</div>
       </div>
       <div class="MusicCategorySmall">
         <div class="MusicCategorySmallIcon">
-          <van-icon name="video-o" />
+          <van-icon name="bar-chart-o" />
         </div>
-        <div class="MusicCategorySmallDesc">私人FM</div>
+        <div class="MusicCategorySmallDesc">排行榜</div>
       </div>
     </div>
 
@@ -77,10 +80,13 @@ export default {
   watch: {},
   //方法集合
   methods: {
+    goFM() {
+      this.$router.push("/list");
+    },
     async reqBannerswip() {
       console.log(111);
       const result = await reqBannerswip();
-      console.log(result);
+      // console.log(result);
       if (result.status === 200) {
         // console.log(result.data);
         this.reqBannerswips = result.data.banners;
@@ -108,27 +114,41 @@ export default {
 };
 </script>
 <style scoped>
-.home {
-  margin-top: 10px;
-  /* padding: 0; */
-}
 .home-barder {
   display: flex;
   justify-content: space-around;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: rgb(243, 77, 64);
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 .wap-nav {
   font-size: 30px;
+  line-height: 50px;
+  color: white;
+}
+.search {
+  width: 280px;
+  border-radius: 50px;
 }
 .volume {
   font-size: 30px;
+  line-height: 50px;
+  color: white;
 }
 /* 轮播图 */
+.my-swipe {
+  /* margin-top: 20px; */
+  background: darkblue;
+}
 .my-swipe .van-swipe-item {
   color: #fff;
   font-size: 20px;
   line-height: 0px;
   text-align: center;
-  background-color: #39a9ed;
+  /* background-color: #39a9ed; */
 }
 img {
   width: 100%;
@@ -137,25 +157,28 @@ img {
 .MusicCategory {
   width: 100%;
   height: 90px;
-  background: orange;
+  /* background: orange; */
   margin-top: 20px;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 .MusicCategorySmall {
-  background: cornflowerblue;
+  /* background: cornflowerblue; */
+  text-align: center;
 }
 .MusicCategorySmallIcon {
   text-align: center;
   width: 50px;
   height: 50px;
   line-height: 60px;
-  background: plum;
+  background: rgb(243, 77, 64);
   border-radius: 50%;
   font-size: 30px;
+  color: white;
 }
 .video {
   text-align: center;
+  color: white;
 }
 </style>

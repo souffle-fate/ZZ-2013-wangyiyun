@@ -5,6 +5,8 @@
 </template>
 
 <script>
+// import { reqXingqing } from "../api/search";
+
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 
@@ -21,9 +23,18 @@ export default {
   //监控data中的数据变化
   watch: {},
   //方法集合
-  methods: {},
+  methods: {
+    // async xiangq(ids) {
+    //   const res = await reqXingqing(ids);
+    //   console.log(res);
+    // },
+  },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() {
+    // alert(this.$route.params.id);
+    const id = this.$route.params.id;
+    this.xiangq(id);
+  },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
   beforeCreate() {}, //生命周期 - 创建之前
