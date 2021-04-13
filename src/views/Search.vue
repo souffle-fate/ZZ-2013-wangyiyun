@@ -121,6 +121,10 @@ export default {
 .box-card {
   width: 480px;
 }
+.box-card div {
+  border-top: 1px solid #999;
+  border-bottom: 1px solid #999;
+}
 .SearchTop {
   background: #ec4141;
   color: white;
