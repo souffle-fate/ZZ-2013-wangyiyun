@@ -32,6 +32,7 @@
         >标签</van-tabbar-item
       >
     </van-tabbar>
+    <Footer v-if="$route.meta.showTabbar"></Footer>
   </div>
 </template>
 <script>
@@ -42,6 +43,7 @@ export default {
       active: 0,
     };
   },
+  components: {},
 };
 </script>
 

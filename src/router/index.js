@@ -10,7 +10,7 @@ const routes = [
     name: "Home",
     component: Home,
     meta: {
-      showTabbar: true,
+      showTabbar: true, // false删除底部导航
     },
   },
   {
@@ -22,7 +22,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
     meta: {
-      showTabbar: true,
+      showTabbar: true, // false删除底部导航
     },
   },
   {
@@ -30,7 +30,7 @@ const routes = [
     name: "Cart",
     component: () => import("../views/Cart.vue"),
     meta: {
-      showTabbar: true,
+      showTabbar: true, // false删除底部导航
     },
   },
   {
@@ -38,7 +38,7 @@ const routes = [
     name: "List",
     component: () => import("../views/List.vue"),
     meta: {
-      showTabbar: true,
+      showTabbar: true, // false删除底部导航
     },
   },
   {
@@ -46,7 +46,7 @@ const routes = [
     name: "User",
     component: () => import("../views/User.vue"),
     meta: {
-      showTabbar: true,
+      showTabbar: true, // false删除底部导航
     },
   },
   {
@@ -54,9 +54,10 @@ const routes = [
     name: "Search",
     component: () => import("../views/Search.vue"),
     meta: {
-      showTabbar: true,
+      showTabbar: true, // false删除底部导航
     },
   },
+
   // MusicList
   {
     path: "/musiclist",
@@ -73,6 +74,64 @@ const routes = [
     component: () => import("../views/MusicComment.vue"),
     meta: {
       showTabbar: false,
+    },
+    showTabbar: true, // false删除底部导航
+    // }
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: () => import("../views/Login.vue"),
+    meta: {
+      showTabbar: false, // false删除底部导航
+    },
+  },
+  {
+    path: "/enter",
+    name: "Enter",
+    component: () => import("../views/Enter"),
+    meta: {
+      showTabbar: false, // false删除底部导航
+    },
+  },
+  {
+    path: "/diantai",
+    name: "Diantai",
+    component: () => import("../views/Lists/diantai"),
+    meta: {
+      showTabbar: false, // false删除底部导航
+    },
+  },
+  {
+    path: "/bendi",
+    name: "Bendi",
+    component: () => import("../views/Lists/bendi"),
+    meta: {
+      showTabbar: false, // false删除底部导航
+    },
+  },
+  {
+    path: "/shocang",
+    name: "Shocang",
+    component: () => import("../views/Lists/shocang"),
+    meta: {
+      showTabbar: false, // false删除底部导航
+    },
+  },
+  {
+    path: "/xiazai",
+    name: "Xiazai",
+    component: () => import("../views/Lists/xiazai"),
+    meta: {
+      showTabbar: false, // false删除底部导航
+    },
+  },
+  {
+    path: "/zueijin",
+    name: "Zueijin",
+    component: () => import("../views/Lists/zueijin"),
+    meta: {
+      showTabbar: false, // false删除底部导航
     },
   },
 ];
