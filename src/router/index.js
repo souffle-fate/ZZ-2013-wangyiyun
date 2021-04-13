@@ -83,6 +83,22 @@ const routes = [
       showTabbar: false  // false删除底部导航
     }
   },
+  {
+    path: "/detail",
+    name: "Detail",
+    component: () => import("../views/Detail"),
+    meta: {
+      showTabbar: false  // false删除底部导航
+    }
+  },
+  {
+    path: "/musicplay",
+    name: "MusicPlay",
+    component: () => import("../views/MusicPlay"),
+    meta: {
+      showTabbar: false  // false删除底部导航
+    }
+  },
 ];
 
 const router = new VueRouter({
