@@ -99,7 +99,8 @@
 // import { Toast } from "vant";
 // import { Icon } from "vant";
 // import { Skeleton } from "vant";  reqMusicDetails
-import { reqMusicComment, reqMusicDetails, reqMusicUrl } from "../api/music";
+// import { Popup } from "vant";
+import { reqMusicComment, reqMusicDetails, reqMusicUrl } from "../../api/music";
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {},
@@ -125,6 +126,7 @@ export default {
       musicUrl: "",
       fixed: true,
       placeholder: true,
+      show: false,
     };
   },
   //计算属性 类似于data概念
@@ -135,7 +137,7 @@ export default {
   methods: {
     onClickLeft() {
       //   Toast("返回");
-      console.log(111);
+      this.$router.push("/detail");
     },
     // 获取评论
     async musicComment() {
@@ -190,7 +192,15 @@ export default {
       if (result.status === 200) {
         // console.log(result.data.data[0].url);
         this.musicUrl = result.data.data[0].url;
+        const aaa = this.$store.state.MusicUrl;
+        console.log(aaa);
       }
+    },
+    // 发送评论
+    async sendComments() {
+      // const result = await reqSendComments();
+      // console.log(result);
+      console.log(111);
     },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
@@ -198,6 +208,7 @@ export default {
     this.musicComment();
     this.musicDetails();
     this.PlayMusic();
+    this.sendComments();
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {

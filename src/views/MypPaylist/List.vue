@@ -33,7 +33,7 @@
   </div>
 </template>
 <script>
-import { reqList } from "../api/user";
+import { reqList } from "../../api/user";
 export default {
   components: {},
   data() {
@@ -77,7 +77,7 @@ export default {
   updated() {},
 };
 </script>
-<style  scoped>
+<style scoped>
 .list {
   width: 100%;
   height: 100%;

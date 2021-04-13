@@ -48,7 +48,7 @@ export default {
   updated() {},
 };
 </script>
-<style  scoped>
+<style scoped>
 .loging {
   width: 100%;
   height: 100%;
