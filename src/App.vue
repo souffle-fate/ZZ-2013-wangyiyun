@@ -1,41 +1,53 @@
 <template>
   <div id="app">
     <router-view />
-    <van-tabbar route v-model="active" active-color="deeppink">
+    <van-tabbar
+      route
+      v-model="active"
+      active-color="deeppink"
+      v-if="$route.meta.showTabbar"
+    >
       <van-tabbar-item :to="{ name: 'Home' }" @click="active = 0" icon="home-o"
         >首页</van-tabbar-item
       >
-      <van-tabbar-item :to="{ name: 'About' }" @click="active = 1" icon="search"
-        >标签</van-tabbar-item
+      <!-- /Paihangbang/Index -->
+      <van-tabbar-item
+        :to="{ name: '/Paihangbang/Index' }"
+        @click="active = 1"
+        icon="orders-o"
+        >推荐列表</van-tabbar-item
       >
       <van-tabbar-item
         :to="{ name: 'List' }"
         @click="active = 2"
-        icon="friends-o"
-        >标签</van-tabbar-item
+        icon="coupon-o"
+        >我的歌单</van-tabbar-item
       >
       <van-tabbar-item
-        :to="{ name: 'Cart' }"
+        :to="{ name: 'Index' }"
         @click="active = 3"
-        icon="setting-o"
-        >标签</van-tabbar-item
+        icon="friends-o"
+        >云村</van-tabbar-item
       >
-      <van-tabbar-item
-        :to="{ name: 'User' }"
-        @click="active = 4"
-        icon="setting-o"
-        >标签</van-tabbar-item
+      <van-tabbar-item :to="{ name: 'User' }" @click="active = 4" icon="contact"
+        >个人中心</van-tabbar-item
       >
     </van-tabbar>
+    <Footer></Footer>
+    <Pmusic></Pmusic>
   </div>
 </template>
 <script>
+import Pmusic from "./views/MusicPlay";
 export default {
   name: "App",
   data() {
     return {
       active: 0,
     };
+  },
+  components: {
+    Pmusic,
   },
 };
 </script>

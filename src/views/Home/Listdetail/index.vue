@@ -13,7 +13,6 @@
           <p>{{ resObj.name }}</p>
           <p>
             <img :src="resObj.creator.avatarUrl" alt="" />
-            <img :src="resObj.creator.avatarDetail.identityIconUrl" alt="" />
             <span>{{ resObj.creator.nickname }}<van-icon name="arrow" /></span>
           </p>
         </div>
@@ -50,7 +49,7 @@
 </template>
 
 <script>
-import { reqListDetail, reqSongDetail } from "../../../api/reclist";
+import { reqListDetail } from "../../../api/reclist";
 // import { mapState } from "vuex";
 export default {
   components: {},
@@ -83,14 +82,14 @@ export default {
       }
     },
 
-    async getSongDetail(ids) {
-      let res = await reqSongDetail({ ids: ids });
-      console.log(res);
-    },
+    // async getSongDetail(ids) {
+    //   let res = await reqSongDetail({ ids: ids });
+    //   console.log(res);
+    // },
   },
   created() {
     this.getListDetail(this.id);
-    this.getSongDetail(this.trackIdsStr);
+    // this.getSongDetail(this.trackIdsStr);
   },
   mounted() {},
   beforeCreate() {},
@@ -127,19 +126,19 @@ export default {
           margin-bottom: 30px;
         }
         p:last-child {
-          position: relative;
+          // position: relative;
           font-size: 14px;
           color: rgb(208, 218, 216);
           img:first-child {
             width: 30px;
             border-radius: 30px;
           }
-          img:nth-child(2) {
-            width: 10px;
-            position: absolute;
-            right: 203px;
-            bottom: 8px;
-          }
+          // img:nth-child(2) {
+          //   width: 10px;
+          //   position: absolute;
+          //   right: 203px;
+          //   bottom: 8px;
+          // }
           span {
             display: inline-block;
             margin-left: 10px;
