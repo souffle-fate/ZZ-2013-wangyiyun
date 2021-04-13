@@ -25,7 +25,7 @@ const routes = [
       {
         path:"fm",
         name:"Fm",
-        component:() => import("../views/home/fm"),
+        component:() => import("../views/Home/fm"),
       },
     ]
     
@@ -126,9 +126,19 @@ const routes = [
 
   // 第二个模块  排行榜
   {
+    path: "/rank",
+    name: "Rank",
+    component: () => import("../views/Rank"),
+    meta: {
+      showTabbar: true, // false删除底部导航
+    },
+  },
+
+  //音乐列表模块
+  {
     path: "/musiclist/:id",
     name: "MusicList",
-    component: () => import("../views/MusicList.vue"),
+    component: () => import("../views/Home/MusicList.vue"),
     meta: {
       showTabbar: true, // false删除底部导航
     },

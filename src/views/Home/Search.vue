@@ -53,13 +53,7 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 // import { Search } from "vant";
-<<<<<<< HEAD:src/views/Search.vue
-import { reqSearchMusic, reqSearchHotMusic } from "../api/music";
-// import { reqSearchproposal } from "../api/search";
-
-=======
 import { reqSearchMusic, reqSearchHotMusic } from "../../api/music";
->>>>>>> f23bbfea33a26be61498e9c7acd4f78bace2ff7b:src/views/Home/Search.vue
 import { Toast } from "vant";
 export default {
   //import引入的组件需要注入到对象中才能使用
