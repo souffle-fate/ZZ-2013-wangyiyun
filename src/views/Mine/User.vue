@@ -32,8 +32,8 @@
 </template>
 <script>
 //reqUserPer
-import { reqUser } from "../api/user";
-import { reqUserPer } from "../api/user";
+import { reqUser } from "../../api/user";
+import { reqUserPer } from "../../api/user";
 // import { reqUserUser } from "../api/user";
 export default {
   components: {},

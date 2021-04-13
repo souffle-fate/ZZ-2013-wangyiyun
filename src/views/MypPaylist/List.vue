@@ -19,5 +19,5 @@ export default {
   updated() {},
 };
 </script>
-<style  scoped>
+<style scoped>
 </style>
