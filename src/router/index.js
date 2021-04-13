@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import Home from "../views/Home/index.vue";
 
 Vue.use(VueRouter);
 
@@ -45,6 +45,25 @@ const routes = [
     name: "MusicList",
     component: () => import("../views/MusicList.vue"),
   },
+  {
+    path: "/toplist",
+    name: "Toplist",
+    component: () => import("../views/Toplist"),
+    // meta:{
+    //   showTabbar:false,
+    // }
+  },
+  {
+    path: "/dailyrec",
+    name: "Dailyrec",
+    component: () => import("../views/Dailyrec"),
+
+  },
+  {
+    path: '/listdetail/:id',
+    name: 'Listdetail',
+    component: () => import('../views/Home/Listdetail')
+  }
 ];
 
 const router = new VueRouter({
