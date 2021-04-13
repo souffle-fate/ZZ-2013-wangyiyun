@@ -53,9 +53,13 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 // import { Search } from "vant";
+<<<<<<< HEAD:src/views/Search.vue
 import { reqSearchMusic, reqSearchHotMusic } from "../api/music";
 // import { reqSearchproposal } from "../api/search";
 
+=======
+import { reqSearchMusic, reqSearchHotMusic } from "../../api/music";
+>>>>>>> f23bbfea33a26be61498e9c7acd4f78bace2ff7b:src/views/Home/Search.vue
 import { Toast } from "vant";
 export default {
   //import引入的组件需要注入到对象中才能使用
@@ -107,6 +111,8 @@ export default {
           console.log(result.data.code);
           // console.log(result.data.result.songs);
           this.MusicList = result.data.result.songs;
+          console.log(this.MusicList);
+          this.$store.state.array1.push(this.MusicList);
           // console.log(this.MusicList);
           // console.log(this.MusicList);
           //   跳转到歌曲搜索详情
@@ -161,6 +167,10 @@ export default {
 }
 .box-card {
   width: 480px;
+}
+.box-card div {
+  border-top: 1px solid #999;
+  border-bottom: 1px solid #999;
 }
 .SearchTop {
   background: #ec4141;

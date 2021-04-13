@@ -10,3 +10,25 @@ export const reqSearchHotMusic = () => get("/search/hot/detail");
 // 获取歌曲详情
 export const reqMusicDetails = (data) => get("/song/detail", data);
 // 必选参数 : ids: 音乐 id, 如 ids=347230
+// 获取用户电台
+export const reqInfoFollows = (data) => get("/user/follows", data);
+//获取用户歌单
+export const reqInfoplaylist = (data) => get("/user/playlist", data);
+// 获取用户详情/user/detail
+export const reqInfo = (data) => get("/user/detail", data);
+// 获取歌单详情/playlist/detail/dynamic
+export const reqDynamic = (data) => get("/playlist/detail/dynamic", data);
+
+
+
+// 歌曲评论
+export const reqMusicComment = (data) => get("/comment/music", data);
+//必选参数 : id: 音乐 id    可选参数 : limit: 取出评论数量 , 默认为 20
+
+//获取音乐 url
+export const reqMusicUrl = (data) => get("/song/url", data);
+// 必选参数 : id : 音乐 id
+
+// 获取歌词
+export const reqMusicLyrics = (data) => get("/lyric", data);
+// /lyric  必选参数 : id: 音乐 id

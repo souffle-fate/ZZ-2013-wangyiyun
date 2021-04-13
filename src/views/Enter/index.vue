@@ -58,6 +58,7 @@ export default {
       console.log(result);
       if (result.data.code === 200) {
         setToken(result.data.token);
+        localStorage.setItem("uid", result.data.account.id);
         Toast.success("登录成功");
         this.$router.push("/");
         console.log("11");

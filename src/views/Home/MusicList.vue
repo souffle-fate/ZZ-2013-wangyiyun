@@ -13,6 +13,7 @@
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {},
+  props: {},
   // props: { MusicList },
   data() {
     //这里存放数据
@@ -22,6 +23,7 @@ export default {
   computed: {},
   //监控data中的数据变化
   watch: {},
+<<<<<<< HEAD:src/views/MusicList.vue
   //方法集合
   methods: {
     // async xiangq(ids) {
@@ -29,6 +31,10 @@ export default {
     //   console.log(res);
     // },
   },
+=======
+
+  methods: {},
+>>>>>>> f23bbfea33a26be61498e9c7acd4f78bace2ff7b:src/views/Home/MusicList.vue
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
     // alert(this.$route.params.id);
