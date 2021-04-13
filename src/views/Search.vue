@@ -69,6 +69,8 @@ export default {
           console.log(result.data.code);
           // console.log(result.data.result.songs);
           this.MusicList = result.data.result.songs;
+          console.log(this.MusicList);
+          this.$store.state.array1.push(this.MusicList);
           // console.log(this.MusicList);
           //   跳转到歌曲搜索详情
           //   this.$router.push("/musiclist");
