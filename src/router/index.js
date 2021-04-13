@@ -83,6 +83,44 @@ const routes = [
       showTabbar: false  // false删除底部导航
     }
   },
+  {
+    path: '/diantai',
+    name: "Diantai",
+    component: () => import('../views/Lists/diantai'),
+    meta: {
+      showTabbar: false  // false删除底部导航
+    }
+  }, {
+    path: '/bendi',
+    name: "Bendi",
+    component: () => import('../views/Lists/bendi'),
+    meta: {
+      showTabbar: false  // false删除底部导航
+    }
+  }, {
+    path: '/shocang',
+    name: "Shocang",
+    component: () => import('../views/Lists/shocang'),
+    meta: {
+      showTabbar: false  // false删除底部导航
+    }
+  }, {
+    path: '/xiazai',
+    name: "Xiazai",
+    component: () => import('../views/Lists/xiazai'),
+    meta: {
+      showTabbar: false  // false删除底部导航
+    }
+  },
+  {
+    path: '/zueijin',
+    name: "Zueijin",
+    component: () => import('../views/Lists/zueijin'),
+    meta: {
+      showTabbar: false  // false删除底部导航
+    }
+  },
+
 ];
 
 const router = new VueRouter({

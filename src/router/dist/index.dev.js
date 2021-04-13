@@ -129,6 +129,66 @@ var routes = [{
     showTabbar: false // false删除底部导航
 
   }
+}, {
+  path: '/diantai',
+  name: "Diantai",
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/Lists/diantai'));
+    });
+  },
+  meta: {
+    showTabbar: false // false删除底部导航
+
+  }
+}, {
+  path: '/bendi',
+  name: "Bendi",
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/Lists/bendi'));
+    });
+  },
+  meta: {
+    showTabbar: false // false删除底部导航
+
+  }
+}, {
+  path: '/shocang',
+  name: "Shocang",
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/Lists/shocang'));
+    });
+  },
+  meta: {
+    showTabbar: false // false删除底部导航
+
+  }
+}, {
+  path: '/xiazai',
+  name: "Xiazai",
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/Lists/xiazai'));
+    });
+  },
+  meta: {
+    showTabbar: false // false删除底部导航
+
+  }
+}, {
+  path: '/zueijin',
+  name: "Zueijin",
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/Lists/zueijin'));
+    });
+  },
+  meta: {
+    showTabbar: false // false删除底部导航
+
+  }
 }];
 var router = new _vueRouter["default"]({
   routes: routes
