@@ -27,12 +27,32 @@ const routes = [
   {
     path: "/list",
     name: "List",
-    component: () => import("../views/List.vue"),
+    component: () => import("../views/list/List.vue"),
+    children: [
+      {
+        path: "music",
+        name: "Music",
+        component: () => import('../views/list/music/music')
+      },
+      {
+        path: "dongtai",
+        name: "Dongtai",
+        component: () => import('../views/list/dongtai/dongtai')
+      },
+      {
+        path: "mine",
+        name: "Mine",
+        component: () => import('../views/list/mine/mine')
+      },
+    ]
   },
   {
     path: "/user",
     name: "User",
     component: () => import("../views/User.vue"),
+    meta: {
+      showTabbar: false, //不显示底部导航
+    }
   },
   {
     path: "/search",

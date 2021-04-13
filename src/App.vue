@@ -23,7 +23,7 @@
       <van-tabbar-item
         :to="{ name: 'User' }"
         @click="active = 4"
-        icon="setting-o"
+        icon="friends-o"
         >标签</van-tabbar-item
       >
     </van-tabbar>
