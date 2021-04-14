@@ -24,7 +24,7 @@
         >我的歌单</van-tabbar-item
       >
       <van-tabbar-item
-        :to="{ name: 'Index' }"
+        :to="{ name: 'HotTopic' }"
         @click="active = 3"
         icon="friends-o"
         >云村</van-tabbar-item
@@ -44,8 +44,7 @@ export default {
       active: 0,
     };
   },
-  components: {
-  },
+  components: {},
 };
 </script>
 
