@@ -11,7 +11,8 @@
       />
       <van-icon class="volume" name="volume" />
     </div>
-
+    <!-- 侧边栏 -->
+    <div class="mask"></div>
     <!-- 轮播图 -->
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
       <van-swipe-item v-for="(item, index) in reqBannerswips" :key="index">
@@ -114,6 +115,19 @@ export default {
 };
 </script>
 <style scoped>
+.home {
+  position: relative;
+}
+.home .mask {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}
 .home-barder {
   display: flex;
   justify-content: space-around;

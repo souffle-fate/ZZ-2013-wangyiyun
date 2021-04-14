@@ -1,34 +1,8 @@
 <template>
   <div class="music">
-    <div class="box1" ref="diantai">
-      <div class="title">
-        <p>电台({{ num }})</p>
-      </div>
-      <div
-        class="main"
-        v-for="(item, index) in arr2.length"
-        :key="item"
-        @click="$router.go(0)"
-      >
-        <span><img :src="avatarUrl[index]" alt="" /></span>
-        <p style="margin-left: 11px">
-          <i
-            style="
-              font-size: 14px;
-              display: inline-block;
-              color: black;
-              margin-bottom: 11px;
-            "
-            >{{ nickname[index] }}</i
-          ><br /><b style="font-size: 11px"
-            >共{{ follows[index] }}期，{{ followeds[index] }}人订阅</b
-          >
-        </p>
-      </div>
-    </div>
     <div class="box1">
       <div class="title">
-        <p>歌单({{ num }})</p>
+        <p>歌单({{ num2 }})</p>
       </div>
       <div
         class="main"
@@ -71,6 +45,7 @@ export default {
       userId: [],
       arr: [],
       arr2: [],
+      num2: 0,
     };
   },
   //计算属性 类似于data概念
@@ -100,6 +75,7 @@ export default {
       const arr = result.data.playlist;
       this.arr = arr;
       console.log(arr[0].id);
+      this.num2 = arr.length;
     },
     async getmusiclist(id) {
       console.log(id);
