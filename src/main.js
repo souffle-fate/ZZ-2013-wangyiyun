@@ -12,6 +12,7 @@ Vue.use(Calendar, Overlay, ActionSheet, Uploader, Button, IndexBar, IndexAnchor,
 Vue.use(ElementUI);
 Vue.use(Vant);
 
+
 Vue.config.productionTip = false;
 
 new Vue({

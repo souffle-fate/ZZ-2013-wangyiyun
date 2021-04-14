@@ -1,18 +1,34 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home/Home.vue";
+import Home from "../views/Home/index.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   // 首页Home
   {
-    path: "/",
+    path:'/',
+    name: "Home",
+    redirect:'/home',
+    meta: {
+      showTabbar: true  // false删除底部导航
+  },
+},
+  {
+    path: "/home",
     name: "Home",
     component: Home,
     meta: {
-      showTabbar: true, //不显示底部导航
-    }
+      showTabbar: true  // false删除底部导航
+    },
+    children:[
+      {
+        path:"fm",
+        name:"Fm",
+        component:() => import("../views/Home/fm"),
+      },
+    ]
+    
   },
   // 音乐详情列表页面
   {
@@ -106,21 +122,23 @@ const routes = [
     },
   },
 
-  // 第三个模块，个人中心
+
+
+  // 第二个模块  排行榜
   {
-    path: "/list",
-    name: "List",
-    component: () => import("../views/MypPaylist/List.vue"),
+    path: "/rank",
+    name: "Rank",
+    component: () => import("../views/Rank"),
     meta: {
       showTabbar: true, // false删除底部导航
     },
   },
 
-  // 第二个模块  排行榜
+  //音乐列表模块
   {
-    path: "/paihangbang/index",
-    name: "/Paihangbang/Index",
-    component: () => import("../views/Paihangbang/index.vue"),
+    path: "/musiclist/:id",
+    name: "MusicList",
+    component: () => import("../views/Home/MusicList.vue"),
     meta: {
       showTabbar: true, // false删除底部导航
     },
@@ -162,6 +180,25 @@ const routes = [
     meta: {
       showTabbar: false, // false删除底部导航
     },
+  },
+  {
+    path: "/toplist",
+    name: "Toplist",
+    component: () => import("../views/Toplist"),
+    // meta:{
+    //   showTabbar:false,
+    // }
+  },
+  {
+    path: "/dailyrec",
+    name: "Dailyrec",
+    component: () => import("../views/Dailyrec"),
+
+  },
+  {
+    path: '/listdetail/:id',
+    name: 'Listdetail',
+    component: () => import('../views/Home/Listdetail')
   },
   {
     path: "/shocang",
@@ -273,7 +310,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  routes,
+  routes
 });
 
 export default router;
