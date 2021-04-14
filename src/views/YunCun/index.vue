@@ -1,11 +1,16 @@
 <template>
-  <div id="yuncun">   
+  <div id="yuncun">
     <!-- <router-link :to="{ name: 'HotTopic' }">11</router-link>
     <router-link :to="{ name: 'Mv' }">22</router-link> -->
-    <van-tabs>
-  <van-tab title="热门话题" :to="{ name: 'HotTopic' }"></van-tab>
-  <van-tab title="推荐MV" :to="{ name: 'Mv' }"></van-tab>
-</van-tabs>
+    <van-tabs
+      background="#ec4141"
+      color="white"
+      title-active-color="white"
+      :swipeable="true"
+    >
+      <van-tab title="热门话题" :to="{ name: 'HotTopic' }"></van-tab>
+      <van-tab title="推荐MV" :to="{ name: 'Mv' }"></van-tab>
+    </van-tabs>
     <router-view></router-view>
   </div>
 </template>
@@ -15,7 +20,7 @@ export default {};
 </script>
 
 <style scoped>
-router-link{
+router-link {
   position: fixed;
   top: 0;
 }

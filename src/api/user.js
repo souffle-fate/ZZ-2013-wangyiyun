@@ -12,6 +12,15 @@ export const reqHistory = (data) => get("/user/comment/history", data);
 export const reqUpdate = (data) => get("/user/update", data);
 
 
+
+
+
+
+
+
+
+
+
 export const reqLogin = (aa) => get("/login/cellphone" + aa);
 // 获取用户详情
 export const reqUser = (uid) => get("/user/detail" + uid);
@@ -30,8 +39,11 @@ export const reqUserprogram = (data) => get("/dj/program", data);
 
 //收藏的MV列表
 export const reqUserMV = () => get("/mv/sublist");
-//收藏的歌手列表
 
-// 收藏视频
+//网易出品mv
+export const reqYunCunMV = () => get("/mv/exclusive/rcmd");
 
-//专栏
+//mv 地址
+export const reqYunCunMVBofang = (a) => get("/mv/url?id=" + a);
+//获取 mv 数据
+export const reqYunCunMVXiang = (uid) => get("/mv/detail?mvid=" + uid);
