@@ -21,6 +21,14 @@ const routes = [
     meta: {
       showTabbar: true, // false删除底部导航
     },
+
+    // children: [
+    //   // {
+    //   //   path:"fm",
+    //   //   name:"Fm",
+    //   //   component:() => import("../views/Home/fm"),
+    //   // },
+    // ],
     children: [
       {
         path: "fm",
@@ -29,22 +37,29 @@ const routes = [
       },
     ],
   },
-  // 音乐详情列表页面
+  //FM
   {
-    path: "/musiclist",
-    name: "MusicList",
-    component: () => import("../views/Home/MusicList.vue"),
+    path: "/fm",
+    name: "fm",
+    component: () => import("../views/Home/fm"),
+  },
+
+  // 音乐详情页面
+  {
+    path: "/musicXQ/:id",
+    name: "MusicXQ",
+    component: () => import("../views/Home/musicXQ/index.vue"),
     meta: {
-      showTabbar: true, // false删除底部导航
+      showTabbar: false, // false删除底部导航
     },
   },
   // 音乐搜索页面
   {
     path: "/search",
     name: "Search",
-    component: () => import("../views/Home/Search.vue"),
+    component: () => import("../views/Home/search/index"),
     meta: {
-      showTabbar: true, // false删除底部导航
+      showTabbar: false, // false删除底部导航
     },
   },
 
@@ -196,16 +211,6 @@ const routes = [
     path: "/rank",
     name: "Rank",
     component: () => import("../views/Rank"),
-    meta: {
-      showTabbar: true, // false删除底部导航
-    },
-  },
-
-  //音乐列表模块
-  {
-    path: "/musiclist/:id",
-    name: "MusicList",
-    component: () => import("../views/Home/MusicList.vue"),
     meta: {
       showTabbar: true, // false删除底部导航
     },

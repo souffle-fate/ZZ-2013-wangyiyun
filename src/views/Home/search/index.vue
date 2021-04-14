@@ -1,30 +1,17 @@
 <template>
   <div id="search">
-    <!-- 搜索页面 -->
-
-    <van-nav-bar
-      title="搜索"
-      left-text="返回"
-      right-text="按钮"
-      left-arrow
-      @click-left="onClickLeft"
-      @click-right="onClickRight"
-      class="SearchTop"
-    />
-    <van-search
-      v-model="value"
-      show-action
-      background="#ec4141"
-      placeholder="请输入歌名"
-      class="searchMusic"
-      @search="onSearch"
-    >
-      <template #action>
-        <div @click="search(value)">搜索</div>
-      </template>
-    </van-search>
-    <!-- 搜索建议 -->
-    <!-- <div class="Searproposal">1111</div> -->
+    <!-- 搜索---导航 -->
+    <div class="search-nav">
+      <van-icon name="arrow-left" class="arrow-left" @click="goHome" />
+      <van-search
+        v-model="value"
+        shape="round"
+        background="#ec4141"
+        placeholder="请输入搜索关键词"
+        class="search-input searchMusic"
+        @search="onSearch"
+      />
+    </div>
 
     <!-- 热搜榜单 -->
     <!-- <el-card class="box-card">
@@ -36,9 +23,11 @@
       </div>
     </el-card> -->
     <!-- 搜索歌曲 -->
+    <!-- <div class="searchGList" ></div> -->
+    <!-- 搜索歌曲---列表 -->
     <div
       class="MusicList"
-      v-for="(item, index) in MusicList"
+      v-for="(item, index) in MusicList.slice(0, 11)"
       :key="index"
       @click="MusicListXQ(item.id)"
     >
@@ -53,7 +42,7 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 // import { Search } from "vant";
-import { reqSearchMusic, reqSearchHotMusic } from "../../api/music";
+import { reqSearchMusic, reqSearchHotMusic } from "../../../api/music";
 import { Toast } from "vant";
 export default {
   //import引入的组件需要注入到对象中才能使用
@@ -84,10 +73,15 @@ export default {
     //   console.log(res);
     // },
 
+    //回到首页
+    goHome() {
+      this.$router.push("/home");
+    },
+    //点击歌曲跳转响应歌曲播放页面
     MusicListXQ(id) {
       // const res = await reqMusicDetails({});
       this.$router.push({
-        path: `/musiclist/${id}`,
+        path: `/musicXQ/${id}`,
       });
       // alert(id);
       console.log(11);
@@ -107,8 +101,6 @@ export default {
           this.MusicList = result.data.result.songs;
           console.log(this.MusicList);
           this.$store.state.array1.push(this.MusicList);
-          // console.log(this.MusicList);
-          // console.log(this.MusicList);
           //   跳转到歌曲搜索详情
           // this.$router.push("/musiclist");
         }
@@ -188,7 +180,40 @@ export default {
 .songImg {
   width: 14px;
 }
+/* 搜索页面的头部 */
+.search-nav {
+  width: 100%;
+  /* height: 80x; */
+  background: #ec4141;
+  display: flex;
+  justify-content: space-around;
+}
+.arrow-left {
+  width: 10%;
+  height: 80x;
+  line-height: 80px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 300;
+  color: white;
+}
+.search-input {
+  width: 90%;
+}
 /* 搜索框款渲染样式 */
+.searchGList {
+  width: 90%;
+  height: 70%;
+  /* margin-left: 5%; */
+  background: violet;
+  position: absolute;
+  top: 80px;
+  left: 0;
+}
+.MusicList {
+  width: 100%;
+  height: 70%;
+}
 
 /* 搜索建议 */
 </style>
