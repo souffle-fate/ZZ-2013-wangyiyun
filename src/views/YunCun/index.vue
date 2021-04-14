@@ -19,4 +19,9 @@
 export default {};
 </script>
 
-<style scoped></style>
+<style scoped>
+router-link {
+  position: fixed;
+  top: 0;
+}
+</style>

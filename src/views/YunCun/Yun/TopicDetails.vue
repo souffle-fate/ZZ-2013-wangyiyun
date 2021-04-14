@@ -31,7 +31,7 @@
       <div class="list_neirong">
         <p class="p1">#{{ item.actName }}#</p>
         <p class="p2">
-          {{ item.json }}
+          {{ JSON.parse(item.json) }}
         </p>
       </div>
     </div>

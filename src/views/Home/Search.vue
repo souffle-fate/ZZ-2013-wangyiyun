@@ -123,7 +123,7 @@ export default {
       }
     },
     onClickLeft() {
-      Toast("返回");
+      this.$router.push("/home");
     },
     onClickRight() {
       Toast("按钮");

@@ -18,7 +18,7 @@
         >推荐列表</van-tabbar-item
       >
       <van-tabbar-item
-        :to="{ name: 'List' }"
+        :to="{ name: 'Music' }"
         @click="active = 2"
         icon="coupon-o"
         >我的歌单</van-tabbar-item
@@ -44,6 +44,8 @@ export default {
       active: 0,
     };
   },
+  methods: {},
+  created() {},
   components: {},
 };
 </script>
