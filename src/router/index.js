@@ -7,19 +7,11 @@ Vue.use(VueRouter);
 const routes = [
   // 首页Home
   {
-<<<<<<< HEAD
     path: '/',
     name: "Home",
     redirect: '/home',
     meta: {
       showTabbar: true  // false删除底部导航
-=======
-    path: "/",
-    name: "Home",
-    redirect: "/home",
-    meta: {
-      showTabbar: true, // false删除底部导航
->>>>>>> d6474b42001fbf71035d56c552fe157d26c1cfc6
     },
   },
   {
@@ -29,31 +21,6 @@ const routes = [
     meta: {
       showTabbar: true, // false删除底部导航
     },
-<<<<<<< HEAD
-=======
-
-    // children: [
-    //   // {
-    //   //   path:"fm",
-    //   //   name:"Fm",
-    //   //   component:() => import("../views/Home/fm"),
-    //   // },
-    // ],
->>>>>>> d6474b42001fbf71035d56c552fe157d26c1cfc6
-    children: [
-      {
-        path: "fm",
-        name: "Fm",
-        component: () => import("../views/Home/fm"),
-<<<<<<< HEAD
-        meta: {
-          showTabbar: false,
-        }
-      },
-
-
-    ]
-
   },
   //首页--排行榜
   {
@@ -81,10 +48,6 @@ const routes = [
     meta: {
       showTabbar: false,
     }
-=======
-      },
-    ],
->>>>>>> d6474b42001fbf71035d56c552fe157d26c1cfc6
   },
   //FM
   {
@@ -302,28 +265,6 @@ const routes = [
       showTabbar: false, // false删除底部导航
     },
   },
-<<<<<<< HEAD
-
-=======
-  {
-    path: "/toplist",
-    name: "Toplist",
-    component: () => import("../views/Toplist"),
-    // meta:{
-    //   showTabbar:false,
-    // }
-  },
-  {
-    path: "/dailyrec",
-    name: "Dailyrec",
-    component: () => import("../views/Dailyrec"),
-  },
-  {
-    path: "/listdetail/:id",
-    name: "Listdetail",
-    component: () => import("../views/Home/Listdetail"),
-  },
->>>>>>> d6474b42001fbf71035d56c552fe157d26c1cfc6
   {
     path: "/shocang",
     name: "Shocang",

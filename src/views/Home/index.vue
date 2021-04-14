@@ -72,7 +72,6 @@
         </ul>
       </div>
     </div>
-<<<<<<< HEAD
     <!-- jia最新音乐  最新专辑-->
     <div class="latestsongs">
       <h2><a href="">最新专辑</a><van-icon name="arrow" /></h2>
@@ -100,16 +99,6 @@
             <p>{{ item.name }}</p>
           </li>
         </ul>
-=======
-
-    <!-- mv -->
-    <div class="home-mvs">
-      <div class="home-mv" v-for="(item, index) in HQmv" :key="index">
-        <!-- <p>{{ item }}</p>
-      img
-     -->
-        <img :src="item.picUrl" alt="" />
->>>>>>> d6474b42001fbf71035d56c552fe157d26c1cfc6
       </div>
     </div>
   </div>
@@ -121,13 +110,8 @@
 // import { Field } from "vant";
 import { reqRecsongs } from "../../api/reclist";
 import { reqBannerswip } from "../../api/home";
-<<<<<<< HEAD
 import { reqNewestAl } from "../../api/newestAl";
 import { reqLiveFM } from "../../api/livefm";
-=======
-import { reqMvs } from "../../api/mv";
-
->>>>>>> d6474b42001fbf71035d56c552fe157d26c1cfc6
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {},
@@ -138,12 +122,8 @@ export default {
       recsongs: [],
       value: "",
       reqBannerswips: "",
-<<<<<<< HEAD
       newestAl: [],
       liveFMs: [],
-=======
-      HQmv: "",
->>>>>>> d6474b42001fbf71035d56c552fe157d26c1cfc6
     };
   },
   //计算属性 类似于data概念
@@ -160,16 +140,11 @@ export default {
     goFM() {
       this.$router.push("/fm");
     },
-<<<<<<< HEAD
     gotoplist() {
       this.$router.push({ path: "/toplist" });
     },
     async reqBannerswip() {
       // console.log(111);
-=======
-    // 轮播图
-    async reqBannerswip() {
->>>>>>> d6474b42001fbf71035d56c552fe157d26c1cfc6
       const result = await reqBannerswip();
       // console.log(result);
       if (result.status === 200) {
@@ -210,12 +185,6 @@ export default {
       // console.log(id);
       this.$router.push({ path: `/listdetail/${id}` });
     },
-    // 推荐mv接口
-    async getMv() {
-      const res = await reqMvs();
-      console.log(res.data.result);
-      this.HQmv = res.data.result;
-    },
   },
 
   filters: {
@@ -231,12 +200,8 @@ export default {
   created() {
     this.reqBannerswip();
     this.getRecsong();
-<<<<<<< HEAD
     this.getNewestAl();
     this.getLiveFM();
-=======
-    this.getMv();
->>>>>>> d6474b42001fbf71035d56c552fe157d26c1cfc6
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
@@ -251,11 +216,6 @@ export default {
 </script>
 
 <style scoped lang='scss'>
-.home-mvs {
-  // background: black;
-  padding-bottom: 200px;
-}
-
 .home-barder {
   display: flex;
   justify-content: space-around;

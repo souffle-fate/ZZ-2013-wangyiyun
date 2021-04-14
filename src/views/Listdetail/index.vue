@@ -61,14 +61,16 @@
             <div class="left">
               <p>{{ index + 1 }}</p>
               <div>
-                <span>{{ item.name }}</span>
+                <span>{{ item.name | ellipsisSong }}</span>
                 <!-- <span v-for="(subitem, subindex) in item.ar" :key="subindex"> -->
                 <!-- {{ item.ar[0].name }}{{ item.ar[1].name }} -->
                 <!-- </span> -->
                 <div class="info">
                   <span>{{ item.ar[0].name }}</span>
                   <span v-if="item.ar.length == 2">/{{ item.ar[1].name }}</span>
-                  <span>-{{ item.al.name }}</span>
+                  <span v-if="item.al.name"
+                    >-{{ item.al.name | ellipsisArt }}</span
+                  >
                 </div>
               </div>
             </div>
@@ -88,7 +90,22 @@ import { reqListDetail, reqSongDetail } from "../../api/reclist";
 
 export default {
   components: {},
-  filters: {},
+  filters: {
+    ellipsisSong(str) {
+      if (!str) return ""; //如果没有返回空
+      if (str.length > 28) {
+        return str.slice(0, 28) + "..."; //长度大于10的后面用......代替
+      }
+      return str;
+    },
+    ellipsisArt(str) {
+      if (!str) return ""; //如果没有返回空
+      if (str.length > 10) {
+        return str.slice(0, 10) + "..."; //长度大于10的后面用......代替
+      }
+      return str;
+    },
+  },
   props: {},
   data() {
     return {
