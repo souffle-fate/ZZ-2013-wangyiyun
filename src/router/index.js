@@ -1,19 +1,19 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home/index.vue";
+import Home from "../views/Home/index";
 
 Vue.use(VueRouter);
 
 const routes = [
   // 首页Home
   {
-    path:'/',
+    path: '/',
     name: "Home",
-    redirect:'/home',
+    redirect: '/home',
     meta: {
       showTabbar: true  // false删除底部导航
+    },
   },
-},
   {
     path: "/home",
     name: "Home",
@@ -21,14 +21,46 @@ const routes = [
     meta: {
       showTabbar: true  // false删除底部导航
     },
-    children:[
+    children: [
       {
-        path:"fm",
-        name:"Fm",
-        component:() => import("../views/Home/fm"),
+        path: "fm",
+        name: "Fm",
+        component: () => import("../views/Home/fm"),
+        meta: {
+          showTabbar: false,
+        }
       },
+
+
     ]
-    
+
+  },
+  //首页--排行榜
+  {
+    path: "/toplist",
+    name: "Toplist",
+    component: () => import("../views/Home/Toplist/index.vue"),
+    meta: {
+      showTabbar: false,
+    }
+  },
+  //首页--每日推荐
+  {
+    path: "/dailyrec",
+    name: "Dailyrec",
+    component: () => import("../views/Home/Dailyrec"),
+    meta: {
+      showTabbar: false,
+    }
+  },
+  //歌单详情页面
+  {
+    path: '/listdetail/:id',
+    name: 'Listdetail',
+    component: () => import('../views/Listdetail'),
+    meta: {
+      showTabbar: false,
+    }
   },
   // 音乐详情列表页面
   {
@@ -181,25 +213,7 @@ const routes = [
       showTabbar: false, // false删除底部导航
     },
   },
-  {
-    path: "/toplist",
-    name: "Toplist",
-    component: () => import("../views/Toplist"),
-    // meta:{
-    //   showTabbar:false,
-    // }
-  },
-  {
-    path: "/dailyrec",
-    name: "Dailyrec",
-    component: () => import("../views/Dailyrec"),
 
-  },
-  {
-    path: '/listdetail/:id',
-    name: 'Listdetail',
-    component: () => import('../views/Home/Listdetail')
-  },
   {
     path: "/shocang",
     name: "Shocang",
