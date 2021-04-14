@@ -34,11 +34,9 @@
       >
     </van-tabbar>
     <Footer></Footer>
-    <Pmusic></Pmusic>
   </div>
 </template>
 <script>
-import Pmusic from "./views/MusicPlay";
 export default {
   name: "App",
   data() {
@@ -47,7 +45,6 @@ export default {
     };
   },
   components: {
-    Pmusic,
   },
 };
 </script>

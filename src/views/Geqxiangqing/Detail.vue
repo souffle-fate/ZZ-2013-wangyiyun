@@ -25,38 +25,19 @@
         <van-icon name="down" size="30px" />
         <van-icon name="chat-o" size="30px" @click="tiaopinglun" />
         <van-icon name="ellipsis" size="30px" />
-        <!-- <van-slider /> -->
-        <van-slider v-model="value" class="hk" />
-      </div>
-      <div class="bf">
-        <van-icon name="replay" size="30px" class="zuo" />
-        <van-icon name="arrow-left" size="30px" class="zuo" />
-        <van-icon
-          ref="off"
-          name="play-circle-o"
-          size="30px"
-          @click="change1"
-          style="display: block"
-          class="ks"
-        />
-        <van-icon
-          ref="on"
-          name="pause-circle-o"
-          size="30px"
-          @click="change2"
-          style="display: none"
-          class="ks"
-        />
-        <van-icon name="arrow" size="30px" class="you" />
-        <van-icon name="bars" size="30px" class="you" />
       </div>
     </div>
+    <Pmusic></Pmusic>
   </div>
 </template>
 
 <script>
+import Pmusic from '../MusicPlay'
 import { reqMusicDetails, reqMusicUrl, reqMusicLyrics } from "../../api/music";
 export default {
+  components:{
+    Pmusic
+  },
   data() {
     //这里存放数据
     return {
@@ -174,8 +155,9 @@ export default {
 /* .con{} */
 .db {
   width: 100%;
+  padding: 20px;
   position: fixed;
-  bottom: 50px;
+  bottom: 0;
   text-align: center;
   background: white;
 }
@@ -187,44 +169,14 @@ export default {
   height: 120px;
   overflow: hidden;
 }
-.hk {
-  width: 80%;
-  margin-left: 10%;
-  margin-top: 10px;
-  background: white;
-  z-index: 999;
-  padding-bottom: 20px;
-}
-.bf {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  /* margin-left: 5%; */
-  background: white;
-  padding-top: 20px;
-}
-.zuo {
-  float: left;
-  width: 18%;
-  text-align: center;
-}
-.ks {
-  float: left;
-  width: 18%;
-  text-align: center;
-}
-.you {
-  width: 18%;
-  text-align: center;
-}
 .gc {
   overflow: hidden;
+  padding-top: 100px;
 }
 .gc_a {
   margin: 0 auto;
   text-align: center;
   line-height: 30px;
-  padding-bottom: 100px;
   font-size: 20px;
   font-weight: 500;
 }
