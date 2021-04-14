@@ -161,6 +161,43 @@ var routes = [// 首页Home
   meta: {
     showTabbar: true // false删除底部导航
 
+  },
+  children: [{
+    path: "hottopic",
+    name: 'HotTopic',
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require("../views/YunCun/Yun/HotTopic.vue"));
+      });
+    },
+    meta: {
+      showTabbar: true // false删除底部导航
+
+    }
+  }, {
+    path: "mv",
+    name: 'Mv',
+    component: function component() {
+      return Promise.resolve().then(function () {
+        return _interopRequireWildcard(require("../views/YunCun/Yun/Mv.vue"));
+      });
+    },
+    meta: {
+      showTabbar: true // false删除底部导航
+
+    }
+  }]
+}, {
+  path: "/mvid/:id",
+  name: "Mvid",
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/YunCun/Yun/Mvid'));
+    });
+  },
+  meta: {
+    showTabbar: false //不显示底部导航
+
   }
 }, // 第五个模块，个人中心
 {

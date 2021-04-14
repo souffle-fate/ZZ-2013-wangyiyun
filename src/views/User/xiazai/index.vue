@@ -5,7 +5,6 @@
       left-text="返回"
       left-arrow
       @click-left="onClickLeft"
-      @click-right="onClickRight"
     />
   </div>
 </template>
@@ -22,9 +21,6 @@ export default {
   methods: {
     onClickLeft() {
       this.$router.push("/user");
-    },
-    onClickRight() {
-      console.log("按钮");
     },
   },
   created() {},
