@@ -222,22 +222,6 @@ const routes = [
     },
   },
   {
-    path: "/birthday",
-    name: "Birthday",
-    component: () => import('../views/update/birthday/index.vue'),
-    meta: {
-      showTabbar: true, //不显示底部导航
-    },
-  },
-  {
-    path: "/city",
-    name: "City",
-    component: () => import('../views/update/city/index.vue'),
-    meta: {
-      showTabbar: true, //不显示底部导航
-    },
-  },
-  {
     path: "/daxue",
     name: "Daxue",
     component: () => import('../views/update/daxue/index.vue'),

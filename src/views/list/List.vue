@@ -77,9 +77,10 @@ export default {
       console.log(tab, event);
     },
     async getInfo() {
-      let uid = localStorage.setItem("uid", 32953014);
+      localStorage.setItem("uid", 32953014);
       console.log(uid);
-      const result = await reqInfo({ uid: 32953014 });
+      let uid = localStorage.getItem("uid");
+      const result = await reqInfo({ uid: uid });
       const obj = result;
       console.log(obj);
       this.username = obj.data.profile.nickname;

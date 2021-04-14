@@ -13,9 +13,8 @@ export default {
   methods: {
     // 获取用户动态
     async getEvent() {
-      const result = await reqEvent({
-        uid: 32953014,
-      });
+      let uid = localStorage.getItem("uid");
+      const result = await reqEvent({ uid: uid });
       console.log(result);
     },
   },

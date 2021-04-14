@@ -4,6 +4,9 @@
       <span class="el-icon-back" style="margin-left: 10px"> </span
       ><span style="margin-left: 10px">我的资料</span>
     </div>
+    <van-cell-group>
+      <van-cell title="单元格" icon="phone" value="asxas" />
+    </van-cell-group>
   </div>
 </template>
 
