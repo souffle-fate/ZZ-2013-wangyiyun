@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.reqUserMV = exports.reqUserBofangJL = exports.reqUserDiantaiYX = exports.reqUserYonghuDiantai = exports.reqUserPer = exports.reqUserZueijin = exports.reqUser = exports.reqLogin = exports.reqUpdate = exports.reqHistory = exports.reqEvent = void 0;
+exports.reqYunCunMVXiang = exports.reqYunCunMVBofang = exports.reqYunCunMV = exports.reqUserMV = exports.reqUserBofangJL = exports.reqUserDiantaiYX = exports.reqUserYonghuDiantai = exports.reqUserPer = exports.reqUserZueijin = exports.reqUser = exports.reqLogin = exports.reqUpdate = exports.reqHistory = exports.reqEvent = void 0;
 
 var _request = require("../utils/request");
 
@@ -84,9 +84,27 @@ exports.reqUserBofangJL = reqUserBofangJL;
 
 var reqUserMV = function reqUserMV() {
   return (0, _request.get)("/mv/sublist");
-}; //收藏的歌手列表
-// 收藏视频
-//专栏
+}; //网易出品mv
 
 
 exports.reqUserMV = reqUserMV;
+
+var reqYunCunMV = function reqYunCunMV() {
+  return (0, _request.get)("/mv/exclusive/rcmd");
+}; //mv 地址
+
+
+exports.reqYunCunMV = reqYunCunMV;
+
+var reqYunCunMVBofang = function reqYunCunMVBofang(a) {
+  return (0, _request.get)("/mv/url?id=" + a);
+}; //获取 mv 数据
+
+
+exports.reqYunCunMVBofang = reqYunCunMVBofang;
+
+var reqYunCunMVXiang = function reqYunCunMVXiang(uid) {
+  return (0, _request.get)("/mv/detail?mvid=" + uid);
+};
+
+exports.reqYunCunMVXiang = reqYunCunMVXiang;

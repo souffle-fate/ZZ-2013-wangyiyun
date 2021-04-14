@@ -111,21 +111,31 @@ const routes = [
     meta: {
       showTabbar: true, // false删除底部导航
     },
-    children:[{
-      path:"hottopic",
-      name:'HotTopic',
-      component:()=>import("../views/YunCun/Yun/HotTopic.vue"),
+    children: [{
+      path: "hottopic",
+      name: 'HotTopic',
+      component: () => import("../views/YunCun/Yun/HotTopic.vue"),
       meta: {
         showTabbar: true, // false删除底部导航
       },
-    },{
-      path:"mv",
-      name:'Mv',
-      component:()=>import("../views/YunCun/Yun/Mv.vue"),
+    }, {
+      path: "mv",
+      name: 'Mv',
+      component: () => import("../views/YunCun/Yun/Mv.vue"),
       meta: {
         showTabbar: true, // false删除底部导航
       },
+
     },],
+
+  },
+  {
+    path: "/mvid/:id",
+    name: "Mvid",
+    component: () => import('../views/YunCun/Yun/Mvid'),
+    meta: {
+      showTabbar: false, //不显示底部导航
+    },
   },
   // 第五个模块，个人中心
   {
