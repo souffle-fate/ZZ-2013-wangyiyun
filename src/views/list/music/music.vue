@@ -4,7 +4,12 @@
       <div class="title">
         <p>电台({{ num }})</p>
       </div>
-      <div class="main" v-for="(item, index) in userId" :key="item">
+      <div
+        class="main"
+        v-for="(item, index) in arr2.length"
+        :key="item"
+        @click="$router.push(``)"
+      >
         <span><img :src="avatarUrl[index]" alt="" /></span>
         <p style="margin-left: 11px">
           <i
@@ -65,6 +70,7 @@ export default {
       followeds: [],
       userId: [],
       arr: [],
+      arr2: [],
     };
   },
   //计算属性 类似于data概念
@@ -74,27 +80,30 @@ export default {
   //方法集合
   methods: {
     async getfollows() {
-      const result = await reqInfoFollows({ uid: 32953014 });
-      const arr = result.data.follow;
-      console.log(arr);
-      this.num = arr.length + 1;
-      for (let i = 0; i < arr.length; i++) {
-        this.avatarUrl.push(arr[i].avatarUrl);
-        this.nickname.push(arr[i].nickname);
-        this.follows.push(arr[i].follows);
-        this.followeds.push(arr[i].followeds);
-        this.userId.push(arr[i].userId);
+      let uid = localStorage.getItem("uid");
+      const result = await reqInfoFollows({ uid: uid });
+      this.arr2 = result.data.follow;
+      console.log(this.arr2);
+      this.num = this.arr2.length + 1;
+      for (let i = 0; i < this.arr2.length; i++) {
+        this.avatarUrl.push(this.arr2[i].avatarUrl);
+        this.nickname.push(this.arr2[i].nickname);
+        this.follows.push(this.arr2[i].follows);
+        this.followeds.push(this.arr2[i].followeds);
+        this.userId.push(this.arr2[i].userId);
       }
     },
     async getplaylist() {
-      const result = await reqInfoplaylist({ uid: 32953014 });
+      let uid = localStorage.getItem("uid");
+
+      const result = await reqInfoplaylist({ uid: uid });
       const arr = result.data.playlist;
       this.arr = arr;
       console.log(arr[0].id);
     },
     async getmusiclist(id) {
       console.log(id);
-      this.$router.push(`/gedan/${id}`);
+      this.$router.push(`/listdetail/${id}`);
     },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
@@ -124,7 +133,7 @@ img {
   font-size: 13px;
   color: #999999;
   min-height: 300px;
-  padding-bottom: 70px;
+  padding-bottom: 150px;
 }
 .music .title p {
   height: 25px;

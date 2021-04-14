@@ -1,7 +1,12 @@
 <template>
   <div class="update">
     <div class="header">
-      <span class="el-icon-back" style="margin-left: 10px"> </span
+      <span
+        class="el-icon-back"
+        style="margin-left: 10px"
+        @click="$router.push('/list')"
+      >
+      </span
       ><span style="margin-left: 10px">我的资料</span>
     </div>
     <div class="contain">
@@ -119,8 +124,11 @@
       <div class="box" @click="$router.push('/zhanghao')">
         <p class="fl">账号和绑定设置</p>
       </div>
-      <div class="box">
+      <div class="box" @click="$router.push('/myshow')">
         <p class="fl">个人主页展示设置</p>
+      </div>
+      <div class="box" @click="logout">
+        <p class="fl">退出登录</p>
       </div>
     </div>
   </div>
@@ -147,9 +155,14 @@ export default {
     };
   },
   methods: {
+    logout() {
+      localStorage.removeItem("uid");
+      this.$router.push("/");
+    },
     fn() {
       this.id = localStorage.getItem("uid");
       console.log(this.id);
+      console.log(this.data);
     },
     onSelect(item) {
       // 默认情况下点击选项时不会自动收起
@@ -186,6 +199,7 @@ export default {
       var mon = date.getMonth() + 1;
       var day = date.getDate();
       this.birthday = mon + "月" + day + "日";
+      this.date = mon + "/" + day;
     },
 
     goBack() {

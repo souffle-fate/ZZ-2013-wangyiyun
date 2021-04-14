@@ -27,3 +27,6 @@ export const reqUserYonghuDiantai = () => get("/dj/sublist");
 export const reqUserDiantaiYX = () => get("/dj/today/perfered");
 // 获取用户播放记录
 export const reqUserBofangJL = (a) => get("/user/record?uid=" + a);
+// 电台详情
+export const reqUserprogram = (data) => get("/dj/program", data);
+

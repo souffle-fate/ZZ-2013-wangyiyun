@@ -42,11 +42,16 @@
       </div>
     </div>
     <div class="main">
-      <van-tabs v-model="active">
-        <van-tab title="音乐" to="/list/music"> </van-tab>
-        <van-tab title="动态" to="/list/dongtai"></van-tab>
-        <van-tab title="关于我" to="/list/mine"></van-tab>
-      </van-tabs>
+      <van-tabbar v-model="active" :fixed="false">
+        <van-tabbar-item to="/list/music">音乐</van-tabbar-item>
+        <van-tabbar-item to="/list/dongtai">动态</van-tabbar-item>
+        <van-tabbar-item to="/list/mine">关于我</van-tabbar-item>
+      </van-tabbar>
+      <!-- <van-tabs v-model="active" @click="fn">
+        <van-tab title="音乐" to="/list/music" @click="active = 0"> </van-tab>
+        <van-tab title="动态" to="/list/dongtai" @click="active = 1"></van-tab>
+        <van-tab title="关于我" to="/list/mine" @click="active = 2"></van-tab>
+      </van-tabs> -->
       <router-view></router-view>
     </div>
   </div>
@@ -61,7 +66,7 @@ export default {
   data() {
     return {
       username: "西班牙大鱿鱼",
-      active: 0,
+      active: 2,
       level: 0,
       avatarUrl: "",
       backgroundUrl: "",
@@ -73,12 +78,15 @@ export default {
   watch: {},
   //方法集合
   methods: {
+    fn() {
+      console.log(this.active);
+    },
     handleClick(tab, event) {
       console.log(tab, event);
     },
+
     async getInfo() {
       localStorage.setItem("uid", 32953014);
-      console.log(uid);
       let uid = localStorage.getItem("uid");
       const result = await reqInfo({ uid: uid });
       const obj = result;
@@ -97,6 +105,7 @@ export default {
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
     this.getInfo();
+    this.fn();
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
