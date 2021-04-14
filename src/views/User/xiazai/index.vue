@@ -36,4 +36,7 @@ export default {
 };
 </script>
 <style  scoped>
+.van-nav-bar {
+  background-color: #e20001;
+}
 </style>

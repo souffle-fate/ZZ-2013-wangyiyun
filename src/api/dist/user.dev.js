@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.reqUserMV = exports.reqUserBofangJL = exports.reqUserDiantaiYX = exports.reqUserYonghuDiantai = exports.reqUserPer = exports.reqUserZueijin = exports.reqUser = exports.reqLogin = void 0;
+exports.reqUserMV = exports.reqUserBofangJL = exports.reqUserDiantaiYX = exports.reqUserYonghuDiantai = exports.reqUserPer = exports.reqUserZueijin = exports.reqUser = exports.reqLogin = exports.reqUpdate = exports.reqHistory = exports.reqEvent = void 0;
 
 var _request = require("../utils/request");
 
@@ -11,6 +11,28 @@ var _request = require("../utils/request");
 // 注册
 // export const reqRegister = (data) => post("/api/v1/auth/reg", data);
 // 登录
+// export const reqLogin = (data) => post("/login/cellphone", data);
+// 获取用户动态/user/event
+var reqEvent = function reqEvent(data) {
+  return (0, _request.get)("/user/event", data);
+}; // 获取用户历史评论
+
+
+exports.reqEvent = reqEvent;
+
+var reqHistory = function reqHistory(data) {
+  return (0, _request.get)("/user/comment/history", data);
+}; // 更新用户信息
+
+
+exports.reqHistory = reqHistory;
+
+var reqUpdate = function reqUpdate(data) {
+  return (0, _request.get)("/user/update", data);
+};
+
+exports.reqUpdate = reqUpdate;
+
 var reqLogin = function reqLogin(aa) {
   return (0, _request.get)("/login/cellphone" + aa);
 }; // 获取用户详情

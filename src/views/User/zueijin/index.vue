@@ -65,13 +65,13 @@ export default {
   border: silver 0.5px solid;
 }
 .gequ h3 {
-  line-height: 0;
+  line-height: 20px;
   font-size: 16px;
+  margin-top: 5px;
 }
 .gequ p {
-  line-height: 0;
+  line-height: 26px;
   font-size: 12px;
-  margin-top: 20px;
 }
 .gequ img {
   width: 46px;
@@ -79,5 +79,8 @@ export default {
   float: left;
   border-radius: 8px;
   margin-right: 8px;
+}
+.van-nav-bar {
+  background-color: #e20001;
 }
 </style>

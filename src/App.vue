@@ -10,9 +10,9 @@
       <van-tabbar-item :to="{ name: 'Home' }" @click="active = 0" icon="home-o"
         >首页</van-tabbar-item
       >
-      <!-- /Paihangbang/Index -->
+      <!-- 排行榜 -->
       <van-tabbar-item
-        :to="{ name: '/Paihangbang/Index' }"
+        :to="{ name: 'Rank' }"
         @click="active = 1"
         icon="orders-o"
         >推荐列表</van-tabbar-item

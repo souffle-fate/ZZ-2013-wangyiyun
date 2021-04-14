@@ -23,6 +23,10 @@
         class="img1"
       />
       <img src="https://img01.yzcdn.cn/vant/share-sheet-qq.png" class="img1" />
+      <img
+        src="https://img01.yzcdn.cn/vant/share-sheet-qrcode.png"
+        class="img1"
+      />
     </div>
   </div>
 </template>
@@ -54,7 +58,7 @@ export default {
 <style scoped>
 .loging {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 450px);
   background-color: #e20001;
   padding-top: 450px;
 }
@@ -84,7 +88,7 @@ export default {
   height: 40px;
   border-radius: 50%;
   background-color: white;
-  margin: 0 42.5px;
+  margin: 0 26px;
 }
 .divImg {
   width: 375px;

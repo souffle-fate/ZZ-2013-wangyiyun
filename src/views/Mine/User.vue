@@ -2,8 +2,16 @@
   <div class="user">
     <div class="top"></div>
     <div class="topDaohang">
-      <img :src="avatarUrl" alt="" class="img" />
-      <p>{{ nickname }}</p>
+      <img
+        src="https://img2.baidu.com/it/u=1666256797,972082711&fm=26&fmt=auto&gp=0.jpg"
+        alt=""
+        class="img"
+        v-if="!tage"
+        @click="topDaohangImg"
+      />
+      <p v-if="!tage">未登录</p>
+      <img :src="avatarUrl" alt="" class="img" v-if="tage" />
+      <p v-if="tage">{{ nickname }}</p>
       <van-button
         type="primary"
         size="mini"
@@ -34,7 +42,7 @@
 //reqUserPer
 import { reqUser } from "../../api/user";
 import { reqUserPer } from "../../api/user";
-// import { reqUserUser } from "../api/user";
+import { getToken } from "../../utils/util";
 export default {
   components: {},
   data() {
@@ -43,6 +51,7 @@ export default {
       result: [],
       avatarUrl: "",
       nickname: "",
+      tage: true,
     };
   },
   computed: {},
@@ -50,23 +59,27 @@ export default {
 
   methods: {
     async reqUsers() {
-      const id = localStorage.getItem("uid");
-      var uid = "?uid=" + id;
-      const result = await reqUser(uid);
-      console.log(result);
-      this.avatarUrl = result.data.profile.avatarUrl;
-      this.nickname = result.data.profile.nickname;
+      const getTokens = getToken();
+      console.log(getTokens);
+      if (getTokens === null) {
+        this.tage = false;
+      } else {
+        const id = localStorage.getItem("uid");
+        var uid = "?uid=" + id;
+        const result = await reqUser(uid);
+        console.log(result);
+        this.avatarUrl = result.data.profile.avatarUrl;
+        this.nickname = result.data.profile.nickname;
+        this.tage = true;
+      }
     },
-    // async reqUserUsers() {
-    //   const id = localStorage.getItem("uid");
-
-    //   const result2 = await reqUserUser(id);
-    //   console.log(result2);
-    // },
     async reqUserPers(a) {
       const result1 = await reqUserPer(a);
       console.log(result1);
       this.result = result1.data.result;
+    },
+    topDaohangImg() {
+      this.$router.push("/login");
     },
   },
   created() {
@@ -109,8 +122,10 @@ export default {
   float: left;
 }
 p {
-  line-height: 25px;
+  line-height: 50px;
   float: left;
+  font-size: 12px;
+  color: rgb(226, 110, 110);
 }
 .btn {
   float: right;

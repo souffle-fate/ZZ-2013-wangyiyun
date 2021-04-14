@@ -17,21 +17,35 @@
       background="#ec4141"
       placeholder="请输入歌名"
       class="searchMusic"
-      :title="MusicList"
+      @search="onSearch"
     >
       <template #action>
         <div @click="search(value)">搜索</div>
       </template>
     </van-search>
+    <!-- 搜索建议 -->
+    <!-- <div class="Searproposal">1111</div> -->
+
     <!-- 热搜榜单 -->
-    <el-card class="box-card">
+    <!-- <el-card class="box-card">
       <div v-for="(item, index) in hotMusicList" :key="index" class="text item">
         {{ index + 1 }} {{ item.searchWord }}
         <img :src="item.iconUrl" alt="" class="songImg" />
         <span class="hotHeight"> {{ item.score }} </span>
         <p class="songIntroduction">{{ item.content }}</p>
       </div>
-    </el-card>
+    </el-card> -->
+    <!-- 搜索歌曲 -->
+    <div
+      class="MusicList"
+      v-for="(item, index) in MusicList"
+      :key="index"
+      @click="MusicListXQ(item.id)"
+    >
+      <p>{{ item.name }}</p>
+      <span>{{ item.artists[0].name }}-</span>
+      <span>{{ item.album.name }}-</span>
+    </div>
   </div>
 </template>
 
@@ -51,6 +65,7 @@ export default {
       value: "",
       hotMusicList: "",
       MusicList: "",
+      type: 1,
     };
   },
   //计算属性 类似于data概念
@@ -59,12 +74,33 @@ export default {
   watch: {},
   //方法集合
   methods: {
-    async search(val) {
+    // 搜索歌曲建议接口
+    // reqSearch() {
+    //   console.log("qwertyui");
+    // },
+    // async reqSearch(value) {
+    //   // console.log(value, 11111);
+    //   const res = await reqSearchproposal({ keywords: value, type: this.type });
+    //   console.log(res);
+    // },
+
+    MusicListXQ(id) {
+      // const res = await reqMusicDetails({});
+      this.$router.push({
+        path: `/musiclist/${id}`,
+      });
+      // alert(id);
+      console.log(11);
+    },
+
+    //搜索歌曲
+    async onSearch(val) {
       const result = await reqSearchMusic({ keywords: val });
       //   alert(val);
+      // console.log(result);
       if (result.status === 200) {
         if (result.data.code === 400) {
-          console.log(111);
+          // console.log(111);
         } else {
           console.log(result.data.code);
           // console.log(result.data.result.songs);
@@ -72,8 +108,9 @@ export default {
           console.log(this.MusicList);
           this.$store.state.array1.push(this.MusicList);
           // console.log(this.MusicList);
+          // console.log(this.MusicList);
           //   跳转到歌曲搜索详情
-          //   this.$router.push("/musiclist");
+          // this.$router.push("/musiclist");
         }
       }
     },
@@ -82,10 +119,11 @@ export default {
       if (result.status === 200) {
         // console.log(result.data);
         this.hotMusicList = result.data.data;
+        // console.log(this.hotMusicList);
       }
     },
     onClickLeft() {
-      Toast("返回");
+      this.$router.push("/home");
     },
     onClickRight() {
       Toast("按钮");
@@ -93,8 +131,9 @@ export default {
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
-    this.search();
+    this.onSearch(this.value);
     this.reqSearchHotMic();
+    // this.reqSearch(this.value);
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
@@ -149,4 +188,7 @@ export default {
 .songImg {
   width: 14px;
 }
+/* 搜索框款渲染样式 */
+
+/* 搜索建议 */
 </style>

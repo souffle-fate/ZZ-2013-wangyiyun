@@ -1,15 +1,16 @@
 <template>
-  <div class="1"></div>
+  <div class="rank">排行榜</div>
 </template>
+
 <script>
 export default {
   components: {},
+  props: {},
   data() {
     return {};
   },
   computed: {},
   watch: {},
-
   methods: {},
   created() {},
   mounted() {},
@@ -17,6 +18,9 @@ export default {
   beforeMount() {},
   beforeUpdate() {},
   updated() {},
+  beforeDestroy() {},
+  destroyed() {},
+  activated() {},
 };
 </script>
 <style scoped>
