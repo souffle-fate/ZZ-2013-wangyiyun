@@ -86,11 +86,10 @@ export default {
     },
 
     async getInfo() {
-      localStorage.setItem("uid", 32953014);
       let uid = localStorage.getItem("uid");
       const result = await reqInfo({ uid: uid });
       const obj = result;
-      console.log(obj);
+      // console.log(obj);
       this.username = obj.data.profile.nickname;
       console.log(this.username);
       this.level = obj.data.level;

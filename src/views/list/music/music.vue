@@ -8,7 +8,7 @@
         class="main"
         v-for="(item, index) in arr2.length"
         :key="item"
-        @click="$router.push(``)"
+        @click="$router.go(0)"
       >
         <span><img :src="avatarUrl[index]" alt="" /></span>
         <p style="margin-left: 11px">

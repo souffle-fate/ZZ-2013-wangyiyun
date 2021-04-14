@@ -128,7 +128,7 @@
         <p class="fl">个人主页展示设置</p>
       </div>
       <div class="box" @click="logout">
-        <p class="fl">退出登录</p>
+        <p class="fl" style="color: red; text-align: center">退出登录</p>
       </div>
     </div>
   </div>
@@ -157,6 +157,7 @@ export default {
   methods: {
     logout() {
       localStorage.removeItem("uid");
+      localStorage.removeItem("token");
       this.$router.push("/");
     },
     fn() {
