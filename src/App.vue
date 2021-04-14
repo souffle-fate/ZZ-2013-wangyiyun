@@ -18,13 +18,13 @@
         >推荐列表</van-tabbar-item
       >
       <van-tabbar-item
-        :to="{ name: 'List' }"
+        :to="{ name: 'Music' }"
         @click="active = 2"
         icon="coupon-o"
         >我的歌单</van-tabbar-item
       >
       <van-tabbar-item
-        :to="{ name: 'Index' }"
+        :to="{ name: 'HotTopic' }"
         @click="active = 3"
         icon="friends-o"
         >云村</van-tabbar-item
@@ -34,11 +34,9 @@
       >
     </van-tabbar>
     <Footer></Footer>
-    <Pmusic></Pmusic>
   </div>
 </template>
 <script>
-import Pmusic from "./views/MusicPlay";
 export default {
   name: "App",
   data() {
@@ -46,9 +44,9 @@ export default {
       active: 0,
     };
   },
-  components: {
-    Pmusic,
-  },
+  methods: {},
+  created() {},
+  components: {},
 };
 </script>
 

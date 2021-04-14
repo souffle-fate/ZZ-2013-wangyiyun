@@ -1,20 +1,17 @@
 <template>
-  <div class="headerimg">
+  <div class="password">
     <div class="header">
       <span
         class="el-icon-back"
         style="margin-left: 10px"
-        @click="$router.push(`/updateuser/${id}`)"
+        @click="$router.push(`/phone`)"
       >
       </span
-      ><span style="margin-left: 10px">全部照片</span>
+      ><span style="margin-left: 10px">修改密码</span>
     </div>
-    <div class="img" @click="fn">
-      <van-uploader v-model="fileList">
-        <template #preview-cover="{ file }">
-          <div class="preview-cover van-ellipsis">{{ file.name }}</div>
-        </template>
-      </van-uploader>
+    <div class="ipt">
+      <p style="margin-bottom: 20px">您的手机号:1780*****88</p>
+      <i class="el-icon-lock"></i><input type="text" v-model="value1" />
     </div>
   </div>
 </template>
@@ -25,18 +22,11 @@ export default {
     return {
       fileList: [],
       id: 0,
+      value1: "",
     };
   },
-  methods: {
-    fn() {
-      this.id = localStorage.getItem("uid");
-      console.log(this.id);
-      console.log(this.fileList);
-    },
-  },
-  created() {
-    this.fn();
-  },
+  methods: {},
+  created() {},
   components: {},
 };
 </script>
@@ -61,5 +51,13 @@ export default {
   font-size: 12px;
   text-align: center;
   background: rgba(0, 0, 0, 0.3);
+}
+.ipt {
+  border-bottom: solid 1px #999999;
+  width: 90%;
+  margin: 40px auto;
+}
+input {
+  border: none;
 }
 </style>
