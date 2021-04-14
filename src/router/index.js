@@ -259,14 +259,7 @@ const routes = [
       showTabbar: false, // false删除底部导航
     },
   },
-  {
-    path: "/gedan/:Id",
-    name: "Gedan",
-    component: () => import("../views/gedan/index.vue"),
-    meta: {
-      showTabbar: true, //不显示底部导航
-    }
-  },
+  // 我的资料组件
   {
     path: "/updateuser/:Id",
     name: "Updateuser",
@@ -275,6 +268,8 @@ const routes = [
       showTabbar: false, //不显示底部导航
     },
   },
+  // 修改背景图片组件
+
   {
     path: "/backimg",
     name: "Backimg",
@@ -283,22 +278,7 @@ const routes = [
       showTabbar: true, //不显示底部导航
     },
   },
-  {
-    path: "/birthday",
-    name: "Birthday",
-    component: () => import('../views/update/birthday/index.vue'),
-    meta: {
-      showTabbar: true, //不显示底部导航
-    },
-  },
-  {
-    path: "/city",
-    name: "City",
-    component: () => import('../views/update/city/index.vue'),
-    meta: {
-      showTabbar: true, //不显示底部导航
-    },
-  },
+  // 修改我的大学组件
   {
     path: "/daxue",
     name: "Daxue",
@@ -307,6 +287,7 @@ const routes = [
       showTabbar: true, //不显示底部导航
     },
   },
+  // 修改头像组件
   {
     path: "/headerimg",
     name: "Headerimg",
@@ -315,6 +296,7 @@ const routes = [
       showTabbar: true, //不显示底部导航
     },
   },
+  // 修改我的展示组件
   {
     path: "/myshow",
     name: "Myshow",
@@ -323,6 +305,7 @@ const routes = [
       showTabbar: true, //不显示底部导航
     },
   },
+  // 修改签名组件
   {
     path: "/qianming",
     name: "ianming",
@@ -331,6 +314,7 @@ const routes = [
       showTabbar: true, //不显示底部导航
     },
   },
+  // 修改账号组件
   {
     path: "/zhanghao",
     name: "Zhanghao",
@@ -339,6 +323,7 @@ const routes = [
       showTabbar: true, //不显示底部导航
     },
   },
+  // 修改昵称组件
   {
     path: "/nickname",
     name: "Nickname",
@@ -347,7 +332,23 @@ const routes = [
       showTabbar: true, //不显示底部导航
     },
   },
-
+  // 修改绑定手机号组件
+  {
+    path: "/phone",
+    name: "Phone",
+    component: () => import('../views/update/phone/index.vue'),
+    meta: {
+      showTabbar: true, //不显示底部导航
+    },
+  },
+  {
+    path: "/password",
+    name: "Password",
+    component: () => import('../views/update/password/index.vue'),
+    meta: {
+      showTabbar: true, //不显示底部导航
+    },
+  }
 ];
 
 const router = new VueRouter({

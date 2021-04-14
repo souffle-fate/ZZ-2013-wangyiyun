@@ -1,5 +1,5 @@
 <template>
-  <div class="headerimg">
+  <div class="phone">
     <div class="header">
       <span
         class="el-icon-back"
@@ -7,10 +7,33 @@
         @click="$router.push(`/updateuser/${id}`)"
       >
       </span
-      ><span style="margin-left: 10px">修改昵称</span>
+      ><span style="margin-left: 10px">修改签名</span>
     </div>
-    <div class="ipt">
-      <i class="el-icon-user"></i><input type="text" v-model="value1" />
+    <div>
+      <div>
+        <img
+          src="../../../assets/QQ截图20210414135632_03.jpg"
+          alt=""
+          style="display: block; margin: 50px auto"
+        />
+      </div>
+      <div class="box1">
+        <p>手机号:1780*****88</p>
+
+        <van-button
+          type="default"
+          style="
+            width: 80%;
+            height: 30px;
+            line-height: 30px;
+            border: solid 1px #f3f3f3;
+            border-radius: 30px;
+            margin: 0 auto;
+          "
+          @click="$router.push('/password')"
+          >重设密码</van-button
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -20,18 +43,13 @@ import { reqInfo } from "../../../api/music";
 
 export default {
   data() {
-    return {
-      fileList: [],
-      id: 0,
-      value1: "",
-    };
+    return { message: "", signature: "", phone: "" };
   },
   methods: {
     fn() {
       this.id = localStorage.getItem("uid");
       console.log(this.id);
     },
-
     async getInfo() {
       let uid = localStorage.getItem("uid");
       console.log(uid);
@@ -45,9 +63,9 @@ export default {
       this.birthday = obj.data.profile.birthday;
       this.city = obj.data.profile.city;
       //地区
+      this.message = obj.data.profile.signature;
       this.province = obj.data.profile.province;
       this.signature = obj.data.profile.signature;
-      this.value1 = obj.data.profile.nickname;
     },
   },
   created() {
@@ -68,23 +86,10 @@ export default {
   font-size: 18px;
   line-height: 120px;
 }
-.preview-cover {
-  position: absolute;
-  bottom: 0;
-  box-sizing: border-box;
-  width: 100%;
-  padding: 4px;
-  color: #fff;
-  font-size: 12px;
+.box1 {
   text-align: center;
-  background: rgba(0, 0, 0, 0.3);
 }
-.ipt {
-  border-bottom: solid 1px #999999;
-  width: 90%;
-  margin: 40px auto;
-}
-input {
-  border: none;
+.box1 p {
+  margin-bottom: 20px;
 }
 </style>

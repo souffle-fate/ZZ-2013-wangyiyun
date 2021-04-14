@@ -10,7 +10,13 @@
         @click="topDaohangImg"
       />
       <p v-if="!tage">未登录</p>
-      <img :src="avatarUrl" alt="" class="img" v-if="tage" />
+      <img
+        :src="avatarUrl"
+        alt=""
+        class="img"
+        v-if="tage"
+        @click="$router.push('/list')"
+      />
       <p v-if="tage">{{ nickname }}</p>
       <van-button
         type="primary"
