@@ -21,21 +21,12 @@ const routes = [
     meta: {
       showTabbar: true  // false删除底部导航
     },
-<<<<<<< HEAD
-    children:[
-      // {
-      //   path:"fm",
-      //   name:"Fm",
-      //   component:() => import("../views/Home/fm"),
-      // },
-=======
     children: [
       {
         path: "fm",
         name: "Fm",
         component: () => import("../views/Home/fm"),
       },
->>>>>>> cd08aeb6b9a435d3632e5be62553fe8358cf8ae5
     ]
 
   },
