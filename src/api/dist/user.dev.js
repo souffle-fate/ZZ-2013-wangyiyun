@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.reqUserBofangJL = exports.reqUserDiantaiYX = exports.reqUserYonghuDiantai = exports.reqUserPer = exports.reqUserZueijin = exports.reqUser = exports.reqLogin = void 0;
+exports.reqUserMV = exports.reqUserBofangJL = exports.reqUserDiantaiYX = exports.reqUserYonghuDiantai = exports.reqUserPer = exports.reqUserZueijin = exports.reqUser = exports.reqLogin = void 0;
 
 var _request = require("../utils/request");
 
@@ -55,6 +55,16 @@ exports.reqUserDiantaiYX = reqUserDiantaiYX;
 
 var reqUserBofangJL = function reqUserBofangJL(a) {
   return (0, _request.get)("/user/record?uid=" + a);
-};
+}; //收藏的MV列表
+
 
 exports.reqUserBofangJL = reqUserBofangJL;
+
+var reqUserMV = function reqUserMV() {
+  return (0, _request.get)("/mv/sublist");
+}; //收藏的歌手列表
+// 收藏视频
+//专栏
+
+
+exports.reqUserMV = reqUserMV;

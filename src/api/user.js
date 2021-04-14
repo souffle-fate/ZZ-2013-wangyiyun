@@ -1,9 +1,7 @@
 // import { post } from "../utils/request";
 import { get } from "../utils/request";
-
 // 注册
 // export const reqRegister = (data) => post("/api/v1/auth/reg", data);
-
 // 登录
 export const reqLogin = (aa) => get("/login/cellphone" + aa);
 // 获取用户详情
@@ -18,3 +16,10 @@ export const reqUserYonghuDiantai = () => get("/dj/sublist");
 export const reqUserDiantaiYX = () => get("/dj/today/perfered");
 // 获取用户播放记录
 export const reqUserBofangJL = (a) => get("/user/record?uid=" + a);
+//收藏的MV列表
+export const reqUserMV = () => get("/mv/sublist");
+//收藏的歌手列表
+
+// 收藏视频
+
+//专栏

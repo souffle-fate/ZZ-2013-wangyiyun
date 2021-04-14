@@ -88,7 +88,7 @@ export default {
         this.songLyrics = result.data.lrc.lyric;
         this.audio.lrc = this.songLyrics;
 
-        console.log(this.songLyrics);
+        // console.log(this.songLyrics);
       }
       // /必选参数 : id: 音乐 id
     },
