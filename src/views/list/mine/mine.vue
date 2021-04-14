@@ -58,7 +58,8 @@ export default {
   methods: {
     // 获取用户信息
     async getInfo() {
-      const result = await reqInfo({ uid: 32953014 });
+      let uid = localStorage.getItem("uid");
+      const result = await reqInfo({ uid: uid });
       //result.data.profile.nickname名字,等级result.data.level,性别gender:1（女），地区city,
       this.arr = result.data;
       console.log(this.arr);

@@ -7,13 +7,13 @@ Vue.use(VueRouter);
 const routes = [
   // 首页Home
   {
-    path:'/',
+    path: '/',
     name: "Home",
-    redirect:'/home',
+    redirect: '/home',
     meta: {
       showTabbar: true  // false删除底部导航
+    },
   },
-},
   {
     path: "/home",
     name: "Home",
@@ -21,14 +21,23 @@ const routes = [
     meta: {
       showTabbar: true  // false删除底部导航
     },
+<<<<<<< HEAD
     children:[
       // {
       //   path:"fm",
       //   name:"Fm",
       //   component:() => import("../views/Home/fm"),
       // },
+=======
+    children: [
+      {
+        path: "fm",
+        name: "Fm",
+        component: () => import("../views/Home/fm"),
+      },
+>>>>>>> cd08aeb6b9a435d3632e5be62553fe8358cf8ae5
     ]
-    
+
   },
   //FM 
   {
@@ -119,6 +128,31 @@ const routes = [
     meta: {
       showTabbar: true, // false删除底部导航
     },
+    children: [{
+      path: "hottopic",
+      name: 'HotTopic',
+      component: () => import("../views/YunCun/Yun/HotTopic.vue"),
+      meta: {
+        showTabbar: true, // false删除底部导航
+      },
+    }, {
+      path: "mv",
+      name: 'Mv',
+      component: () => import("../views/YunCun/Yun/Mv.vue"),
+      meta: {
+        showTabbar: true, // false删除底部导航
+      },
+
+    },],
+
+  },
+  {
+    path: "/mvid/:id",
+    name: "Mvid",
+    component: () => import('../views/YunCun/Yun/Mvid'),
+    meta: {
+      showTabbar: false, //不显示底部导航
+    },
   },
   // 第五个模块，个人中心
   {
@@ -157,8 +191,8 @@ const routes = [
 
   ///enter/index
   {
-    path: "/enter/index",
-    name: "index",
+    path: "/enter",
+    name: "Enter",
     component: () => import("../views/Enter/index.vue"),
     meta: {
       showTabbar: false, // false删除底部导航
@@ -234,14 +268,7 @@ const routes = [
       showTabbar: false, // false删除底部导航
     },
   },
-  {
-    path: "/gedan/:Id",
-    name: "Gedan",
-    component: () => import("../views/gedan/index.vue"),
-    meta: {
-      showTabbar: true, //不显示底部导航
-    }
-  },
+  // 我的资料组件
   {
     path: "/updateuser/:Id",
     name: "Updateuser",
@@ -250,6 +277,8 @@ const routes = [
       showTabbar: false, //不显示底部导航
     },
   },
+  // 修改背景图片组件
+
   {
     path: "/backimg",
     name: "Backimg",
@@ -258,22 +287,7 @@ const routes = [
       showTabbar: true, //不显示底部导航
     },
   },
-  {
-    path: "/birthday",
-    name: "Birthday",
-    component: () => import('../views/update/birthday/index.vue'),
-    meta: {
-      showTabbar: true, //不显示底部导航
-    },
-  },
-  {
-    path: "/city",
-    name: "City",
-    component: () => import('../views/update/city/index.vue'),
-    meta: {
-      showTabbar: true, //不显示底部导航
-    },
-  },
+  // 修改我的大学组件
   {
     path: "/daxue",
     name: "Daxue",
@@ -282,6 +296,7 @@ const routes = [
       showTabbar: true, //不显示底部导航
     },
   },
+  // 修改头像组件
   {
     path: "/headerimg",
     name: "Headerimg",
@@ -290,6 +305,7 @@ const routes = [
       showTabbar: true, //不显示底部导航
     },
   },
+  // 修改我的展示组件
   {
     path: "/myshow",
     name: "Myshow",
@@ -298,6 +314,7 @@ const routes = [
       showTabbar: true, //不显示底部导航
     },
   },
+  // 修改签名组件
   {
     path: "/qianming",
     name: "ianming",
@@ -306,6 +323,7 @@ const routes = [
       showTabbar: true, //不显示底部导航
     },
   },
+  // 修改账号组件
   {
     path: "/zhanghao",
     name: "Zhanghao",
@@ -314,6 +332,7 @@ const routes = [
       showTabbar: true, //不显示底部导航
     },
   },
+  // 修改昵称组件
   {
     path: "/nickname",
     name: "Nickname",
@@ -322,7 +341,23 @@ const routes = [
       showTabbar: true, //不显示底部导航
     },
   },
-
+  // 修改绑定手机号组件
+  {
+    path: "/phone",
+    name: "Phone",
+    component: () => import('../views/update/phone/index.vue'),
+    meta: {
+      showTabbar: true, //不显示底部导航
+    },
+  },
+  {
+    path: "/password",
+    name: "Password",
+    component: () => import('../views/update/password/index.vue'),
+    meta: {
+      showTabbar: true, //不显示底部导航
+    },
+  }
 ];
 
 const router = new VueRouter({

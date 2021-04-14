@@ -95,4 +95,7 @@ export default {
   top: 20px;
   left: 92%;
 }
+.van-nav-bar {
+  background-color: #e20001;
+}
 </style>

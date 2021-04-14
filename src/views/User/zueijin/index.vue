@@ -18,6 +18,7 @@
       />
     </van-sticky>
     <div class="gequ" v-for="item in allData" :key="item.song.id">
+      <img :src="item.song.al.picUrl" alt="" />
       <h3>{{ item.song.al.name }}</h3>
       <p>{{ item.song.ar[0].name }}</p>
     </div>
@@ -64,9 +65,22 @@ export default {
   border: silver 0.5px solid;
 }
 .gequ h3 {
-  line-height: 0;
+  line-height: 20px;
+  font-size: 16px;
+  margin-top: 5px;
 }
 .gequ p {
-  line-height: 0;
+  line-height: 26px;
+  font-size: 12px;
+}
+.gequ img {
+  width: 46px;
+  height: 46px;
+  float: left;
+  border-radius: 8px;
+  margin-right: 8px;
+}
+.van-nav-bar {
+  background-color: #e20001;
 }
 </style>

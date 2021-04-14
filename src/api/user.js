@@ -1,9 +1,7 @@
 // import { post } from "../utils/request";
 import { get } from "../utils/request";
-
 // 注册
 // export const reqRegister = (data) => post("/api/v1/auth/reg", data);
-
 // 登录
 // export const reqLogin = (data) => post("/login/cellphone", data);
 // 获取用户动态/user/event
@@ -12,6 +10,15 @@ export const reqEvent = (data) => get("/user/event", data);
 export const reqHistory = (data) => get("/user/comment/history", data);
 // 更新用户信息
 export const reqUpdate = (data) => get("/user/update", data);
+
+
+
+
+
+
+
+
+
 
 
 export const reqLogin = (aa) => get("/login/cellphone" + aa);
@@ -27,3 +34,16 @@ export const reqUserYonghuDiantai = () => get("/dj/sublist");
 export const reqUserDiantaiYX = () => get("/dj/today/perfered");
 // 获取用户播放记录
 export const reqUserBofangJL = (a) => get("/user/record?uid=" + a);
+// 电台详情
+export const reqUserprogram = (data) => get("/dj/program", data);
+
+//收藏的MV列表
+export const reqUserMV = () => get("/mv/sublist");
+
+//网易出品mv
+export const reqYunCunMV = () => get("/mv/exclusive/rcmd");
+
+//mv 地址
+export const reqYunCunMVBofang = (a) => get("/mv/url?id=" + a);
+//获取 mv 数据
+export const reqYunCunMVXiang = (uid) => get("/mv/detail?mvid=" + uid);
