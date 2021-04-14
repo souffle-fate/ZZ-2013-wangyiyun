@@ -1,15 +1,18 @@
 <template>
   <div class="home">
+    <router-view></router-view>
     <div class="home-barder">
       <van-icon class="wap-nav" name="wap-nav" />
       <van-search
-        class="search"
         v-model="value"
+        shape="round"
+        background="#f34d3f"
         placeholder="请输入搜索关键词"
         @click="url_search"
       />
       <van-icon class="volume" name="volume" />
     </div>
+
     <!-- 轮播图 -->
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
       <van-swipe-item v-for="(item, index) in reqBannerswips" :key="index">
@@ -69,6 +72,16 @@
         </ul>
       </div>
     </div>
+
+    <!-- mv -->
+    <div class="home-mvs">
+      <div class="home-mv" v-for="(item, index) in HQmv" :key="index">
+        <!-- <p>{{ item }}</p>
+      img
+     -->
+        <img :src="item.picUrl" alt="" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -78,6 +91,8 @@
 // import { Field } from "vant";
 import { reqRecsongs } from "../../api/reclist";
 import { reqBannerswip } from "../../api/home";
+import { reqMvs } from "../../api/mv";
+
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {},
@@ -88,6 +103,7 @@ export default {
       recsongs: [],
       value: "",
       reqBannerswips: "",
+      HQmv: "",
     };
   },
   //计算属性 类似于data概念
@@ -96,20 +112,22 @@ export default {
   watch: {},
   //方法集合
   methods: {
+    // 搜索框跳转
     url_search() {
-      this.$router.push("/Search");
+      this.$router.push("/search");
     },
+    // 私人fm跳转歌曲详情
     goFM() {
-      this.$router.push("/list");
+      this.$router.push("/fm");
     },
+    // 轮播图
     async reqBannerswip() {
-      console.log(111);
       const result = await reqBannerswip();
       // console.log(result);
       if (result.status === 200) {
         // console.log(result.data);
         this.reqBannerswips = result.data.banners;
-        console.log(this.reqBannerswips);
+        // console.log(this.reqBannerswips);
       }
     },
 
@@ -124,6 +142,12 @@ export default {
     goListDetail(id) {
       // console.log(id);
       this.$router.push({ path: `/listdetail/${id}` });
+    },
+    // 推荐mv接口
+    async getMv() {
+      const res = await reqMvs();
+      console.log(res.data.result);
+      this.HQmv = res.data.result;
     },
   },
 
@@ -140,6 +164,7 @@ export default {
   created() {
     this.reqBannerswip();
     this.getRecsong();
+    this.getMv();
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
@@ -154,6 +179,11 @@ export default {
 </script>
 
 <style scoped lang='scss'>
+.home-mvs {
+  // background: black;
+  padding-bottom: 200px;
+}
+
 .home-barder {
   display: flex;
   justify-content: space-around;
@@ -198,7 +228,7 @@ img {
   width: 100%;
   height: 90px;
   /* background: orange; */
-  margin-top: 20px;
+  margin-top: 10px;
   display: flex;
   justify-content: space-around;
   align-items: center;
