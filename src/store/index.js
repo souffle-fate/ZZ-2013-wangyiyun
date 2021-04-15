@@ -10,6 +10,7 @@ export default new Vuex.Store({
     msg: "",
     array2: [],
     musicid: "",
+    Lyrics: "",
   },
   mutations: {
     getMusicUrl(state, payload) {
@@ -26,6 +27,9 @@ export default new Vuex.Store({
     },
     playMusicUrl(state, payload) {
       state.MusicUrl = payload;
+    },
+    getLyrics(state, payload) {
+      state.Lyrics = payload;
     },
   },
   actions: {},

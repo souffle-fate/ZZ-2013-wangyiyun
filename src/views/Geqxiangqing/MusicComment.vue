@@ -49,7 +49,7 @@
         </div>
         <!-- 评论内容 -->
         <div class="playContent">
-          <p>{{ item.content }}</p>
+          <p class="newContent">{{ item.content }}</p>
         </div>
       </div>
     </van-skeleton>
@@ -153,8 +153,8 @@ export default {
         // 最新评论
         this.comments = result.data.comments;
         console.log(this.comments);
-        console.log(this.comments[3].beReplied[0].content);
-        console.log(this.comments[3].beReplied[0].user.nickname);
+        // console.log(this.comments[3].beReplied[0].content);
+        // console.log(this.comments[3].beReplied[0].user.nickname);
 
         // console.log(this.hotComments);
         // comments  最新评论   hotComments 热门评论
@@ -280,6 +280,9 @@ export default {
 .hotPlay_img_left img {
   border-radius: 20px;
 }
+.hotPlay {
+  margin-bottom: 10px;
+}
 .hotPlay img {
   width: 40px;
   height: 40px;
@@ -290,6 +293,7 @@ export default {
 }
 .hotPlay .playContent .playContent_p2 {
   border: 1px solid #ccc;
+  /* margin-bottom: 10px; */
   /* background: rgb(238, 238, 238); */
 }
 
@@ -298,5 +302,8 @@ export default {
 .hotPlay {
   overflow: hidden;
   border-bottom: 1px solid #ccc;
+}
+.newContent {
+  line-height: 20px;
 }
 </style>

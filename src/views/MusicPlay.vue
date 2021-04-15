@@ -13,7 +13,7 @@
         :showlrc="true"
         class="bofangqi"
         :list="musicList"
-        v-if="flag"
+        v-if="audio[0].url"
       ></aplayer>
       <!-- <aplayer :audio="audio" :lrcType="3" ref="aplayer" /> -->
 
@@ -23,7 +23,10 @@
 </template>
 
 <script>
-import { reqMusicDetails, reqMusicUrl, reqMusicLyrics } from "../api/music";
+import {
+  reqMusicDetails,
+  //  reqMusicUrl,
+} from "../api/music";
 import aplayer from "vue-aplayer";
 export default {
   data() {
@@ -49,19 +52,39 @@ export default {
         {
           title: "",
           artist: "",
+          // 歌曲播放
           url: this.$store.state.MusicUrl,
           pic: "",
-          lrc: "",
+          // 歌词
+          lrc: this.$store.state.Lyrics,
         },
       ],
       showLrc: true,
       flag: true,
       musicList: [
         {
-          title: "",
-          artist: "",
-          src: "",
-          pic: "",
+          title: "成都",
+          artist: "赵雷",
+          src:
+            "http://m7.music.126.net/20200607162234/8629f14056f784879d33dedbab34bf03/ymusic/fa90/df9c/59f7/95c4a2802e0b9191ae1a048f127e53c5.mp3",
+          pic:
+            "https://p1.music.126.net/34YW1QtKxJ_3YnX9ZzKhzw==/2946691234868155.jpg",
+        },
+        {
+          title: "广东爱情故事",
+          artist: "雨神",
+          src:
+            "http://m7.music.126.net/20200607160858/6143003bbb9021f13678624978f9ba14/ymusic/c69c/aeed/2bd9/57487636f38ec8ef9355bf67d0741dfe.mp3",
+          pic:
+            "https://p1.music.126.net/gjvguk9I-QwuyWFjQHM9SA==/109951163189947600.jpg",
+        },
+        {
+          title: "烟火里的尘埃",
+          artist: "华晨宇",
+          src:
+            "http://m8.music.126.net/20200607161716/e2266bad871c28351a3ce257061b3310/ymusic/5d63/5150/0851/5f226aac018cafc2cb248f7d28fbd5b4.mp3",
+          pic:
+            "https://p1.music.126.net/_49Xz_x9kTTdEgmYYk6w2w==/6672936069046297.jpg",
         },
       ],
     };
@@ -75,7 +98,7 @@ export default {
     },
     // 歌曲简略信息
     async musicDetails() {
-      // 必选参数 : ids: 音乐 id, 如 ids=347230
+      // 必选参数 : ids: 音乐 id,
       const ids = this.$store.state.musicid;
       console.log(ids);
       const result = await reqMusicDetails({ ids });
@@ -99,42 +122,34 @@ export default {
         // 歌曲id
         this.id = result.config.params.ids;
         // 调用了 获取音乐播放url的方法
-        this.MusicUrl(this.id);
-        this.musicLyrics(this.id);
+        // this.MusicUrl(this.id);
+        // this.musicLyrics(this.id);
         console.log(this.audio);
         this.flag = true;
       }
     },
     // 获取音乐播放url
-    async MusicUrl(id) {
-      const result = await reqMusicUrl({ id });
-      console.log(id);
-      // console.log(this.id);
-      if (result.status === 200) {
-        // console.log(result.data.data[0].url);
-        this.musicUrl = result.data.data[0].url;
-        // 音乐播放url
-        this.$store.commit("playMusicUrl", this.musicUrl);
-        // this.audio[0].url = this.musicUrl;
-        console.log(this.audio[0].url);
-        // alert("欢迎进入播放页面");
-      }
-    },
+    // async MusicUrl(id) {
+    //   const result = await reqMusicUrl({ id });
+    //   console.log(id);
+    //   // console.log(this.id);
+    //   if (result.status === 200) {
+    //     this.musicUrl = result.data.data[0].url;
+    //     console.log(this.audio[0].url);
+    //     // alert("欢迎进入播放页面");
+    //   }
+    // },
     // 获取歌词
-    async musicLyrics(id) {
-      const result = await reqMusicLyrics({ id });
-      if (result.status === 200) {
-        // console.log(result.data.lrc.lyric);
-        this.songLyrics = result.data.lrc.lyric;
-        this.audio[0].lrc = this.songLyrics;
-        // alert(this.$store.state.MusicUrl);
-        // alert(111);
-
-        // 歌词
-        // console.log(this.audio[0].lrc);
-      }
-      // /必选参数 : id: 音乐 id
-    },
+    // async musicLyrics(id) {
+    //   const result = await reqMusicLyrics({ id });
+    //   if (result.status === 200) {
+    //     // console.log(result.data.lrc.lyric);
+    //     this.songLyrics = result.data.lrc.lyric;
+    //     // this.audio[0].lrc = this.songLyrics;
+    //     // 歌词
+    //     // console.log(this.audio[0].lrc);
+    //   }
+    // },
   },
   created() {
     this.musicDetails();
