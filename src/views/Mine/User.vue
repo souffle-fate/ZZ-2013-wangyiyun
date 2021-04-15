@@ -15,7 +15,7 @@
         alt=""
         class="img"
         v-if="tage"
-        @click="$router.push('/list')"
+        @click="$router.push(`/updateuser/${uid}`)"
       />
       <p v-if="tage">{{ nickname }}</p>
       <van-button
@@ -58,6 +58,7 @@ export default {
       avatarUrl: "",
       nickname: "",
       tage: true,
+      uid: "",
     };
   },
   computed: {},
@@ -72,6 +73,7 @@ export default {
       } else {
         const id = localStorage.getItem("uid");
         var uid = "?uid=" + id;
+        this.uid = id;
         const result = await reqUser(uid);
         console.log(result);
         this.avatarUrl = result.data.profile.avatarUrl;

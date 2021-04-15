@@ -14,14 +14,19 @@
     </div>
 
     <!-- 热搜榜单 -->
-    <!-- <el-card class="box-card">
-      <div v-for="(item, index) in hotMusicList" :key="index" class="text item">
+    <el-card class="box-card">
+      <div
+        v-for="(item, index) in hotMusicList"
+        :key="index"
+        class="text item"
+        @click="KeyWords(item.searchWord)"
+      >
         {{ index + 1 }} {{ item.searchWord }}
         <img :src="item.iconUrl" alt="" class="songImg" />
         <span class="hotHeight"> {{ item.score }} </span>
         <p class="songIntroduction">{{ item.content }}</p>
       </div>
-    </el-card> -->
+    </el-card>
     <!-- 搜索歌曲 -->
     <!-- <div class="searchGList" ></div> -->
     <!-- 搜索歌曲---列表 -->
@@ -43,7 +48,6 @@
 //例如：import 《组件名称》 from '《组件路径》';
 // import { Search } from "vant";
 import { reqSearchMusic, reqSearchHotMusic } from "../../../api/music";
-import { Toast } from "vant";
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {},
@@ -55,6 +59,7 @@ export default {
       hotMusicList: "",
       MusicList: "",
       type: 1,
+      musicName: "",
     };
   },
   //计算属性 类似于data概念
@@ -63,68 +68,55 @@ export default {
   watch: {},
   //方法集合
   methods: {
-    // 搜索歌曲建议接口
-    // reqSearch() {
-    //   console.log("qwertyui");
-    // },
-    // async reqSearch(value) {
-    //   // console.log(value, 11111);
-    //   const res = await reqSearchproposal({ keywords: value, type: this.type });
-    //   console.log(res);
-    // },
-
     //回到首页
     goHome() {
       this.$router.push("/home");
     },
-    //点击歌曲跳转响应歌曲播放页面
-    MusicListXQ(id) {
-      // const res = await reqMusicDetails({});
-      this.$router.push({
-        path: `/musicXQ/${id}`,
-      });
-      // alert(id);
-      console.log(11);
+    // 把输入框的值放到vuex里面
+    musicNameVal() {
+      console.log(this.value);
     },
 
     //搜索歌曲
     async onSearch(val) {
       const result = await reqSearchMusic({ keywords: val });
-      //   alert(val);
-      // console.log(result);
       if (result.status === 200) {
         if (result.data.code === 400) {
-          // console.log(111);
+          console.log(111);
         } else {
           console.log(result.data.code);
           // console.log(result.data.result.songs);
           this.MusicList = result.data.result.songs;
           console.log(this.MusicList);
-          this.$store.state.array1.push(this.MusicList);
-          //   跳转到歌曲搜索详情
-          // this.$router.push("/musiclist");
+          // 吧关键词搜索的数据存到vuex里面
+          this.$store.commit("getMusicKeyWords", this.MusicList);
+          //跳转到歌曲搜索详情
+          this.$router.push("/musicXQ");
         }
       }
     },
+    // 获取热搜歌曲
     async reqSearchHotMic() {
       const result = await reqSearchHotMusic();
       if (result.status === 200) {
         // console.log(result.data);
         this.hotMusicList = result.data.data;
-        // console.log(this.hotMusicList);
+        console.log(this.hotMusicList);
+        // this.KeyWords();
       }
     },
-    onClickLeft() {
-      this.$router.push("/home");
-    },
-    onClickRight() {
-      Toast("按钮");
+    // 热搜歌曲的点击事件
+    KeyWords(val) {
+      // 根据歌名搜索歌曲
+      this.musicName = val;
+      console.log(this.musicName);
+      this.onSearch(this.musicName);
     },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
-    this.onSearch(this.value);
     this.reqSearchHotMic();
+    this.musicNameVal();
     // this.reqSearch(this.value);
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
@@ -148,13 +140,12 @@ export default {
 }
 
 .item {
-  padding: 5px 0;
+  /* padding: 5px 0; */
+  line-height: 20px;
 }
-.box-card {
-  width: 480px;
-}
+
 .box-card div {
-  border-top: 1px solid #999;
+  /* border-top: 1px solid #999; */
   border-bottom: 1px solid #999;
 }
 .SearchTop {
@@ -166,7 +157,7 @@ export default {
 .hotHeight {
   color: #999;
   font-size: 10px;
-  widows: 100%;
+  width: 100%;
 }
 .songIntroduction {
   color: #666;

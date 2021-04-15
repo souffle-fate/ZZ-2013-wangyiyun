@@ -1,5 +1,6 @@
 <template>
   <div class="toplist" v-if="toplist">
+    <!-- <router-view> -->
     <div class="list1box">
       <h2>官方榜</h2>
       <div
@@ -33,11 +34,12 @@
         </div>
       </div>
     </div>
+    <!-- </router-view> -->
   </div>
 </template>
 
 <script>
-import { reqToplist } from "../../api/toplist";
+import { reqToplist } from "../../../api/toplist";
 export default {
   components: {},
   props: {},
@@ -76,24 +78,25 @@ export default {
   padding-bottom: 200px;
 }
 .list1box {
-  width: 100%;
+  // width: 100%;
   padding: 0 5px;
   .innerbox {
-    width: 100%;
+    // width: 100%;
+    height: 100px;
     .left {
       width: 30%;
       position: relative;
 
       p {
         position: absolute;
-        bottom: 0;
-        left: 5px;
+        bottom: 6px;
+        left: 3px;
         font-size: 12px;
         color: #fff;
       }
       img {
         width: 90px;
-        border-radius: 10px;
+        border-radius: 5px;
       }
     }
     .right {
@@ -113,15 +116,16 @@ export default {
   justify-content: space-between;
 
   .innerbox {
+    height: 160px;
     .top {
       position: relative;
       img {
-        width: 120px;
+        width: 115px;
         border-radius: 10px;
       }
       p {
         position: absolute;
-        bottom: 0;
+        bottom: 10px;
         left: 5px;
         font-size: 12px;
         color: #fff;
@@ -131,6 +135,7 @@ export default {
       p {
         width: 120px;
         font-size: 14px;
+        line-height: 20px;
       }
     }
   }

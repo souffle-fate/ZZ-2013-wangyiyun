@@ -32,11 +32,11 @@
 </template>
 
 <script>
-import Pmusic from '../MusicPlay'
+import Pmusic from "../MusicPlay";
 import { reqMusicDetails, reqMusicUrl, reqMusicLyrics } from "../../api/music";
 export default {
-  components:{
-    Pmusic
+  components: {
+    Pmusic,
   },
   data() {
     //这里存放数据
@@ -79,7 +79,7 @@ export default {
       this.$refs.off.style.display = "block";
     },
     onClickLeft() {
-      this.$router.push("/");
+      this.$router.go(-1);
       // console.log(11);
     },
     tiaopinglun() {
@@ -88,7 +88,10 @@ export default {
     // 歌曲简略信息
     async musicDetails() {
       // 必选参数 : ids: 音乐 id, 如 ids=347230
-      const result = await reqMusicDetails({ ids: 347230 });
+      const ids = this.$store.state.musicid;
+      console.log(ids);
+      const result = await reqMusicDetails({ ids });
+      console.log(result);
       if (result.status === 200) {
         // console.log(result.config.params.ids);
         //歌曲背景图
@@ -109,6 +112,8 @@ export default {
     },
     // 获取音乐播放url
     async MusicUrl(id) {
+      const ids = this.$store.state.musicid;
+      console.log(ids);
       const result = await reqMusicUrl({ id });
       console.log(this.id);
       if (result.status === 200) {
@@ -120,6 +125,8 @@ export default {
     },
     // 获取歌词
     async musicLyrics(id) {
+      const ids = this.$store.state.musicid;
+      console.log(ids);
       const result = await reqMusicLyrics({ id });
 
       if (result.status === 200) {

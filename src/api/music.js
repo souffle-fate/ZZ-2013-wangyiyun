@@ -19,7 +19,17 @@ export const reqInfo = (data) => get("/user/detail", data);
 // 获取歌单详情/playlist/detail/dynamic
 export const reqDynamic = (data) => get("/playlist/detail/dynamic", data);
 
+// 获取热门话题
+export const reqHotTopic = () => get("/hot/topic");
+// /hot/ciopt;
 
+// 获取话题详情
+export const reqTopicDetails = (data) => get("/topic/detail", data);
+// /topic/detail?actid=111551188
+
+// 获取话题详情热门动态
+export const reqTDHot = (data) => get("/topic/detail/event/hot", data);
+//  /topic/detail/event/hot
 
 // 歌曲评论
 export const reqMusicComment = (data) => get("/comment/music", data);
@@ -32,3 +42,7 @@ export const reqMusicUrl = (data) => get("/song/url", data);
 // 获取歌词
 export const reqMusicLyrics = (data) => get("/lyric", data);
 // /lyric  必选参数 : id: 音乐 id
+
+
+// 喜欢音乐
+export const reqLikeMusic = (data) => get("/like", data);
