@@ -29,8 +29,9 @@
           <p style="font-weight: bold; margin-bottom: 10px">{{ username }}</p>
           <p style="margin-bottom: 10px">
             <span
-              ><i>关注 </i><span>24</span> | <span></span><i>粉丝 </i
-              ><span>24</span></span
+              ><i>关注 </i><span>{{ obj.data.profile.follows }}</span> |
+              <span></span><i>粉丝 </i
+              ><span>{{ obj.data.profile.followeds }}</span></span
             >
           </p>
           <div class="box">
@@ -44,7 +45,7 @@
     <div class="main">
       <van-tabbar v-model="active" :fixed="false">
         <van-tabbar-item to="/list/music">音乐</van-tabbar-item>
-        <van-tabbar-item to="/list/dongtai">动态</van-tabbar-item>
+        <van-tabbar-item to="/list/dongtai">我关注的人</van-tabbar-item>
         <van-tabbar-item to="/list/mine">关于我</van-tabbar-item>
       </van-tabbar>
       <!-- <van-tabs v-model="active" @click="fn">
@@ -70,6 +71,7 @@ export default {
       level: 0,
       avatarUrl: "",
       backgroundUrl: "",
+      obj: {},
     };
   },
   //计算属性 类似于data概念
@@ -89,9 +91,11 @@ export default {
       let uid = localStorage.getItem("uid");
       const result = await reqInfo({ uid: uid });
       const obj = result;
-      // console.log(obj);
+      console.log(obj);
       this.username = obj.data.profile.nickname;
       console.log(this.username);
+      this.obj = obj;
+      // 粉丝this.obj.data.profile.follows
       this.level = obj.data.level;
       this.avatarUrl = obj.data.profile.avatarUrl;
       this.backgroundUrl = obj.data.profile.backgroundUrl;
@@ -160,12 +164,16 @@ export default {
   width: 100%;
   height: 100%;
 }
+.geren span {
+  font-size: 12px;
+}
 .geren .box span {
   padding: 2px 10px;
   border: solid 1px;
   border-radius: 10px;
   color: white;
   font-weight: bolder;
+  font-size: 12px;
   /* background: white; */
 }
 </style>

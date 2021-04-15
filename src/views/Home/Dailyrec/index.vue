@@ -1,5 +1,5 @@
 <template>
-  <div class="dailyrec"></div>
+  <div class="dailyrec">每日推荐</div>
 </template>
 
 <script>
