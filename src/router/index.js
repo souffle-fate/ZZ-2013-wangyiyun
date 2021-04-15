@@ -21,21 +21,8 @@ const routes = [
     meta: {
       showTabbar: true  // false删除底部导航
     },
-<<<<<<< HEAD
     children:[
-      // {
-      //   path:"fm",
-      //   name:"Fm",
-      //   component:() => import("../views/Home/fm"),
-      // },
-=======
-    children: [
-      {
-        path: "fm",
-        name: "Fm",
-        component: () => import("../views/Home/fm"),
-      },
->>>>>>> cd08aeb6b9a435d3632e5be62553fe8358cf8ae5
+      
     ]
 
   },
@@ -45,7 +32,24 @@ const routes = [
     name: 'fm',
     component: () => import('../views/Home/fm')
   },
-  
+  //mv
+  {
+    path:'/homeMv/:id',
+    name:'HomeMv',
+    component:()=>import('../views/Home/homeMv')
+  },
+  //歌单--歌单路由
+  {
+    path:'/songList',
+    name:'SongList',
+    component:()=>import('../views/Home/songList')
+  },
+  // 精品歌单详情列表
+  {
+    path:'/jingpinList',
+    name:'JingpinList',
+    component:()=>import('../views/Home/jingpinList')
+  },
   // 音乐详情页面
    {
     path: "/musicXQ/:id",

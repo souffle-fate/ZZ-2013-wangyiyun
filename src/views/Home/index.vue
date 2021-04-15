@@ -35,7 +35,7 @@
         </div>
         <div class="MusicCategorySmallDesc">每日推荐</div>
       </div>
-      <div class="MusicCategorySmall">
+      <div class="MusicCategorySmall" @click="goSongList">
         <div class="MusicCategorySmallIcon">
           <van-icon name="bullhorn-o" />
         </div>
@@ -76,10 +76,7 @@
     <!-- mv -->
     <div class="home-mvs">
       <div class="home-mv" v-for="(item, index) in HQmv" :key="index">
-        <!-- <p>{{ item }}</p>
-      img
-     -->
-        <img :src="item.picUrl" alt="" />
+        <img :src="item.picUrl" alt="" @click="goHomeMv(item.id)" />
       </div>
     </div>
   </div>
@@ -112,6 +109,13 @@ export default {
   watch: {},
   //方法集合
   methods: {
+    goHomeMv(id) {
+      this.$router.push(`/homeMv/${id}`);
+    },
+    // 点击歌单跳转歌单列表
+    goSongList() {
+      this.$router.push("/songList");
+    },
     // 搜索框跳转
     url_search() {
       this.$router.push("/search");
@@ -146,10 +150,11 @@ export default {
     // 推荐mv接口
     async getMv() {
       const res = await reqMvs();
-      console.log(res.data.result);
+      // console.log(res.data.result);
       this.HQmv = res.data.result;
     },
   },
+  //点击视频跳转到mv页面
 
   filters: {
     numFormat(num) {
@@ -227,15 +232,19 @@ img {
 .MusicCategory {
   width: 100%;
   height: 90px;
-  /* background: orange; */
-  margin-top: 10px;
+  // background: orange;
+  margin-top: 5px;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 .MusicCategorySmall {
-  /* background: cornflowerblue; */
+  // background: cornflowerblue;
   text-align: center;
+  // width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .MusicCategorySmallIcon {
   text-align: center;
