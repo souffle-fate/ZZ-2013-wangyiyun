@@ -61,7 +61,6 @@ export default {
         localStorage.setItem("uid", result.data.account.id);
         Toast.success("登录成功");
         this.$router.push("/");
-        console.log("11");
       } else if (result.data.code === 400) {
         setToken(result.data.token);
         Toast.success("账户不存在");
