@@ -40,7 +40,7 @@ export default {
     // 热门话题
     // async hotTopic() {
     hotTopic() {
-      axios.get("http://localhost:3000/hot/topic").then((res) => {
+      axios.post("http://localhost:3000/hot/topic").then((res) => {
         if (res.status === 200) {
           console.log(res.data.hot);
           this.hottopicArr = res.data.hot;
@@ -59,6 +59,7 @@ export default {
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
     this.hotTopic();
+
     // this.topicDetails();
   },
   //生命周期 - 挂载完成（可以访问DOM元素）

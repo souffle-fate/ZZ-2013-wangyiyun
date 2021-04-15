@@ -15,12 +15,6 @@ export const reqUpdate = (data) => get("/user/update", data);
 
 
 
-
-
-
-
-
-
 export const reqLogin = (aa) => get("/login/cellphone" + aa);
 // 获取用户详情
 export const reqUser = (uid) => get("/user/detail" + uid);

@@ -9,7 +9,7 @@ var _vue = _interopRequireDefault(require("vue"));
 
 var _vueRouter = _interopRequireDefault(require("vue-router"));
 
-var _index = _interopRequireDefault(require("../views/Home/index.vue"));
+var _index = _interopRequireDefault(require("../views/Home/index"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -37,27 +37,63 @@ var routes = [// 首页Home
   meta: {
     showTabbar: true // false删除底部导航
 
-  },
-  children: [{
-    path: "fm",
-    name: "Fm",
-    component: function component() {
-      return Promise.resolve().then(function () {
-        return _interopRequireWildcard(require("../views/Home/fm"));
-      });
-    }
-  }]
-}, // 音乐详情列表页面
+  }
+}, //首页--排行榜
 {
-  path: "/musiclist",
-  name: "MusicList",
+  path: "/toplist",
+  name: "Toplist",
   component: function component() {
     return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require("../views/Home/MusicList.vue"));
+      return _interopRequireWildcard(require("../views/Home/Toplist/index.vue"));
     });
   },
   meta: {
-    showTabbar: true // false删除底部导航
+    showTabbar: false
+  }
+}, //首页--每日推荐
+{
+  path: "/dailyrec",
+  name: "Dailyrec",
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require("../views/Home/Dailyrec"));
+    });
+  },
+  meta: {
+    showTabbar: false
+  }
+}, //歌单详情页面
+{
+  path: '/listdetail/:id',
+  name: 'Listdetail',
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/Listdetail'));
+    });
+  },
+  meta: {
+    showTabbar: false
+  }
+}, //FM
+{
+  path: "/fm",
+  name: "fm",
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require("../views/Home/fm"));
+    });
+  }
+}, // 音乐详情页面
+{
+  path: "/musicXQ/:id",
+  name: "MusicXQ",
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require("../views/Home/musicXQ/index.vue"));
+    });
+  },
+  meta: {
+    showTabbar: false // false删除底部导航
 
   }
 }, // 音乐搜索页面
@@ -66,11 +102,11 @@ var routes = [// 首页Home
   name: "Search",
   component: function component() {
     return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require("../views/Home/Search.vue"));
+      return _interopRequireWildcard(require("../views/Home/search/index"));
     });
   },
   meta: {
-    showTabbar: true // false删除底部导航
+    showTabbar: false // false删除底部导航
 
   }
 }, // 歌曲详情页面
@@ -105,7 +141,7 @@ var routes = [// 首页Home
     name: "Music",
     component: function component() {
       return Promise.resolve().then(function () {
-        return _interopRequireWildcard(require('../views/list/music/music'));
+        return _interopRequireWildcard(require("../views/list/music/music"));
       });
     },
     meta: {
@@ -117,7 +153,7 @@ var routes = [// 首页Home
     name: "Dongtai",
     component: function component() {
       return Promise.resolve().then(function () {
-        return _interopRequireWildcard(require('../views/list/dongtai/dongtai'));
+        return _interopRequireWildcard(require("../views/list/dongtai/dongtai"));
       });
     },
     meta: {
@@ -129,7 +165,7 @@ var routes = [// 首页Home
     name: "Mine",
     component: function component() {
       return Promise.resolve().then(function () {
-        return _interopRequireWildcard(require('../views/list/mine/mine'));
+        return _interopRequireWildcard(require("../views/list/mine/mine"));
       });
     },
     meta: {
@@ -164,7 +200,7 @@ var routes = [// 首页Home
   },
   children: [{
     path: "hottopic",
-    name: 'HotTopic',
+    name: "HotTopic",
     component: function component() {
       return Promise.resolve().then(function () {
         return _interopRequireWildcard(require("../views/YunCun/Yun/HotTopic.vue"));
@@ -173,10 +209,20 @@ var routes = [// 首页Home
     meta: {
       showTabbar: true // false删除底部导航
 
-    }
+    } // children: [
+    //   {
+    //     path: "topicdetails",
+    //     name: "TopicDetails",
+    //     component: () => import("../views/YunCun/Yun/TopicDetails.vue"),
+    //     meta: {
+    //       showTabbar: false, // false删除底部导航
+    //     },
+    //   },
+    // ],
+
   }, {
     path: "mv",
-    name: 'Mv',
+    name: "Mv",
     component: function component() {
       return Promise.resolve().then(function () {
         return _interopRequireWildcard(require("../views/YunCun/Yun/Mv.vue"));
@@ -186,13 +232,58 @@ var routes = [// 首页Home
       showTabbar: true // false删除底部导航
 
     }
-  }]
+  } // {
+  //   path: "topicdetails",
+  //   name: "TopicDetails",
+  //   component: () => import("../views/YunCun/Yun/TopicDetails.vue"),
+  //   meta: {
+  //     showTabbar: false, // false删除底部导航
+  //   },
+  // },
+  ]
+}, {
+  path: "/topicdetails",
+  name: "TopicDetails",
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require("../views/YunCun/Yun/TopicDetails.vue"));
+    });
+  },
+  meta: {
+    showTabbar: false,
+    // false删除底部导航
+    children: [{
+      path: "hottopic",
+      name: "HotTopic",
+      component: function component() {
+        return Promise.resolve().then(function () {
+          return _interopRequireWildcard(require("../views/YunCun/Yun/HotTopic.vue"));
+        });
+      },
+      meta: {
+        showTabbar: true // false删除底部导航
+
+      }
+    }, {
+      path: "mv",
+      name: "Mv",
+      component: function component() {
+        return Promise.resolve().then(function () {
+          return _interopRequireWildcard(require("../views/YunCun/Yun/Mv.vue"));
+        });
+      },
+      meta: {
+        showTabbar: true // false删除底部导航
+
+      }
+    }]
+  }
 }, {
   path: "/mvid/:id",
   name: "Mvid",
   component: function component() {
     return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/YunCun/Yun/Mvid'));
+      return _interopRequireWildcard(require("../views/YunCun/Yun/Mvid"));
     });
   },
   meta: {
@@ -219,19 +310,6 @@ var routes = [// 首页Home
   component: function component() {
     return Promise.resolve().then(function () {
       return _interopRequireWildcard(require("../views/Rank"));
-    });
-  },
-  meta: {
-    showTabbar: true // false删除底部导航
-
-  }
-}, //音乐列表模块
-{
-  path: "/musiclist/:id",
-  name: "MusicList",
-  component: function component() {
-    return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require("../views/Home/MusicList.vue"));
     });
   },
   meta: {
@@ -270,7 +348,7 @@ var routes = [// 首页Home
   name: "Diantai",
   component: function component() {
     return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/User/diantai'));
+      return _interopRequireWildcard(require("../views/User/diantai"));
     });
   },
   meta: {
@@ -282,7 +360,7 @@ var routes = [// 首页Home
   name: "Bendi",
   component: function component() {
     return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/User/bendi'));
+      return _interopRequireWildcard(require("../views/User/bendi"));
     });
   },
   meta: {
@@ -290,38 +368,11 @@ var routes = [// 首页Home
 
   }
 }, {
-  path: "/toplist",
-  name: "Toplist",
-  component: function component() {
-    return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require("../views/Toplist"));
-    });
-  } // meta:{
-  //   showTabbar:false,
-  // }
-
-}, {
-  path: "/dailyrec",
-  name: "Dailyrec",
-  component: function component() {
-    return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require("../views/Dailyrec"));
-    });
-  }
-}, {
-  path: '/listdetail/:id',
-  name: 'Listdetail',
-  component: function component() {
-    return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/Home/Listdetail'));
-    });
-  }
-}, {
   path: "/shocang",
   name: "Shocang",
   component: function component() {
     return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/User/shocang'));
+      return _interopRequireWildcard(require("../views/User/shocang"));
     });
   },
   meta: {
@@ -333,7 +384,7 @@ var routes = [// 首页Home
   name: "Xiazai",
   component: function component() {
     return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/User/xiazai'));
+      return _interopRequireWildcard(require("../views/User/xiazai"));
     });
   },
   meta: {
@@ -345,7 +396,7 @@ var routes = [// 首页Home
   name: "Zueijin",
   component: function component() {
     return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/User/zueijin'));
+      return _interopRequireWildcard(require("../views/User/zueijin"));
     });
   },
   meta: {
@@ -365,19 +416,16 @@ var routes = [// 首页Home
     showTabbar: false // false删除底部导航
 
   }
-}, {
-  path: "/gedan/:Id",
-  name: "Gedan",
-  component: function component() {
-    return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require("../views/gedan/index.vue"));
-    });
-  },
-  meta: {
-    showTabbar: true //不显示底部导航
-
-  }
-}, {
+}, // {
+//   path: "/gedan/:Id",
+//   name: "Gedan",
+//   component: () => import("../views/gedan/index.vue"),
+//   meta: {
+//     showTabbar: true, //不显示底部导航
+//   },
+// },
+// 我的资料组件
+{
   path: "/updateuser/:Id",
   name: "Updateuser",
   component: function component() {
@@ -389,96 +437,120 @@ var routes = [// 首页Home
     showTabbar: false //不显示底部导航
 
   }
-}, {
+}, // 修改背景图片组件
+{
   path: "/backimg",
   name: "Backimg",
   component: function component() {
     return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/update/backimg/index.vue'));
+      return _interopRequireWildcard(require("../views/update/backimg/index.vue"));
     });
   },
   meta: {
     showTabbar: true //不显示底部导航
 
   }
-}, {
-  path: "/birthday",
-  name: "Birthday",
-  component: function component() {
-    return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/update/birthday/index.vue'));
-    });
-  },
-  meta: {
-    showTabbar: true //不显示底部导航
-
-  }
-}, {
-  path: "/city",
-  name: "City",
-  component: function component() {
-    return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/update/city/index.vue'));
-    });
-  },
-  meta: {
-    showTabbar: true //不显示底部导航
-
-  }
-}, {
+}, // {
+//   path: "/birthday",
+//   name: "Birthday",
+//   component: () => import("../views/update/birthday/index.vue"),
+//   meta: {
+//     showTabbar: true, //不显示底部导航
+//   },
+// },
+// {
+//   path: "/city",
+//   name: "City",
+//   component: () => import("../views/update/city/index.vue"),
+//   meta: {
+//     showTabbar: true, //不显示底部导航
+//   },
+// },
+// 修改我的大学组件
+{
   path: "/daxue",
   name: "Daxue",
   component: function component() {
     return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/update/daxue/index.vue'));
+      return _interopRequireWildcard(require("../views/update/daxue/index.vue"));
     });
   },
   meta: {
     showTabbar: true //不显示底部导航
 
   }
-}, {
+}, // 修改头像组件
+{
   path: "/headerimg",
   name: "Headerimg",
   component: function component() {
     return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/update/headerimg/index.vue'));
+      return _interopRequireWildcard(require("../views/update/headerimg/index.vue"));
     });
   },
   meta: {
     showTabbar: true //不显示底部导航
 
   }
-}, {
+}, // 修改我的展示组件
+{
   path: "/myshow",
   name: "Myshow",
   component: function component() {
     return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/update/myshow/index.vue'));
+      return _interopRequireWildcard(require("../views/update/myshow/index.vue"));
     });
   },
   meta: {
     showTabbar: true //不显示底部导航
 
   }
-}, {
+}, // 修改签名组件
+{
   path: "/qianming",
   name: "ianming",
   component: function component() {
     return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/update/qianming/index.vue'));
+      return _interopRequireWildcard(require("../views/update/qianming/index.vue"));
     });
   },
   meta: {
     showTabbar: true //不显示底部导航
 
   }
-}, {
+}, // 修改账号组件
+{
   path: "/zhanghao",
   name: "Zhanghao",
   component: function component() {
     return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/update/zhanghao/index.vue'));
+      return _interopRequireWildcard(require("../views/update/zhanghao/index.vue"));
+    });
+  },
+  meta: {
+    showTabbar: true //不显示底部导航
+
+  }
+}, // 修改昵称组件
+{
+  path: "/nickname",
+  name: "Nickname",
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require("../views/update/nickname/index.vue"));
+    });
+  },
+  meta: {
+    showTabbar: true //不显示底部导航
+
+  }
+}, // 修改绑定手机号组件
+{
+  path: "/phone",
+  name: "Phone",
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require("../views/update/phone/index.vue"));
     });
   },
   meta: {
@@ -486,11 +558,11 @@ var routes = [// 首页Home
 
   }
 }, {
-  path: "/nickname",
-  name: "Nickname",
+  path: "/password",
+  name: "Password",
   component: function component() {
     return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/update/nickname/index.vue'));
+      return _interopRequireWildcard(require("../views/update/password/index.vue"));
     });
   },
   meta: {

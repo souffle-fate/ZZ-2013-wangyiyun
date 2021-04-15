@@ -6,11 +6,11 @@
       left-arrow
       @click-left="onClickLeft"
     />
+    <van-empty image="error" description="该功能已关闭" />
   </div>
 </template>
 <script>
 export default {
-  
   components: {},
   data() {
     return {};

@@ -32,11 +32,11 @@
 </template>
 
 <script>
-import Pmusic from '../MusicPlay'
+import Pmusic from "../MusicPlay";
 import { reqMusicDetails, reqMusicUrl, reqMusicLyrics } from "../../api/music";
 export default {
-  components:{
-    Pmusic
+  components: {
+    Pmusic,
   },
   data() {
     //这里存放数据
@@ -95,7 +95,7 @@ export default {
         // console.log(result.config.params.ids);
         //歌曲背景图
         this.picUrl = result.data.songs[0].al.picUrl;
-        console.log(this.picUrl);
+        // console.log(this.picUrl);
         // this.note.backgroundImage = "url(" + this.picUrl + ")";
         this.note.backgroundColor = "#ec4141";
         //歌名
@@ -112,12 +112,12 @@ export default {
     // 获取音乐播放url
     async MusicUrl(id) {
       const result = await reqMusicUrl({ id });
-      console.log(this.id);
+      // console.log(this.id);
       if (result.status === 200) {
         // console.log(result.data.data[0].url);
         this.musicUrl = result.data.data[0].url;
         // 音乐播放url
-        console.log(this.musicUrl);
+        // console.log(this.musicUrl);
       }
     },
     // 获取歌词
@@ -127,7 +127,7 @@ export default {
       if (result.status === 200) {
         // console.log(result.data.lrc.lyric);
         this.songLyrics = result.data.lrc.lyric;
-        console.log(this.songLyrics);
+        // console.log(this.songLyrics);
         const aaa = /(\[)[0-9]{2}:{1}[0-9]{2}.{1}[0-9]{3}(\])/g;
         const dateStr = this.songLyrics.replace(aaa, ",");
         // console.log(dateStr);

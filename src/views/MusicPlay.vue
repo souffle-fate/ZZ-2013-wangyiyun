@@ -24,6 +24,7 @@
 
 <script>
 import { reqMusicDetails, reqMusicUrl, reqMusicLyrics } from "../api/music";
+
 import aplayer from "vue-aplayer";
 export default {
   data() {
@@ -60,8 +61,8 @@ export default {
         {
           title: "",
           artist: "",
-          src:"",
-          pic:"",
+          src: "",
+          pic: "",
         },
       ],
     };
@@ -79,35 +80,35 @@ export default {
       const ids = this.$route.params.id;
       const result = await reqMusicDetails({ ids });
       if (result.status === 200) {
-        console.log(11);
+        // console.log(11);
         // console.log(result);
         //歌曲背景图
         this.picUrl = result.data.songs[0].al.picUrl;
         // console.log(this.picUrl);
         this.audio[0].pic = this.picUrl;
-        console.log(this.audio[0].pic);
+        // console.log(this.audio[0].pic);
 
         //歌名
         this.name = result.data.songs[0].name;
         this.audio[0].title = this.name;
-        console.log(this.audio[0].title);
+        // console.log(this.audio[0].title);
         //歌手名
         this.singerName = result.data.songs[0].ar[0].name;
         this.audio[0].artist = this.singerName;
-        console.log(this.audio[0].artist);
+        // console.log(this.audio[0].artist);
         // 歌曲id
         this.id = result.config.params.ids;
         // 调用了 获取音乐播放url的方法
         this.MusicUrl(this.id);
         this.musicLyrics(this.id);
-        console.log(this.audio);
+        // console.log(this.audio);
         this.flag = true;
       }
     },
     // 获取音乐播放url
     async MusicUrl(id) {
       const result = await reqMusicUrl({ id });
-      console.log(id);
+      // console.log(id);
       // console.log(this.id);
       if (result.status === 200) {
         // console.log(result.data.data[0].url);

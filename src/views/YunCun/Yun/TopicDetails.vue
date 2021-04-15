@@ -9,7 +9,7 @@
     />
     <div class="banner">
       <img :src="img" alt="" class="img" />
-      <p class="text">{{ text }}</p>
+      <p class="text">在:{{ text }}</p>
       <p class="biaoti">{{ title }}</p>
       <van-divider class="canyu">{{ people }}人参与</van-divider>
     </div>
@@ -23,16 +23,17 @@
     >
       <img :src="item.user.avatarUrl" alt="" />
     </van-skeleton> -->
+    <van-divider content-position="left">热门动态</van-divider>
     <div class="list" v-for="(item, index) in arr" :key="index">
       <div class="list_top">
         <img :src="item.user.avatarUrl" alt="" class="usernameimg" />
         <span>{{ item.user.nickname }}</span>
       </div>
       <div class="list_neirong">
-        <p class="p1">#{{ item.actName }}#</p>
-        <p class="p2">
-          {{ JSON.parse(item.json) }}
-        </p>
+        <div class="div">
+          <p>{{ JSON.parse(item.json).msg }}</p>
+          <!-- <img :src="JSON.parse(item.json)." alt="" /> -->
+        </div>
       </div>
     </div>
   </div>
@@ -56,6 +57,7 @@ export default {
       title: "",
       people: "",
       arr: [],
+      json: [],
       css: {
         // backgroundUrl: "",
       },
@@ -96,10 +98,12 @@ export default {
       const result = await reqTDHot({ actid: id });
       if (result.status === 200) {
         console.log(result.data.events);
-        this.arr = result.data.events;
+        const arrs = result.data.events;
+        this.arr = arrs;
+
         // for (let i = 0; i < result.data.events.length; i++) {
-        //   // console.log(i);
-        //   console.log(result.data.events[i].user);
+        //   const json = result.data.events[i].json;
+        //   console.log(JSON.parse(json));
         // }
       }
     },
@@ -153,20 +157,31 @@ export default {
   top: 35%;
 }
 .text {
-  width: 90%;
-  line-height: 20px;
-  margin-left: 5%;
+  width: calc(100% - 16px);
+  padding: 8px;
+  font-size: 16px;
+  line-height: 18px;
 }
 .list .usernameimg {
   width: 40px;
   height: 40px;
+  border-radius: 50%;
+  float: left;
 }
 .list .list_top {
   width: 100%;
   height: 40px;
 }
-/* .list .list_top span {
+.list_top span {
+  color: rgb(238, 117, 18);
   line-height: 40px;
-  display: inline-block;
-} */
+  float: left;
+  padding-left: 6px;
+}
+.div {
+  width: calc(100% - 50px);
+  padding: 10px 0 10px 50px;
+  line-height: 18px;
+  color: rgb(90, 87, 87);
+}
 </style>
