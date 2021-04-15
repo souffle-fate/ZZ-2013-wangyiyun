@@ -1,5 +1,9 @@
 <template>
   <div class="listdetailbox">
+    <div class="header">
+      <span><van-icon name="arrow-left" @click="gohome" /></span>
+      <span>{{ this.$route.meta.title }}</span>
+    </div>
     <div class="listdetail" v-if="resObj">
       <!-- playlist.coverImgUrl 封面图  shareCount 分享总量 commentCount 总评论数 .name 右侧描述  收藏量 subscribedCount   subscribed是否收藏
       subscribers 收藏人   trackCount歌单歌曲个数 trackIds歌单歌曲id
@@ -61,16 +65,14 @@
             <div class="left">
               <p>{{ index + 1 }}</p>
               <div>
-                <span>{{ item.name | ellipsisSong }}</span>
+                <span>{{ item.name }}</span>
                 <!-- <span v-for="(subitem, subindex) in item.ar" :key="subindex"> -->
                 <!-- {{ item.ar[0].name }}{{ item.ar[1].name }} -->
                 <!-- </span> -->
                 <div class="info">
                   <span>{{ item.ar[0].name }}</span>
                   <span v-if="item.ar.length == 2">/{{ item.ar[1].name }}</span>
-                  <span v-if="item.al.name"
-                    >-{{ item.al.name | ellipsisArt }}</span
-                  >
+                  <span v-if="item.al.name">-{{ item.al.name }}</span>
                 </div>
               </div>
             </div>
@@ -91,20 +93,20 @@ import { reqListDetail, reqSongDetail } from "../../api/reclist";
 export default {
   components: {},
   filters: {
-    ellipsisSong(str) {
-      if (!str) return ""; //如果没有返回空
-      if (str.length > 28) {
-        return str.slice(0, 28) + "..."; //长度大于10的后面用......代替
-      }
-      return str;
-    },
-    ellipsisArt(str) {
-      if (!str) return ""; //如果没有返回空
-      if (str.length > 10) {
-        return str.slice(0, 10) + "..."; //长度大于10的后面用......代替
-      }
-      return str;
-    },
+    // ellipsisSong(str) {
+    //   if (!str) return ""; //如果没有返回空
+    //   if (str.length > 28) {
+    //     return str.slice(0, 28) + "..."; //长度大于10的后面用......代替
+    //   }
+    //   return str;
+    // },
+    // ellipsisArt(str) {
+    //   if (!str) return ""; //如果没有返回空
+    //   if (str.length > 10) {
+    //     return str.slice(0, 10) + "..."; //长度大于10的后面用......代替
+    //   }
+    //   return str;
+    // },
   },
   props: {},
   data() {
@@ -119,6 +121,7 @@ export default {
   computed: {},
   watch: {},
   methods: {
+    //获取列表详情
     async getListDetail(id) {
       // console.log(id);
       let res = await reqListDetail({ id: id, s: 5 });
@@ -131,6 +134,7 @@ export default {
         });
         // console.log(this.trackIds);
         this.trackIdsStr = this.trackIds.join(",");
+        //获取列表歌曲详情
         reqSongDetail({ ids: this.trackIdsStr }).then((res) => {
           console.log(res);
           if (res.data.code === 200) {
@@ -139,6 +143,10 @@ export default {
           }
         });
       }
+    },
+    //点击返回按钮跳转首页
+    gohome() {
+      this.$router.push("/home");
     },
   },
   created() {
@@ -158,14 +166,32 @@ export default {
 .listdetailbox {
   background: #000;
 }
+.header {
+  width: 100%;
+  height: 50px;
+  background: #000;
+  z-index: 1000;
+  position: fixed;
+  span {
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    font-size: 25px;
+    color: #fff;
+    margin-right: 3px;
+  }
+  span:last-child {
+    font-size: 18px;
+  }
+}
 .listdetail {
+  padding-top: 50px;
   padding-bottom: 50px;
   .listtit {
-    min-height: 230px;
-
+    min-height: 220px;
     .top {
       overflow: hidden;
-      padding: 10px 0px;
+      padding: 0 0 10px 0;
       .left {
         float: left;
         margin: 15px 10px;
@@ -174,12 +200,12 @@ export default {
         }
       }
       .right {
-        margin-top: 30px;
+        margin-top: 15px;
         p:first-child {
-          font-size: 18px;
+          font-size: 16px;
           font-weight: 800;
           color: #fff;
-          margin-bottom: 30px;
+          margin-bottom: 20px;
           line-height: 25px;
         }
         p:last-child {
@@ -208,6 +234,7 @@ export default {
       ul {
         width: 100%;
         display: flex;
+        margin-bottom: 10px;
         li {
           flex: 1;
           height: 50px;
@@ -215,7 +242,7 @@ export default {
           flex-direction: column;
           justify-content: space-around;
           align-items: center;
-          font-size: 30px;
+          font-size: 28px;
           van-icon {
             color: #fff;
           }
@@ -266,6 +293,7 @@ export default {
       justify-content: space-between;
       .left {
         display: flex;
+
         p {
           color: rgb(153, 153, 153);
           width: 40px;
@@ -276,7 +304,15 @@ export default {
           display: flex;
           flex-direction: column;
           justify-content: center;
+          width: 240px;
+          white-space: nowrap;
+          span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
           .info {
+            overflow: hidden;
+            text-overflow: ellipsis;
             color: rgb(153, 153, 153);
           }
         }

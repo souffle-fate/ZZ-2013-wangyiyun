@@ -1,9 +1,9 @@
-import { post } from "../utils/request";
+import { get, post } from "../utils/request";
 
 //获取最新专辑
 export const reqNewestAl = () => post("/album/newest")
 
 
-//获取歌单详情
-// export const reqListDetail = (data) => get("/playlist/detail", data)
+//获取专辑详情
+export const reqAlDetail = (data) => get("/playlist/detail", data)
 

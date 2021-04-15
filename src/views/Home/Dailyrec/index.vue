@@ -1,8 +1,15 @@
 <template>
-  <div class="dailyrec">每日推荐</div>
+  <div class="dailyrec">
+    <div class="header">
+      <span><van-icon name="arrow-left" @click="gohome" /></span>
+      <span>{{ this.$route.meta.title }}</span>
+    </div>
+  </div>
 </template>
 
 <script>
+import { reqDailyRec } from "../../../api/dailyrec";
+import { isLogined } from "../../../utils/util";
 export default {
   components: {},
   props: {},
@@ -11,8 +18,25 @@ export default {
   },
   computed: {},
   watch: {},
-  methods: {},
-  created() {},
+  methods: {
+    //点击返回按钮跳转首页
+    gohome() {
+      this.$router.push("/home");
+    },
+    //获取每日推荐歌单
+    getDailyRec() {
+      if (isLogined()) {
+        reqDailyRec().then((res) => {
+          console.log(res);
+        });
+      } else {
+        this.$router.push("/login");
+      }
+    },
+  },
+  created() {
+    this.getDailyRec();
+  },
   mounted() {},
   beforeCreate() {},
   beforeMount() {},
@@ -23,5 +47,23 @@ export default {
   activated() {},
 };
 </script>
-<style scoped>
+<style scoped lang='scss'>
+.header {
+  width: 100%;
+  height: 50px;
+  background: rgb(223, 66, 56);
+  z-index: 1000;
+  position: fixed;
+  span {
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    font-size: 25px;
+    color: #fff;
+    margin-right: 3px;
+  }
+  span:last-child {
+    font-size: 18px;
+  }
+}
 </style>
