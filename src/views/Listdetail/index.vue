@@ -14,9 +14,7 @@
             <p>{{ resObj.name }}</p>
             <p>
               <img :src="resObj.creator.avatarUrl" alt="" />
-              <span
-                >{{ resObj.creator.nickname }}<van-icon name="arrow"
-              /></span>
+              <span>{{ resObj.creator.nickname }}<van-icon name="arrow"/></span>
             </p>
           </div>
         </div>
@@ -75,8 +73,8 @@
               </div>
             </div>
             <div class="right">
-              <span><van-icon name="video-o" v-show="item.mv" /></span>
-              <span><van-icon name="arrow-up" /></span>
+              <span><van-icon name="video-o" v-show="item.mv"/></span>
+              <span><van-icon name="arrow-up"/></span>
             </div>
           </li>
         </ul>
@@ -119,10 +117,11 @@ export default {
   computed: {},
   watch: {},
   methods: {
-      tz(ids){
-        const uid = this.$route.params.id;
-        this.$router.push(`/Detail/${ids}/${uid}`)
-      },
+    tz(ids) {
+      // const uid = this.$route.params.id;
+      this.$store.commit("getMusicId", ids);
+      this.$router.push(`/Detail`);
+    },
     async getListDetail(id) {
       // console.log(id);
       let res = await reqListDetail({ id: id, s: 5 });
@@ -158,7 +157,7 @@ export default {
   activated() {},
 };
 </script>
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .listdetailbox {
   background: #000;
 }

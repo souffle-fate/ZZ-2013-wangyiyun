@@ -14,4 +14,5 @@ export const reqMvs = (data) => get("/personalized/mv", data);
 接口地址 : /video/url
 调用例子 : /video/url?id=89ADDE33C0AAE8EC14B99F6750DB954D
 */
-export const reqMvsXQ = (data) => get("/video/url", data);
+export const reqMvsXQ = (data) => get("/mv/url", data);
+

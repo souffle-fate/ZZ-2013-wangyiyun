@@ -23,9 +23,9 @@ _vue["default"].use(_vueRouter["default"]);
 
 var routes = [// 首页Home
 {
-  path: '/',
+  path: "/",
   name: "Home",
-  redirect: '/home',
+  redirect: "/home",
   meta: {
     showTabbar: true // false删除底部导航
 
@@ -64,11 +64,11 @@ var routes = [// 首页Home
   }
 }, //歌单详情页面
 {
-  path: '/listdetail/:id',
-  name: 'Listdetail',
+  path: "/listdetail/:id",
+  name: "Listdetail",
   component: function component() {
     return Promise.resolve().then(function () {
-      return _interopRequireWildcard(require('../views/Listdetail'));
+      return _interopRequireWildcard(require("../views/Listdetail"));
     });
   },
   meta: {
@@ -83,9 +83,36 @@ var routes = [// 首页Home
       return _interopRequireWildcard(require("../views/Home/fm"));
     });
   }
+}, //mv
+{
+  path: '/homeMv/:id',
+  name: 'HomeMv',
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/Home/homeMv'));
+    });
+  }
+}, //歌单--歌单路由
+{
+  path: '/songList',
+  name: 'SongList',
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/Home/songList'));
+    });
+  }
+}, // 精品歌单详情列表
+{
+  path: '/jingpinList',
+  name: 'JingpinList',
+  component: function component() {
+    return Promise.resolve().then(function () {
+      return _interopRequireWildcard(require('../views/Home/jingpinList'));
+    });
+  }
 }, // 音乐详情页面
 {
-  path: "/musicXQ/:id",
+  path: "/musicXQ",
   name: "MusicXQ",
   component: function component() {
     return Promise.resolve().then(function () {

@@ -7,11 +7,11 @@ Vue.use(VueRouter);
 const routes = [
   // 首页Home
   {
-    path: '/',
+    path: "/",
     name: "Home",
-    redirect: '/home',
+    redirect: "/home",
     meta: {
-      showTabbar: true  // false删除底部导航
+      showTabbar: true, // false删除底部导航
     },
   },
   {
@@ -29,7 +29,7 @@ const routes = [
     component: () => import("../views/Home/Toplist/index.vue"),
     meta: {
       showTabbar: false,
-    }
+    },
   },
   //首页--每日推荐
   {
@@ -38,16 +38,16 @@ const routes = [
     component: () => import("../views/Home/Dailyrec"),
     meta: {
       showTabbar: false,
-    }
+    },
   },
   //歌单详情页面
   {
-    path: '/listdetail/:id',
-    name: 'Listdetail',
-    component: () => import('../views/Listdetail'),
+    path: "/listdetail/:id",
+    name: "Listdetail",
+    component: () => import("../views/Listdetail"),
     meta: {
       showTabbar: false,
-    }
+    },
   },
   //FM
   {
@@ -55,10 +55,28 @@ const routes = [
     name: "fm",
     component: () => import("../views/Home/fm"),
   },
+  //mv
+  {
+    path: '/homeMv/:id',
+    name: 'HomeMv',
+    component: () => import('../views/Home/homeMv')
+  },
+  //歌单--歌单路由
+  {
+    path: '/songList',
+    name: 'SongList',
+    component: () => import('../views/Home/songList')
+  },
+  // 精品歌单详情列表
+  {
+    path: '/jingpinList',
+    name: 'JingpinList',
+    component: () => import('../views/Home/jingpinList')
+  },
 
   // 音乐详情页面
   {
-    path: "/musicXQ/:id",
+    path: "/musicXQ",
     name: "MusicXQ",
     component: () => import("../views/Home/musicXQ/index.vue"),
     meta: {
