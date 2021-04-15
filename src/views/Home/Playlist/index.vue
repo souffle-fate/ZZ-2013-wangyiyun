@@ -1,33 +1,29 @@
 <template>
   <div class="playlist">
-    <!-- jia全部歌单 -->
-    <!-- <div class="header">
-      <span><van-icon name="arrow-left" @click="gohome" /></span>
-      <span>{{ this.$route.meta.title }}</span>
-    </div> -->
     <!--ru 封面 -->
     <div class="songlist">
-      <div class="songlost-navtitle">
-        <van-icon name="arrow-left" />
+      <div class="songlist-navtitle">
+        <van-icon name="arrow-left" @click="gohome" />
         歌单
       </div>
       <div class="songlist-box">
         <div
-          class="songlost-nav"
+          class="songlist-nav"
           v-for="(item, index) in reqSongLists.slice(0, 1)"
           :key="index"
         >
-          <div class="songlost-nav-img">
+          <div class="songlist-nav-img">
             <img :src="item.coverImgUrl" alt="" />
           </div>
-          <div @click="gojingpin">
-            <div class="jingpingedan">精品歌单</div>
-            <van-icon class="arrow" name="arrow" />
-          </div>
-
-          <div class="songlost-nav-name">
-            <p class="itemname">{{ item.name }}</p>
-            <p class="itemcopywriter">{{ item.copywriter }}</p>
+          <div @click="gojingpin" class="right">
+            <div class="list">
+              <span class="jingpingedan">精品歌单</span>
+              <van-icon class="arrow" name="arrow" />
+            </div>
+            <div class="songlist-nav-name">
+              <p class="itemname">{{ item.name }}</p>
+              <p class="itemcopywriter">{{ item.copywriter }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -167,65 +163,47 @@ export default {
     font-size: 18px;
   }
 }
-.songlost-navtitle {
-  color: white;
-  width: 100%;
+.songlist-navtitle {
+  background: #000;
   height: 50px;
-  background: #575f30;
   line-height: 50px;
-  position: fixed;
-  top: 0;
-  left: 0;
+  color: #fff;
+  padding-left: 10px;
 }
-.songlost-nav {
-  height: 150px;
-  margin-top: 50px;
-  background: #575f30;
-}
-/* 图片 */
-.songlost-nav-img img {
-  width: 130px;
-  float: left;
-  padding-left: 20px;
-  margin-top: 20px;
-}
-/* 精品歌单 */
+.songlist-nav {
+  background: #000;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-around;
 
-.jingpingedan {
-  width: 50%;
-  float: left;
-  margin-top: 50px;
-  color: white;
-  margin-left: 20px;
-}
-.arrow {
-  position: relative;
-  top: 49px;
-  left: -140px;
-  color: aliceblue;
-}
-/* 名字 */
-.songlost-nav-name {
-  width: 50%;
-}
-.songlost-nav-name {
-  margin-top: 10px;
-  float: left;
-}
-.itemname {
-  color: white;
-  margin-left: 10px;
-  font-size: 14px;
-}
-.itemcopywriter {
-  color: white;
-  font-size: 12px;
-  margin-top: 10px;
-  margin-left: 5px;
+  .songlist-nav-img {
+    img {
+      width: 160px;
+    }
+  }
+  .right {
+    .list {
+      span,
+      i {
+        line-height: 30px;
+        font-size: 20px;
+        color: #fff;
+      }
+    }
+    .songlist-nav-name {
+      p {
+        color: #fff;
+        line-height: 30px;
+      }
+      p:last-child {
+        color: rgb(164, 162, 147);
+      }
+    }
+  }
 }
 
 .tabs {
-  padding-top: 50px;
+  // padding-top: 50px;
   height: 50px;
   line-height: 50px;
   display: flex;
@@ -234,7 +212,6 @@ export default {
     font-size: 18px;
   }
   .right {
-    // width: 160px;
     span {
       display: inline-block;
       font-size: 14px;

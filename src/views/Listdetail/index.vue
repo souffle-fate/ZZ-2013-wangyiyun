@@ -92,22 +92,7 @@ import { reqListDetail, reqSongDetail } from "../../api/reclist";
 
 export default {
   components: {},
-  filters: {
-    // ellipsisSong(str) {
-    //   if (!str) return ""; //如果没有返回空
-    //   if (str.length > 28) {
-    //     return str.slice(0, 28) + "..."; //长度大于10的后面用......代替
-    //   }
-    //   return str;
-    // },
-    // ellipsisArt(str) {
-    //   if (!str) return ""; //如果没有返回空
-    //   if (str.length > 10) {
-    //     return str.slice(0, 10) + "..."; //长度大于10的后面用......代替
-    //   }
-    //   return str;
-    // },
-  },
+  filters: {},
   props: {},
   data() {
     return {

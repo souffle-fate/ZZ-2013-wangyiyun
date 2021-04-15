@@ -254,6 +254,17 @@ const routes = [
     },
   },
 
+  //歌手详情
+  {
+    path: "/singerdetail:id",
+    name: "Singerdetail",
+    component: () => import("../views/Rank/Singerdetail"),
+    meta: {
+      showTabbar: false, // false删除底部导航
+      title: '歌手详情'
+    },
+  },
+
   // Enter
   // 登录页面
   {

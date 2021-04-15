@@ -295,9 +295,10 @@ img {
   align-items: center;
 }
 .MusicCategorySmall {
-  // background: cornflowerblue;
+  font-size: 14px;
+  margin-top: 10px;
+  line-height: 30px;
   text-align: center;
-  // width: 25%;
   display: flex;
   flex-direction: column;
   align-items: center;
