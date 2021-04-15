@@ -122,7 +122,7 @@ export default {
       console.log(id);
       this.$store.commit("getMusicId", id);
       this.MusicUrl(id);
-      alert(id);
+      // alert(id);
       this.$router.push(`/Detail`);
     },
     // 获取音乐url

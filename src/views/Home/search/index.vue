@@ -133,7 +133,6 @@ export default {
 <style scoped>
 #search {
   padding-bottom: 50px;
-  /* padding-top: 50px; */
 }
 .text {
   font-size: 14px;
@@ -154,11 +153,7 @@ export default {
   color: white;
   border: none;
 }
-/* .searchMusic { */
-/* position: fixed; */
-/* top: 0; */
-/* left: 0; */
-/* } */
+
 .hotHeight {
   color: #999;
   font-size: 10px;
@@ -195,7 +190,6 @@ export default {
 .searchGList {
   width: 90%;
   height: 70%;
-  /* margin-left: 5%; */
   background: violet;
   position: absolute;
   top: 80px;

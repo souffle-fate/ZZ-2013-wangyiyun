@@ -43,8 +43,14 @@
             <span>{{ item.user.nickname }}</span>
           </div>
           <div class="hotPlay_img_right">
-            <van-icon name="good-job-o" />
-            <span>{{ item.likedCount }}</span>
+            <van-icon
+              name="good-job-o"
+              @click="likeComment(item.commentId, index)"
+              class="icon"
+            />
+            <span @click="nolikeComment(item.commentId, index)" class="num">{{
+              item.likedCount
+            }}</span>
           </div>
         </div>
         <!-- 评论内容 -->
@@ -73,8 +79,14 @@
             <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ item.user.nickname }}</span>
           </div>
           <div class="hotPlay_img_right">
-            <van-icon name="good-job-o" />
-            <span>{{ item.likedCount }}</span>
+            <van-icon
+              name="good-job-o"
+              @click="likeComment(item.commentId, index)"
+              class="icon"
+            />
+            <span @click="nolikeComment(item.commentId, index)" class="num">{{
+              item.likedCount
+            }}</span>
           </div>
         </div>
         <!-- 评论内容 -->
@@ -100,7 +112,16 @@
 // import { Icon } from "vant";
 // import { Skeleton } from "vant";  reqMusicDetails
 // import { Popup } from "vant";
-import { reqMusicComment, reqMusicDetails, reqMusicUrl } from "../../api/music";
+import {
+  reqMusicComment,
+  reqMusicDetails,
+  reqMusicUrl,
+  GoodComment,
+} from "../../api/music";
+import { getToken } from "../../utils/util";
+import { Toast } from "vant";
+import $ from "jquery"; //在需要使用的页面中
+
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {},
@@ -135,6 +156,7 @@ export default {
   watch: {},
   //方法集合
   methods: {
+    // 返回音乐详情页面
     onClickLeft() {
       //   Toast("返回");
       this.$router.push("/detail");
@@ -155,10 +177,7 @@ export default {
         console.log(this.comments);
         // console.log(this.comments[3].beReplied[0].content);
         // console.log(this.comments[3].beReplied[0].user.nickname);
-
         // console.log(this.hotComments);
-        // comments  最新评论   hotComments 热门评论
-        // content 点赞内容   likedCount 点赞数  time 点赞时间
       }
     },
     // 歌曲简略信息
@@ -202,19 +221,87 @@ export default {
         console.log(aaa);
       }
     },
-    // 发送评论
-    async sendComments() {
-      // const result = await reqSendComments();
-      // console.log(result);
-      console.log(111);
+    // 给评论点赞
+    async likeComment(cid, index) {
+      // 先判断登录
+      const res = getToken();
+      console.log(res);
+      if (res == null) {
+        // 没有登录
+        alert("请登录");
+      } else {
+        console.log("登陆");
+        // 歌曲的id
+        const ids = this.$store.state.musicid;
+        // 评论 id
+        console.log(cid);
+        const aaa = localStorage.getItem("cookie");
+        const result = await GoodComment({
+          id: ids,
+          cid,
+          t: 1,
+          tpye: 0,
+          cookie: aaa,
+        });
+        if (result.status === 200) {
+          console.log(result);
+          // alert("点赞成功");
+          Toast.success("点赞成功");
+          // $(".num").html(+1);
+          $(".icon")
+            .eq(index)
+            .css("background", "red");
+          this.musicComment();
+        }
+      }
     },
+    // 给评论取消点赞
+    async nolikeComment(cid, index) {
+      // 先判断登录
+      const res = getToken();
+      console.log(res);
+      if (res == null) {
+        // 没有登录
+        alert("请登录");
+      } else {
+        console.log("登陆");
+        // 歌曲的id
+        const ids = this.$store.state.musicid;
+        // 评论 id
+        console.log(cid);
+        const aaa = localStorage.getItem("cookie");
+        const result = await GoodComment({
+          id: ids,
+          cid,
+          t: 0,
+          tpye: 0,
+          cookie: aaa,
+        });
+        if (result.status === 200) {
+          console.log(result);
+          // alert("取消点赞成功");
+          $(".icon")
+            .eq(index)
+            .css("background", "none");
+          // $(".num").html(-1);
+          Toast.fail("取消点赞成功");
+          this.musicComment();
+        }
+      }
+    },
+    // 发送评论
+    // async sendComments() {
+    //   // const result = await reqSendComments();
+    //   // console.log(result);
+    //   console.log(111);
+    // },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
     this.musicComment();
     this.musicDetails();
     this.PlayMusic();
-    this.sendComments();
+    // this.sendComments();
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
@@ -305,5 +392,12 @@ export default {
 }
 .newContent {
   line-height: 20px;
+}
+.num {
+  display: inline-block;
+  min-width: 30px;
+}
+.icon {
+  font-size: 20px;
 }
 </style>

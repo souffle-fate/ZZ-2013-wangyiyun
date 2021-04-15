@@ -21,13 +21,6 @@ const routes = [
     meta: {
       showTabbar: true, // false删除底部导航
     },
-    children: [
-      {
-        path: "fm",
-        name: "Fm",
-        component: () => import("../views/Home/fm"),
-      },
-    ],
   },
   //首页--排行榜
   {
@@ -61,6 +54,24 @@ const routes = [
     path: "/fm",
     name: "fm",
     component: () => import("../views/Home/fm"),
+  },
+  //mv
+  {
+    path: '/homeMv/:id',
+    name: 'HomeMv',
+    component: () => import('../views/Home/homeMv')
+  },
+  //歌单--歌单路由
+  {
+    path: '/songList',
+    name: 'SongList',
+    component: () => import('../views/Home/songList')
+  },
+  // 精品歌单详情列表
+  {
+    path: '/jingpinList',
+    name: 'JingpinList',
+    component: () => import('../views/Home/jingpinList')
   },
 
   // 音乐详情页面

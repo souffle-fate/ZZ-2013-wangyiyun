@@ -85,13 +85,13 @@ export default {
       this.$router.push("/list");
     },
     async reqBannerswip() {
-      console.log(111);
+      // console.log(111);
       const result = await reqBannerswip();
       // console.log(result);
       if (result.status === 200) {
         // console.log(result.data);
         this.reqBannerswips = result.data.banners;
-        console.log(this.reqBannerswips);
+        // console.log(this.reqBannerswips);
       }
     },
 

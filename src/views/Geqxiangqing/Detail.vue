@@ -26,7 +26,7 @@
         <span @click="sss">
           <van-icon
             name="like"
-            color="red"
+            color="white"
             size="30px"
             v-if="dj"
             @click="dj = !dj"/>
@@ -50,6 +50,7 @@ import {
   reqLikeMusic,
 } from "../../api/music";
 import { getToken } from "../../utils/util";
+import { Toast } from "vant";
 export default {
   components: {
     Pmusic,
@@ -113,7 +114,7 @@ export default {
         // console.log(result.config.params.ids);
         //歌曲背景图
         this.picUrl = result.data.songs[0].al.picUrl;
-        console.log(this.picUrl);
+        // console.log(this.picUrl);
         // this.note.backgroundImage = "url(" + this.picUrl + ")";
         this.note.backgroundColor = "#fff";
         //歌名
@@ -132,12 +133,12 @@ export default {
       const ids = this.$store.state.musicid;
       console.log(ids);
       const result = await reqMusicUrl({ id });
-      console.log(this.id);
+      // console.log(this.id);
       if (result.status === 200) {
         // console.log(result.data.data[0].url);
         this.musicUrl = result.data.data[0].url;
         // 音乐播放url
-        console.log(this.musicUrl);
+        // console.log(this.musicUrl);
       }
     },
     // 获取歌词
@@ -149,7 +150,7 @@ export default {
       if (result.status === 200) {
         // console.log(result.data.lrc.lyric);
         this.songLyrics = result.data.lrc.lyric;
-        console.log(this.songLyrics);
+        // console.log(this.songLyrics);
         const aaa = /(\[)[0-9]{2}:{1}[0-9]{2}.{1}[0-9]{3}(\])/g;
         const dateStr = this.songLyrics.replace(aaa, ",");
         // console.log(dateStr);
@@ -181,9 +182,11 @@ export default {
     },
     async LikeMusic() {
       const id = this.$store.state.musicid;
-      const result = await reqLikeMusic({ id });
+      const aaa = localStorage.getItem("cookie");
+      const result = await reqLikeMusic({ id, cookie: aaa });
       if (result.status === 200) {
         console.log(result);
+        Toast.success("收藏成功");
       }
     },
   },

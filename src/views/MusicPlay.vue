@@ -13,7 +13,6 @@
         :showlrc="true"
         class="bofangqi"
         :list="musicList"
-        v-if="audio[0].url"
       ></aplayer>
       <!-- <aplayer :audio="audio" :lrcType="3" ref="aplayer" /> -->
 
@@ -103,22 +102,22 @@ export default {
       console.log(ids);
       const result = await reqMusicDetails({ ids });
       if (result.status === 200) {
-        console.log(11);
+        // console.log(11);
         // console.log(result);
         //歌曲背景图
         this.picUrl = result.data.songs[0].al.picUrl;
         // console.log(this.picUrl);
         this.audio[0].pic = this.picUrl;
-        console.log(this.audio[0].pic);
+        // console.log(this.audio[0].pic);
 
         //歌名
         this.name = result.data.songs[0].name;
         this.audio[0].title = this.name;
-        console.log(this.audio[0].title);
+        // console.log(this.audio[0].title);
         //歌手名
         this.singerName = result.data.songs[0].ar[0].name;
         this.audio[0].artist = this.singerName;
-        console.log(this.audio[0].artist);
+        // console.log(this.audio[0].artist);
         // 歌曲id
         this.id = result.config.params.ids;
         // 调用了 获取音乐播放url的方法
@@ -153,6 +152,7 @@ export default {
   },
   created() {
     this.musicDetails();
+    this.audio.url = this.$store.state.MusicUrl;
   },
 };
 </script>

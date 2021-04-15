@@ -19,7 +19,7 @@
     </van-sticky>
     <div class="gequ" v-for="item in allData" :key="item.song.id">
       <img :src="item.song.al.picUrl" alt="" />
-      <h3>{{ item.song.al.name }}</h3>
+      <h3>{{ item.song.name }}</h3>
       <p>{{ item.song.ar[0].name }}</p>
     </div>
   </div>

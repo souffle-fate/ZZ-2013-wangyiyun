@@ -58,6 +58,8 @@ export default {
       console.log(result);
       if (result.data.code === 200) {
         setToken(result.data.token);
+        // console.log(result.data.cookie);
+        localStorage.setItem("cookie", result.data.cookie);
         localStorage.setItem("uid", result.data.account.id);
         Toast.success("登录成功");
         this.$router.push("/");
@@ -78,5 +80,4 @@ export default {
   updated() {},
 };
 </script>
-<style  scoped>
-</style>
+<style scoped></style>
