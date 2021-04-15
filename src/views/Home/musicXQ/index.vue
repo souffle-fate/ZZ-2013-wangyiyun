@@ -119,6 +119,8 @@ export default {
     //点击歌曲，获取歌曲id
     musicId(id) {
       console.log(id);
+      // this.$store.commit("getMusicId", ids);
+      this.$router.push(`/Detail`);
     },
     // 回到上一页
     goHome() {

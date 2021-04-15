@@ -49,7 +49,7 @@ export default {
         {
           title: "",
           artist: "",
-          url: "",
+          url: this.$store.state.MusicUrl,
           pic: "",
           lrc: "",
         },
@@ -60,8 +60,8 @@ export default {
         {
           title: "",
           artist: "",
-          src:"",
-          pic:"",
+          src: "",
+          pic: "",
         },
       ],
     };
@@ -76,7 +76,8 @@ export default {
     // 歌曲简略信息
     async musicDetails() {
       // 必选参数 : ids: 音乐 id, 如 ids=347230
-      const ids = this.$route.params.id;
+      const ids = this.$store.state.musicid;
+      console.log(ids);
       const result = await reqMusicDetails({ ids });
       if (result.status === 200) {
         console.log(11);
@@ -113,8 +114,10 @@ export default {
         // console.log(result.data.data[0].url);
         this.musicUrl = result.data.data[0].url;
         // 音乐播放url
-        this.audio[0].url = this.musicUrl;
+        this.$store.commit("playMusicUrl", this.musicUrl);
+        // this.audio[0].url = this.musicUrl;
         console.log(this.audio[0].url);
+        // alert("欢迎进入播放页面");
       }
     },
     // 获取歌词
@@ -124,6 +127,9 @@ export default {
         // console.log(result.data.lrc.lyric);
         this.songLyrics = result.data.lrc.lyric;
         this.audio[0].lrc = this.songLyrics;
+        // alert(this.$store.state.MusicUrl);
+        // alert(111);
+
         // 歌词
         // console.log(this.audio[0].lrc);
       }

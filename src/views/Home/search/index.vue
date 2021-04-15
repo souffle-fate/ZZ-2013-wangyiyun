@@ -144,9 +144,7 @@ export default {
   /* padding: 5px 0; */
   line-height: 20px;
 }
-.box-card {
-  /* width: 100%; */
-}
+
 .box-card div {
   /* border-top: 1px solid #999; */
   border-bottom: 1px solid #999;

@@ -7,11 +7,11 @@ Vue.use(VueRouter);
 const routes = [
   // 首页Home
   {
-    path: '/',
+    path: "/",
     name: "Home",
-    redirect: '/home',
+    redirect: "/home",
     meta: {
-      showTabbar: true  // false删除底部导航
+      showTabbar: true, // false删除底部导航
     },
   },
   {
@@ -27,8 +27,7 @@ const routes = [
         name: "Fm",
         component: () => import("../views/Home/fm"),
       },
-    ]
-
+    ],
   },
   //首页--排行榜
   {
@@ -37,7 +36,7 @@ const routes = [
     component: () => import("../views/Home/Toplist/index.vue"),
     meta: {
       showTabbar: false,
-    }
+    },
   },
   //首页--每日推荐
   {
@@ -46,16 +45,16 @@ const routes = [
     component: () => import("../views/Home/Dailyrec"),
     meta: {
       showTabbar: false,
-    }
+    },
   },
   //歌单详情页面
   {
-    path: '/listdetail/:id',
-    name: 'Listdetail',
-    component: () => import('../views/Listdetail'),
+    path: "/listdetail/:id",
+    name: "Listdetail",
+    component: () => import("../views/Listdetail"),
     meta: {
       showTabbar: false,
-    }
+    },
   },
   //FM
   {
@@ -85,7 +84,7 @@ const routes = [
 
   // 歌曲详情页面
   {
-    path: "/detail/:id/:uid",
+    path: "/detail",
     name: "Detail",
     component: () => import("../views/Geqxiangqing/Detail.vue"),
     meta: {
