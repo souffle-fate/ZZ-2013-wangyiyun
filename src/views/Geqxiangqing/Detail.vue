@@ -32,11 +32,11 @@
 </template>
 
 <script>
-import Pmusic from '../MusicPlay'
+import Pmusic from "../MusicPlay";
 import { reqMusicDetails, reqMusicUrl, reqMusicLyrics } from "../../api/music";
 export default {
-  components:{
-    Pmusic
+  components: {
+    Pmusic,
   },
   data() {
     //这里存放数据

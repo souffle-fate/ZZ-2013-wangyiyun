@@ -46,7 +46,7 @@ const routes = [
 
   // 音乐详情页面
   {
-    path: "/musicXQ/:id",
+    path: "/musicXQ",
     name: "MusicXQ",
     component: () => import("../views/Home/musicXQ/index.vue"),
     meta: {
