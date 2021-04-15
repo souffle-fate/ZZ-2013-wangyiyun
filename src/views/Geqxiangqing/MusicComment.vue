@@ -141,8 +141,10 @@ export default {
     },
     // 获取评论
     async musicComment() {
+      const ids = this.$store.state.musicid;
+      console.log(ids);
       //必选参数 : id: 音乐 id    可选参数 : limit: 取出评论数量 , 默认为 20
-      const result = await reqMusicComment({ id: 186016 });
+      const result = await reqMusicComment({ id: ids });
       //   console.log(result);
       if (result.status === 200) {
         // console.log(result.data);
@@ -161,8 +163,10 @@ export default {
     },
     // 歌曲简略信息
     async musicDetails() {
+      const ids = this.$store.state.musicid;
+      console.log(ids);
       // 必选参数 : ids: 音乐 id, 如 ids=347230
-      const result = await reqMusicDetails({ ids: 347230 });
+      const result = await reqMusicDetails({ ids });
       if (result.status === 200) {
         // console.log(result.config.params.ids);
         //歌曲背景图
@@ -186,6 +190,8 @@ export default {
     },
     // 获取音乐播放url
     async MusicUrl(id) {
+      const ids = this.$store.state.musicid;
+      console.log(ids);
       console.log(id);
       const result = await reqMusicUrl({ id });
       console.log(this.id);

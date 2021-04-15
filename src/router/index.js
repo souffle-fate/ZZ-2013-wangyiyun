@@ -7,11 +7,11 @@ Vue.use(VueRouter);
 const routes = [
   // 首页Home
   {
-    path: '/',
+    path: "/",
     name: "Home",
-    redirect: '/home',
+    redirect: "/home",
     meta: {
-      showTabbar: true  // false删除底部导航
+      showTabbar: true, // false删除底部导航
     },
   },
   {
@@ -54,9 +54,9 @@ const routes = [
   },
   //歌单详情页面
   {
-    path: '/listdetail/:id',
-    name: 'Listdetail',
-    component: () => import('../views/Listdetail'),
+    path: "/listdetail/:id",
+    name: "Listdetail",
+    component: () => import("../views/Listdetail"),
     meta: {
       showTabbar: false,
       title: '歌单详情'
@@ -68,10 +68,23 @@ const routes = [
     name: "fm",
     component: () => import("../views/Home/fm"),
   },
+  //mv
+  {
+    path: '/homeMv/:id',
+    name: 'HomeMv',
+    component: () => import('../views/Home/homeMv')
+  },
+
+  // 精品歌单详情列表
+  {
+    path: '/jingpinList',
+    name: 'JingpinList',
+    component: () => import('../views/Home/jingpinList')
+  },
 
   // 音乐详情页面
   {
-    path: "/musicXQ/:id",
+    path: "/musicXQ",
     name: "MusicXQ",
     component: () => import("../views/Home/musicXQ/index.vue"),
     meta: {

@@ -61,7 +61,7 @@
         </div>
         <ul class="bottom">
           <!--  .name 歌曲名称  .id歌曲id .mv mv的id可能为空  .al.name 专辑名称  .ar演唱者 数组  .ar.name演唱者  -->
-          <li v-for="(item, index) in tracks" :key="index">
+          <li v-for="(item, index) in tracks" :key="index" @click="tz(item.id)">
             <div class="left">
               <p>{{ index + 1 }}</p>
               <div>
@@ -121,7 +121,11 @@ export default {
   computed: {},
   watch: {},
   methods: {
-    //获取列表详情
+    tz(ids) {
+      // const uid = this.$route.params.id;
+      this.$store.commit("getMusicId", ids);
+      this.$router.push(`/Detail`);
+    },
     async getListDetail(id) {
       // console.log(id);
       let res = await reqListDetail({ id: id, s: 5 });
@@ -162,7 +166,7 @@ export default {
   activated() {},
 };
 </script>
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .listdetailbox {
   background: #000;
 }

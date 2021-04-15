@@ -15,7 +15,7 @@
         alt=""
         class="img"
         v-if="tage"
-        @click="$router.push('/list')"
+        @click="$router.push(`/updateuser/${uid}`)"
       />
       <p v-if="tage">{{ nickname }}</p>
       <van-button
@@ -38,7 +38,7 @@
     </van-cell-group>
     <van-grid :border="false" :column-num="3">
       <van-grid-item v-for="item in result" :key="item.id">
-        <van-image :src="item.picUrl" />
+        <van-image :src="item.picUrl" @click="goListDetail(item.id)" />
         <span style="font-size: 9px; height: 30px">{{ item.name }}</span>
       </van-grid-item>
     </van-grid>
@@ -58,6 +58,7 @@ export default {
       avatarUrl: "",
       nickname: "",
       tage: true,
+      uid: "",
     };
   },
   computed: {},
@@ -72,6 +73,7 @@ export default {
       } else {
         const id = localStorage.getItem("uid");
         var uid = "?uid=" + id;
+        this.uid = id;
         const result = await reqUser(uid);
         console.log(result);
         this.avatarUrl = result.data.profile.avatarUrl;
@@ -86,6 +88,11 @@ export default {
     },
     topDaohangImg() {
       this.$router.push("/login");
+    },
+    //获取歌单详情
+    goListDetail(id) {
+      // console.log(id);
+      this.$router.push({ path: `/listdetail/${id}` });
     },
   },
   created() {
