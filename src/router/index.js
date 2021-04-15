@@ -21,6 +21,14 @@ const routes = [
     meta: {
       showTabbar: true, // false删除底部导航
     },
+    children: [
+      {
+        path: "fm",
+        name: "Fm",
+        component: () => import("../views/Home/fm"),
+      },
+    ]
+
   },
   //首页--排行榜
   {
@@ -77,7 +85,7 @@ const routes = [
 
   // 歌曲详情页面
   {
-    path: "/detail",
+    path: "/detail/:id/:uid",
     name: "Detail",
     component: () => import("../views/Geqxiangqing/Detail.vue"),
     meta: {

@@ -3,7 +3,7 @@
     <div class="selfMessage">
       <i>个人信息</i>
       <p>等级:{{ arr.level }}</p>
-      <p>性别:{{ (arr.gender = 1 ? "女" : "男") }}</p>
+      <p>性别:{{ this.grende }}</p>
       <p>地区:河南省 郑州市</p>
     </div>
     <div class="selfIntor">
@@ -53,7 +53,7 @@ import { reqHistory } from "../../../api/user";
 
 export default {
   data() {
-    return { loading: true, arr: [] };
+    return { loading: true, arr: [], grende: "" };
   },
   methods: {
     // 获取用户信息
@@ -62,7 +62,12 @@ export default {
       const result = await reqInfo({ uid: uid });
       //result.data.profile.nickname名字,等级result.data.level,性别gender:1（女），地区city,
       this.arr = result.data;
-      console.log(this.arr);
+      console.log(this.arr.gender);
+      if (this.arr.gender == 2) {
+        this.grende = "女";
+      } else {
+        this.grende = "男";
+      }
     },
     // 获取用户历史评论
     async getmydis() {

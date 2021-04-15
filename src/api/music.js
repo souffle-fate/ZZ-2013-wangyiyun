@@ -42,3 +42,7 @@ export const reqMusicUrl = (data) => get("/song/url", data);
 // 获取歌词
 export const reqMusicLyrics = (data) => get("/lyric", data);
 // /lyric  必选参数 : id: 音乐 id
+
+
+// 喜欢音乐
+export const reqLikeMusic = (data) => get("/like", data);

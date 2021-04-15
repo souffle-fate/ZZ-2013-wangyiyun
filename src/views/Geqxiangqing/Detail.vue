@@ -88,7 +88,9 @@ export default {
     // 歌曲简略信息
     async musicDetails() {
       // 必选参数 : ids: 音乐 id, 如 ids=347230
-      const result = await reqMusicDetails({ ids: 347230 });
+      const ids = this.$route.params.id;
+      const result = await reqMusicDetails({ ids });
+      console.log(result);
       if (result.status === 200) {
         // console.log(result.config.params.ids);
         //歌曲背景图
