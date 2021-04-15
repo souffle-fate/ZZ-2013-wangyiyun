@@ -1,5 +1,6 @@
 import axios from "axios";
 import { serverURL } from "./common";
+// import { getToken } from '../utils/util'
 // import { Notify } from "vant";
 
 const intance = axios.create({
@@ -12,7 +13,7 @@ const intance = axios.create({
 });
 
 intance.interceptors.request.use(
-  function(config) {
+  function (config) {
     // 如果token有值，就添加到header头里面
     // if (getToken()) {
     //   config.headers.authorization = "Bearer " + getToken();
@@ -22,16 +23,16 @@ intance.interceptors.request.use(
     // };
     return config;
   },
-  function(error) {
+  function (error) {
     return Promise.reject(error);
   }
 );
 
 intance.interceptors.response.use(
-  function(response) {
+  function (response) {
     return response;
   },
-  function(error) {
+  function (error) {
     // alert("error");
     return Promise.reject(error);
   }

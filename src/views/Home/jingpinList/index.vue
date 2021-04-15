@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { reqSongList } from "../../../api/songList";
+import { reqSongList } from "../../../api/playlist";
 
 export default {
   components: {},
@@ -43,7 +43,7 @@ export default {
   methods: {
     // 回到首页
     goHome() {
-      this.$router.push("/songList");
+      this.$router.push("/playlist");
     },
     async getSongList(id) {
       const res = await reqSongList({ id: id });

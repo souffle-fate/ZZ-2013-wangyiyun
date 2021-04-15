@@ -29,7 +29,8 @@ const routes = [
     component: () => import("../views/Home/Toplist/index.vue"),
     meta: {
       showTabbar: false,
-    },
+      title: '排行榜'
+    }
   },
   //首页--每日推荐
   {
@@ -38,7 +39,18 @@ const routes = [
     component: () => import("../views/Home/Dailyrec"),
     meta: {
       showTabbar: false,
-    },
+      title: '每日推荐'
+    }
+  },
+  //首页---歌单
+  {
+    path: "/playlist",
+    name: "Playlist",
+    component: () => import("../views/Home/Playlist"),
+    meta: {
+      showTabbar: false,
+      title: '歌单'
+    }
   },
   //歌单详情页面
   {
@@ -47,7 +59,8 @@ const routes = [
     component: () => import("../views/Listdetail"),
     meta: {
       showTabbar: false,
-    },
+      title: '歌单详情'
+    }
   },
   //FM
   {
@@ -61,12 +74,7 @@ const routes = [
     name: 'HomeMv',
     component: () => import('../views/Home/homeMv')
   },
-  //歌单--歌单路由
-  {
-    path: '/songList',
-    name: 'SongList',
-    component: () => import('../views/Home/songList')
-  },
+
   // 精品歌单详情列表
   {
     path: '/jingpinList',
@@ -238,7 +246,7 @@ const routes = [
 
   // 第二个模块  排行榜
   {
-    path: "/rank",
+    path: "/singerRank",
     name: "Rank",
     component: () => import("../views/Rank"),
     meta: {
