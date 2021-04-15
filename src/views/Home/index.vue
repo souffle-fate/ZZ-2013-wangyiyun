@@ -41,14 +41,14 @@
         </div>
         <div class="MusicCategorySmallDesc">歌单</div>
       </div>
-      <div class="MusicCategorySmall">
+      <div class="MusicCategorySmall" @click="gotoplist">
         <div class="MusicCategorySmallIcon">
           <van-icon name="bar-chart-o" />
         </div>
         <div class="MusicCategorySmallDesc">排行榜</div>
       </div>
     </div>
-
+    <!-- jia 推荐歌单 -->
     <div class="recsonglist">
       <h2>
         <a href="">推荐歌单<van-icon name="arrow" /></a>
@@ -72,14 +72,33 @@
         </ul>
       </div>
     </div>
+    <!-- jia最新音乐  最新专辑-->
+    <div class="latestsongs">
+      <h2><a href="">最新专辑</a><van-icon name="arrow" /></h2>
+      <div class="main">
+        <ul>
+          <!-- name 专辑名称 id专辑id  blurPicUrl 专辑封面图 .artist.name 专辑出品人 -->
+          <li v-for="(item, index) in newestAl.slice(0, 6)" :key="index">
+            <img :src="item.blurPicUrl" alt="" />
+            <p>{{ item.artist.name }}</p>
+            <p class="line2">{{ item.name }}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
 
-    <!-- mv -->
-    <div class="home-mvs">
-      <div class="home-mv" v-for="(item, index) in HQmv" :key="index">
-        <!-- <p>{{ item }}</p>
-      img
-     -->
-        <img :src="item.picUrl" alt="" />
+    <!-- jia 主播电台 -->
+
+    <div class="livefm">
+      <h2><a href="">主播电台</a><van-icon name="arrow" /></h2>
+      <div class="main">
+        <ul>
+          <!-- picUrl 封面图 name 电台描述  id电台id-->
+          <li v-for="(item, index) in liveFMs" :key="index">
+            <img :src="item.picUrl" alt="" />
+            <p>{{ item.name }}</p>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -91,8 +110,8 @@
 // import { Field } from "vant";
 import { reqRecsongs } from "../../api/reclist";
 import { reqBannerswip } from "../../api/home";
-import { reqMvs } from "../../api/mv";
-
+import { reqNewestAl } from "../../api/newestAl";
+import { reqLiveFM } from "../../api/livefm";
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {},
@@ -103,7 +122,8 @@ export default {
       recsongs: [],
       value: "",
       reqBannerswips: "",
-      HQmv: "",
+      newestAl: [],
+      liveFMs: [],
     };
   },
   //计算属性 类似于data概念
@@ -120,8 +140,11 @@ export default {
     goFM() {
       this.$router.push("/fm");
     },
-    // 轮播图
+    gotoplist() {
+      this.$router.push({ path: "/toplist" });
+    },
     async reqBannerswip() {
+      // console.log(111);
       const result = await reqBannerswip();
       // console.log(result);
       if (result.status === 200) {
@@ -130,7 +153,7 @@ export default {
         // console.log(this.reqBannerswips);
       }
     },
-
+    //获取推荐歌单
     async getRecsong() {
       let res = await reqRecsongs({ limit: 6 });
       // console.log(res);
@@ -139,15 +162,28 @@ export default {
         // console.log(this.recsongs);
       }
     },
+    //获取最新专辑
+    async getNewestAl() {
+      let res = await reqNewestAl();
+      // console.log(res);
+      if (res.data.code === 200) {
+        this.newestAl = res.data.albums;
+        // console.log(this.newestAl);
+      }
+    },
+    //获取主播电台
+    async getLiveFM() {
+      let res = await reqLiveFM();
+      // console.log(res);
+      if (res.data.code === 200) {
+        this.liveFMs = res.data.result;
+        console.log(this.liveFMs);
+      }
+    },
+    //获取歌单详情
     goListDetail(id) {
       // console.log(id);
       this.$router.push({ path: `/listdetail/${id}` });
-    },
-    // 推荐mv接口
-    async getMv() {
-      const res = await reqMvs();
-      console.log(res.data.result);
-      this.HQmv = res.data.result;
     },
   },
 
@@ -164,7 +200,8 @@ export default {
   created() {
     this.reqBannerswip();
     this.getRecsong();
-    this.getMv();
+    this.getNewestAl();
+    this.getLiveFM();
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
@@ -179,11 +216,6 @@ export default {
 </script>
 
 <style scoped lang='scss'>
-.home-mvs {
-  // background: black;
-  padding-bottom: 200px;
-}
-
 .home-barder {
   display: flex;
   justify-content: space-around;
@@ -252,7 +284,9 @@ img {
   color: white;
 }
 
-.recsonglist {
+.recsonglist,
+.latestsongs,
+.livefm {
   .main {
     ul {
       display: flex;
@@ -260,6 +294,7 @@ img {
       justify-content: space-around;
       li {
         width: 120px;
+        margin-bottom: 15px;
         .imgbox {
           position: relative;
           span {
@@ -274,10 +309,19 @@ img {
   }
   img {
     width: 120px;
+    border-radius: 10px;
   }
   p,
   i {
+    line-height: 20px;
     font-size: 12px;
+  }
+}
+.latestsongs {
+  .main {
+    .line2 {
+      color: rgb(135, 135, 135);
+    }
   }
 }
 </style>
