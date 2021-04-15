@@ -43,6 +43,13 @@ export const reqMusicUrl = (data) => get("/song/url", data);
 export const reqMusicLyrics = (data) => get("/lyric", data);
 // /lyric  必选参数 : id: 音乐 id
 
-
 // 喜欢音乐
 export const reqLikeMusic = (data) => get("/like", data);
+
+// 给评论点赞
+export const GoodComment = (data) => get("/comment/like", data);
+// 说明 : 调用此接口 , 传入 type, 资源 id, 和评论 id cid 和 是否点赞参数 t 即可给对 应评论点赞 ( 需要登录 )
+// 必选参数 : id : 资源 id, 如歌曲 id,mv id
+// cid : 评论 id
+// t : 是否点赞 ,1 为点赞 ,0 为取消点赞
+// tpye: 0: 歌曲

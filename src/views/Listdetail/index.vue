@@ -89,6 +89,11 @@
 
 <script>
 import { reqListDetail, reqSongDetail } from "../../api/reclist";
+import {
+  reqMusicUrl,
+  // 获取音乐url,
+  reqMusicLyrics, //获取歌词
+} from "../../api/music";
 
 export default {
   components: {},
@@ -116,6 +121,8 @@ export default {
       resObj: null,
       trackIdsStr: "",
       tracks: [],
+      musicUrl: "",
+      songLyrics: "",
     };
   },
   computed: {},
@@ -123,8 +130,40 @@ export default {
   methods: {
     tz(ids) {
       // const uid = this.$route.params.id;
+      // 把歌曲ID存到vuex里面
+      console.log(ids, 111);
       this.$store.commit("getMusicId", ids);
+      this.MusicUrl(ids);
+      this.musicLyrics(ids);
       this.$router.push(`/Detail`);
+    },
+    // 获取音乐url
+    async MusicUrl(id) {
+      // 音乐id
+      // alert(id);
+      console.log(id);
+      const result = await reqMusicUrl({ id });
+      console.log(111);
+      if (result.status === 200) {
+        this.musicUrl = result.data.data[0].url;
+        // 音乐播放url  存到vuex里面
+        this.$store.commit("playMusicUrl", this.musicUrl);
+        localStorage.setItem("url", JSON.stringify(this.musicUrl));
+        console.log(this.musicUrl);
+      }
+    },
+    // 获取歌词
+    async musicLyrics(id) {
+      const result = await reqMusicLyrics({ id });
+      if (result.status === 200) {
+        // console.log(result.data.lrc.lyric);
+        this.songLyrics = result.data.lrc.lyric;
+        // 把歌词放到vuex里面
+        this.$store.commit("getLyrics", this.musicUrl);
+        // this.audio[0].lrc = this.songLyrics;
+        // 歌词
+        // console.log(this.audio[0].lrc);
+      }
     },
     async getListDetail(id) {
       // console.log(id);

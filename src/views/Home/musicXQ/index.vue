@@ -21,7 +21,7 @@
             :title="item.name"
             value="..."
             :label="item.artists[0].name"
-            @click="musicId(item.artists[0].id)"
+            @click="musicId(item.id)"
           />
         </div>
 
@@ -80,7 +80,7 @@
 
 <script>
 // 搜索音乐接口
-import { reqSearchMusic } from "../../../api/music";
+import { reqSearchMusic, reqMusicUrl } from "../../../api/music";
 
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
@@ -108,6 +108,7 @@ export default {
       MV: [],
       // 歌词
       Lyrics: [],
+      musicUrl: "",
     };
   },
   //计算属性 类似于data概念
@@ -119,9 +120,27 @@ export default {
     //点击歌曲，获取歌曲id
     musicId(id) {
       console.log(id);
-      // this.$store.commit("getMusicId", ids);
+      this.$store.commit("getMusicId", id);
+      this.MusicUrl(id);
+      // alert(id);
       this.$router.push(`/Detail`);
     },
+    // 获取音乐url
+    async MusicUrl(id) {
+      // 音乐id
+      // alert(id);
+      console.log(id);
+      const result = await reqMusicUrl({ id });
+      console.log(111);
+      if (result.status === 200) {
+        this.musicUrl = result.data.data[0].url;
+        // 音乐播放url  存到vuex里面
+        this.$store.commit("playMusicUrl", this.musicUrl);
+
+        console.log(this.musicUrl);
+      }
+    },
+
     // 回到上一页
     goHome() {
       this.$router.go(-1);
@@ -132,7 +151,7 @@ export default {
       // console.log(this.value);
       if (this.value) {
         const result = await reqSearchMusic({ keywords: val });
-        // console.log(result.data.result.songs);
+        console.log(result.data.result.songs[0].id);
         this.hotMusic = result.data.result.songs;
       } else {
         // alert("请输入内容");

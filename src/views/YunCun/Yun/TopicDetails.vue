@@ -9,7 +9,7 @@
     />
     <div class="banner">
       <img :src="img" alt="" class="img" />
-      <p class="text">在:{{ text }}</p>
+      <p class="text">{{ text }}</p>
       <p class="biaoti">{{ title }}</p>
       <van-divider class="canyu">{{ people }}人参与</van-divider>
     </div>
