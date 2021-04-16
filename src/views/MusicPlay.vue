@@ -13,7 +13,6 @@
         :showlrc="true"
         class="bofangqi"
         :list="musicList"
-        v-if="flag"
       ></aplayer>
       <!-- <aplayer :audio="audio" :lrcType="3" ref="aplayer" /> -->
 
@@ -23,7 +22,10 @@
 </template>
 
 <script>
-import { reqMusicDetails, reqMusicUrl, reqMusicLyrics } from "../api/music";
+import {
+  reqMusicDetails,
+  //  reqMusicUrl,
+} from "../api/music";
 import aplayer from "vue-aplayer";
 export default {
   data() {
@@ -49,30 +51,16 @@ export default {
         {
           title: "",
           artist: "",
-          url: "",
+          // 歌曲播放
+          url: this.$store.state.MusicUrl,
           pic: "",
-          lrc: "",
+          // 歌词
+          lrc: this.$store.state.Lyrics,
         },
       ],
       showLrc: true,
       flag: true,
       musicList: [
-        {
-          title: "白羊",
-          artist: "徐秉龙",
-          src:
-            "http://m8.music.126.net/20200607160502/d62b8d5dc9c90c93a151914be957a617/ymusic/25a2/4ff4/52fc/d664724d25de35a8d4e23c1b986c60b5.mp3",
-          pic:
-            "https://p1.music.126.net/tczb_7II9KzSuLQsVt89Gw==/109951163049336667.jpg",
-        },
-        {
-          title: "说谎",
-          artist: "林宥嘉",
-          src:
-            "http://m7.music.126.net/20200607161953/af2e67e22c2407fea966c46769106159/ymusic/05ee/4458/4a12/e3ea4813e0c4abafe6c3d40b13cb9f65.mp3",
-          pic:
-            "https://p2.music.126.net/mMZNB-jhYsw29K61QtopJA==/109951163187404137.jpg",
-        },
         {
           title: "成都",
           artist: "赵雷",
@@ -80,14 +68,6 @@ export default {
             "http://m7.music.126.net/20200607162234/8629f14056f784879d33dedbab34bf03/ymusic/fa90/df9c/59f7/95c4a2802e0b9191ae1a048f127e53c5.mp3",
           pic:
             "https://p1.music.126.net/34YW1QtKxJ_3YnX9ZzKhzw==/2946691234868155.jpg",
-        },
-        {
-          title: "陪你到底",
-          artist: "许华升",
-          src:
-            "http://m7.music.126.net/20200607161155/1ddfddaa4d9a7c3100c3e7329ce8e3da/ymusic/540f/005e/065e/ce65b58fea742cac390e1499eb32db98.mp3",
-          pic:
-            "https://p1.music.126.net/a7QkLGexMQGT2lF3mqcUdw==/109951163693319625.jpg",
         },
         {
           title: "广东爱情故事",
@@ -117,61 +97,62 @@ export default {
     },
     // 歌曲简略信息
     async musicDetails() {
-      // 必选参数 : ids: 音乐 id, 如 ids=347230
-      const result = await reqMusicDetails({ ids: 347230 });
+      // 必选参数 : ids: 音乐 id,
+      const ids = this.$store.state.musicid;
+      console.log(ids);
+      const result = await reqMusicDetails({ ids });
       if (result.status === 200) {
-        console.log(11);
+        // console.log(11);
         // console.log(result);
         //歌曲背景图
         this.picUrl = result.data.songs[0].al.picUrl;
         // console.log(this.picUrl);
         this.audio[0].pic = this.picUrl;
-        console.log(this.audio[0].pic);
+        // console.log(this.audio[0].pic);
 
         //歌名
         this.name = result.data.songs[0].name;
         this.audio[0].title = this.name;
-        console.log(this.audio[0].title);
+        // console.log(this.audio[0].title);
         //歌手名
         this.singerName = result.data.songs[0].ar[0].name;
         this.audio[0].artist = this.singerName;
-        console.log(this.audio[0].artist);
+        // console.log(this.audio[0].artist);
         // 歌曲id
         this.id = result.config.params.ids;
         // 调用了 获取音乐播放url的方法
-        this.MusicUrl(this.id);
-        this.musicLyrics(this.id);
+        // this.MusicUrl(this.id);
+        // this.musicLyrics(this.id);
         console.log(this.audio);
         this.flag = true;
       }
     },
     // 获取音乐播放url
-    async MusicUrl(id) {
-      const result = await reqMusicUrl({ id });
-      // console.log(this.id);
-      if (result.status === 200) {
-        // console.log(result.data.data[0].url);
-        this.musicUrl = result.data.data[0].url;
-        // 音乐播放url
-        this.audio[0].url = this.musicUrl;
-        console.log(this.audio[0].url);
-      }
-    },
+    // async MusicUrl(id) {
+    //   const result = await reqMusicUrl({ id });
+    //   console.log(id);
+    //   // console.log(this.id);
+    //   if (result.status === 200) {
+    //     this.musicUrl = result.data.data[0].url;
+    //     console.log(this.audio[0].url);
+    //     // alert("欢迎进入播放页面");
+    //   }
+    // },
     // 获取歌词
-    async musicLyrics(id) {
-      const result = await reqMusicLyrics({ id });
-      if (result.status === 200) {
-        // console.log(result.data.lrc.lyric);
-        this.songLyrics = result.data.lrc.lyric;
-        this.audio[0].lrc = this.songLyrics;
-        // 歌词
-        // console.log(this.audio[0].lrc);
-      }
-      // /必选参数 : id: 音乐 id
-    },
+    // async musicLyrics(id) {
+    //   const result = await reqMusicLyrics({ id });
+    //   if (result.status === 200) {
+    //     // console.log(result.data.lrc.lyric);
+    //     this.songLyrics = result.data.lrc.lyric;
+    //     // this.audio[0].lrc = this.songLyrics;
+    //     // 歌词
+    //     // console.log(this.audio[0].lrc);
+    //   }
+    // },
   },
   created() {
     this.musicDetails();
+    this.audio.url = this.$store.state.MusicUrl;
   },
 };
 </script>

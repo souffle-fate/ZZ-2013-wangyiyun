@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.reqYunCunMVXiang = exports.reqYunCunMVBofang = exports.reqYunCunMV = exports.reqUserMV = exports.reqUserBofangJL = exports.reqUserDiantaiYX = exports.reqUserYonghuDiantai = exports.reqUserPer = exports.reqUserZueijin = exports.reqUser = exports.reqLogin = exports.reqUpdate = exports.reqHistory = exports.reqEvent = void 0;
+exports.reqYunCunMVXiang = exports.reqYunCunMVBofang = exports.reqYunCunMV = exports.reqUserMV = exports.reqUserprogram = exports.reqUserBofangJL = exports.reqUserDiantaiYX = exports.reqUserYonghuDiantai = exports.reqUserPer = exports.reqUserZueijin = exports.reqUser = exports.reqLogin = exports.reqUpdate = exports.reqHistory = exports.reqEvent = void 0;
 
 var _request = require("../utils/request");
 
@@ -77,10 +77,17 @@ exports.reqUserDiantaiYX = reqUserDiantaiYX;
 
 var reqUserBofangJL = function reqUserBofangJL(a) {
   return (0, _request.get)("/user/record?uid=" + a);
-}; //收藏的MV列表
+}; // 电台详情
 
 
 exports.reqUserBofangJL = reqUserBofangJL;
+
+var reqUserprogram = function reqUserprogram(data) {
+  return (0, _request.get)("/dj/program", data);
+}; //收藏的MV列表
+
+
+exports.reqUserprogram = reqUserprogram;
 
 var reqUserMV = function reqUserMV() {
   return (0, _request.get)("/mv/sublist");

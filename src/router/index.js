@@ -7,11 +7,11 @@ Vue.use(VueRouter);
 const routes = [
   // 首页Home
   {
-    path: '/',
+    path: "/",
     name: "Home",
-    redirect: '/home',
+    redirect: "/home",
     meta: {
-      showTabbar: true  // false删除底部导航
+      showTabbar: true, // false删除底部导航
     },
   },
   {
@@ -29,6 +29,7 @@ const routes = [
     component: () => import("../views/Home/Toplist/index.vue"),
     meta: {
       showTabbar: false,
+      title: '排行榜'
     }
   },
   //首页--每日推荐
@@ -38,15 +39,27 @@ const routes = [
     component: () => import("../views/Home/Dailyrec"),
     meta: {
       showTabbar: false,
+      title: '每日推荐'
+    }
+  },
+  //首页---歌单
+  {
+    path: "/playlist",
+    name: "Playlist",
+    component: () => import("../views/Home/Playlist"),
+    meta: {
+      showTabbar: false,
+      title: '歌单'
     }
   },
   //歌单详情页面
   {
-    path: '/listdetail/:id',
-    name: 'Listdetail',
-    component: () => import('../views/Listdetail'),
+    path: "/listdetail/:id",
+    name: "Listdetail",
+    component: () => import("../views/Listdetail"),
     meta: {
       showTabbar: false,
+      title: '歌单详情'
     }
   },
   // 侧边栏
@@ -56,14 +69,23 @@ const routes = [
     name: "fm",
     component: () => import("../views/Home/fm"),
   },
+  //mv
   {
-    path: "/side",
-    name: "side",
-    component: () => import("../components/side/index.vue"),
+    path: '/homeMv/:id',
+    name: 'HomeMv',
+    component: () => import('../views/Home/homeMv')
   },
+
+  // 精品歌单详情列表
+  {
+    path: '/jingpinList',
+    name: 'JingpinList',
+    component: () => import('../views/Home/jingpinList')
+  },
+
   // 音乐详情页面
   {
-    path: "/musicXQ/:id",
+    path: "/musicXQ",
     name: "MusicXQ",
     component: () => import("../views/Home/musicXQ/index.vue"),
     meta: {
@@ -225,11 +247,22 @@ const routes = [
 
   // 第二个模块  排行榜
   {
-    path: "/rank",
+    path: "/singerRank",
     name: "Rank",
     component: () => import("../views/Rank"),
     meta: {
       showTabbar: true, // false删除底部导航
+    },
+  },
+
+  //歌手详情
+  {
+    path: "/singerdetail:id",
+    name: "Singerdetail",
+    component: () => import("../views/Rank/Singerdetail"),
+    meta: {
+      showTabbar: false, // false删除底部导航
+      title: '歌手详情'
     },
   },
 

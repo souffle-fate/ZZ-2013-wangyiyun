@@ -254,13 +254,13 @@
         </div>
         <div class="MusicCategorySmallDesc">私人FM</div>
       </div>
-      <div class="MusicCategorySmall">
+      <div class="MusicCategorySmall" @click="godailyrec">
         <div class="MusicCategorySmallIcon">
           <van-icon name="notes-o" />
         </div>
         <div class="MusicCategorySmallDesc">每日推荐</div>
       </div>
-      <div class="MusicCategorySmall">
+      <div class="MusicCategorySmall" @click="goplaylist">
         <div class="MusicCategorySmallIcon">
           <van-icon name="bullhorn-o" />
         </div>
@@ -276,7 +276,7 @@
     <!-- jia 推荐歌单 -->
     <div class="recsonglist">
       <h2>
-        <a href="">推荐歌单<van-icon name="arrow" /></a>
+        <span>推荐歌单<van-icon name="arrow" /></span>
       </h2>
       <div class="main">
         <ul>
@@ -299,23 +299,26 @@
     </div>
     <!-- jia最新音乐  最新专辑-->
     <div class="latestsongs">
-      <h2><a href="">最新专辑</a><van-icon name="arrow" /></h2>
+      <h2><span>最新专辑</span><van-icon name="arrow" /></h2>
       <div class="main">
         <ul>
           <!-- name 专辑名称 id专辑id  blurPicUrl 专辑封面图 .artist.name 专辑出品人 -->
-          <li v-for="(item, index) in newestAl.slice(0, 6)" :key="index">
+          <li
+            v-for="(item, index) in newestAl.slice(0, 6)"
+            :key="index"
+            @click="goListDetail"
+          >
             <img :src="item.blurPicUrl" alt="" />
-            <p>{{ item.artist.name }}</p>
-            <p class="line2">{{ item.name }}</p>
+            <p>{{ item.name }}</p>
+            <span class="line2">{{ item.artist.name }}</span>
           </li>
         </ul>
       </div>
     </div>
 
     <!-- jia 主播电台 -->
-
     <div class="livefm">
-      <h2><a href="">主播电台</a><van-icon name="arrow" /></h2>
+      <h2><span>主播电台</span><van-icon name="arrow" /></h2>
       <div class="main">
         <ul>
           <!-- picUrl 封面图 name 电台描述  id电台id-->
@@ -326,8 +329,6 @@
         </ul>
       </div>
     </div>
-
-    <!-- 侧边框 -->
   </div>
 </template>
 
@@ -458,6 +459,13 @@ export default {
       this.avatarUrl = obj.data.profile.avatarUrl;
       this.backgroundUrl = obj.data.profile.backgroundUrl;
     },
+    goHomeMv(id) {
+      this.$router.push(`/homeMv/${id}`);
+    },
+    // 点击歌单跳转歌单列表
+    goSongList() {
+      this.$router.push("/songList");
+    },
     // 搜索框跳转
     url_search() {
       this.$router.push("/search");
@@ -466,9 +474,22 @@ export default {
     goFM() {
       this.$router.push("/fm");
     },
+    //跳转排行榜
     gotoplist() {
       this.$router.push({ path: "/toplist" });
     },
+    //跳转每日推荐
+    godailyrec() {
+      this.$router.push({ path: "/dailyrec" });
+    },
+    //跳转歌单
+    goplaylist() {
+      this.$router.push("/playlist");
+    },
+    //跳转专辑详情
+    // goAlbDetail(id) {
+    //   this.$router.push(`/listdetail/${id}`);
+    // },
     async reqBannerswip() {
       // console.log(111);
       const result = await reqBannerswip();
@@ -500,15 +521,19 @@ export default {
     //获取主播电台
     async getLiveFM() {
       let res = await reqLiveFM();
+      console.log(res);
       if (res.data.code === 200) {
         this.liveFMs = res.data.result;
+        // console.log(this.liveFMs);
       }
     },
+    //获取电台详情
     //获取歌单详情
     goListDetail(id) {
       this.$router.push({ path: `/listdetail/${id}` });
     },
   },
+  //点击视频跳转到mv页面
 
   filters: {
     numFormat(num) {

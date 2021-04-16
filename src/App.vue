@@ -15,7 +15,7 @@
         :to="{ name: 'Rank' }"
         @click="active = 1"
         icon="orders-o"
-        >推荐列表</van-tabbar-item
+        >歌手榜</van-tabbar-item
       >
       <!-- <van-tabbar-item
         :to="{ name: 'Music' }"
