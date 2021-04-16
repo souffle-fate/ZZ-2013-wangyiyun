@@ -17,12 +17,12 @@
         icon="orders-o"
         >推荐列表</van-tabbar-item
       >
-      <van-tabbar-item
+      <!-- <van-tabbar-item
         :to="{ name: 'Music' }"
         @click="active = 2"
         icon="coupon-o"
         >我的歌单</van-tabbar-item
-      >
+      > -->
       <van-tabbar-item
         :to="{ name: 'HotTopic' }"
         @click="active = 3"

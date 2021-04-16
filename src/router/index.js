@@ -49,13 +49,18 @@ const routes = [
       showTabbar: false,
     }
   },
+  // 侧边栏
   //FM
   {
     path: "/fm",
     name: "fm",
     component: () => import("../views/Home/fm"),
   },
-
+  {
+    path: "/side",
+    name: "side",
+    component: () => import("../components/side/index.vue"),
+  },
   // 音乐详情页面
   {
     path: "/musicXQ/:id",

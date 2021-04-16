@@ -8,6 +8,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import { Calendar, Overlay, ActionSheet, Field, Uploader, Button, IndexBar, IndexAnchor, Grid, GridItem, Skeleton } from "vant";
 
+
 Vue.use(Calendar, Overlay, ActionSheet, Uploader, Button, IndexBar, IndexAnchor, Grid, GridItem, Skeleton, Field);
 Vue.use(ElementUI);
 Vue.use(Vant);

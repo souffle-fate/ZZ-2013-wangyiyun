@@ -29,9 +29,8 @@
           <p style="font-weight: bold; margin-bottom: 10px">{{ username }}</p>
           <p style="margin-bottom: 10px">
             <span
-              ><i>关注 </i><span>{{ obj.data.profile.follows }}</span> |
-              <span></span><i>粉丝 </i
-              ><span>{{ obj.data.profile.followeds }}</span></span
+              ><i>关注 </i><span>{{ follows }}</span> | <span></span><i>粉丝 </i
+              ><span>{{ followeds }}</span></span
             >
           </p>
           <div class="box">
@@ -72,6 +71,8 @@ export default {
       avatarUrl: "",
       backgroundUrl: "",
       obj: {},
+      follows: "",
+      followeds: "",
     };
   },
   //计算属性 类似于data概念
@@ -99,6 +100,8 @@ export default {
       this.level = obj.data.level;
       this.avatarUrl = obj.data.profile.avatarUrl;
       this.backgroundUrl = obj.data.profile.backgroundUrl;
+      this.follows = obj.data.profile.follows;
+      this.followeds = obj.data.profile.followeds;
     },
     redact() {
       let uid = localStorage.getItem("uid");
