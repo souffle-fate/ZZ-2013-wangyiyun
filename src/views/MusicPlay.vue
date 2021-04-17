@@ -12,7 +12,6 @@
         :lrcType="3"
         :showlrc="true"
         class="bofangqi"
-        :list="musicList"
       ></aplayer>
       <!-- <aplayer :audio="audio" :lrcType="3" ref="aplayer" /> -->
 

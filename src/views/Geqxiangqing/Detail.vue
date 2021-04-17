@@ -20,8 +20,19 @@
         <p ref="singer">{{ singer }}</p>
       </div>
       <div class="wrapper">
-        <ul class="content">
+        <!-- <ul class="content">
           <li v-for="(item, index) of ms" :key="index">{{ item.c }}</li>
+        </ul> -->
+        <ul ref="lyricUL">
+          <li
+            v-for="(item, i) in lyricsObjArr"
+            :style="{ color: lyricIndex === i ? 'skyblue' : '#ded9d9' }"
+            :key="item.uid"
+            :data-index="i"
+            ref="lyric"
+          >
+            {{ item.lyric }}
+          </li>
         </ul>
       </div>
     </div>
@@ -85,6 +96,8 @@ export default {
       // 歌词 数组
       songLyricsarr: "",
       flag: true,
+      lyricsObjArr: [],
+      lyricIndex: "",
       // 进度条
       value: 50,
       Lrc: "",
@@ -102,6 +115,7 @@ export default {
     };
   },
   methods: {
+    // 查看歌词
     chakangeci() {
       this.$router.push("/geci");
       // alert(111);
@@ -170,6 +184,42 @@ export default {
         // 歌词的lrc格式
         this.songLyrics = result.data.lrc.lyric;
         var lrcs = this.songLyrics.split("\n"); //用回车拆分成数组
+        //const regNewLine = /\n/
+        // const lineArr = lyric.split(regNewLine); // 每行歌词的数组
+        const regTime = /\[\d{2}:\d{2}.\d{2,3}\]/;
+        lrcs.forEach((item) => {
+          if (item === "") return;
+          const obj = {};
+          const time = item.match(regTime);
+
+          obj.lyric =
+            item.split("]")[1].trim() === "" ? "" : item.split("]")[1].trim();
+          obj.time = time
+            ? this.formatLyricTime(time[0].slice(1, time[0].length - 1))
+            : 0;
+          // console.log(obj.time);
+          obj.uid = Math.random()
+            .toString()
+            .slice(-6);
+          if (obj.lyric === "") {
+            console.log("这一行没有歌词");
+          } else {
+            this.lyricsObjArr.push(obj);
+            // console.log(this.lyricsObjArr);
+          }
+        });
+        // 匹配歌词
+        for (let i = 0; i < this.lyricsObjArr.length; i++) {
+          if (this.currentTime > parseInt(this.lyricsObjArr[i].time)) {
+            const index = this.$refs.lyric[i].dataset.index;
+            if (i === parseInt(index)) {
+              this.lyricIndex = i;
+              this.$refs.lyricUL.style.transform = `translateY(${170 -
+                30 * (i + 1)}px)`;
+            }
+          }
+        }
+
         for (var i in lrcs) {
           //遍历歌词数组
           lrcs[i] = lrcs[i].replace(/(^\s*)|(\s*$)/g, ""); //去除前后空格
@@ -203,6 +253,28 @@ export default {
         // const dateStr = this.songLyrics.replace(aaa, ",");
         // this.songLyricsarr = dateStr.split(",");
       }
+    },
+    // 转换时间函数
+    formatLyricTime(time) {
+      // 格式化歌词的时间 转换成 sss:ms
+      // console.log(time);
+      const regMin = /.*:/;
+      const regSec = /:.*\./;
+      const regMs = /\./;
+
+      const min = parseInt(time.match(regMin)[0].slice(0, 2));
+      let sec = parseInt(time.match(regSec)[0].slice(1, 3));
+
+      const ms = time.slice(
+        time.match(regMs).index + 1,
+        time.match(regMs).index + 3
+      );
+      // console.log(min, sec, ms);
+      if (min !== 0) {
+        sec += min * 60;
+      }
+      console.log(Number(sec + "." + ms));
+      return Number(sec + "." + ms);
     },
     onChange(value) {
       // Toast("当前值：" + value);
