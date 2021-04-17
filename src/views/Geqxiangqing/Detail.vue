@@ -9,16 +9,25 @@
       :fixed="fixed"
       :placeholder="placeholder"
     />
-    <!-- 歌词 -->
-    <!-- <div class="gc">
-      <div class="gc_a">
-        <p v-for="(item, index) in songLyricsarr" :key="index">
-          {{ item }}
-        </p>
-      </div>
-    </div> -->
-    <div class="con">
+    <!-- 转圈圈 -->
+    <div class="con" v-if="flag">
       <img :src="picUrl" alt="" class="con_pic" />
+    </div>
+    <!-- 歌词 -->
+    <div class="detail" v-else>
+      <div class="song-title">
+        <p ref="song">{{ song }}</p>
+        <p ref="singer">{{ singer }}</p>
+      </div>
+      <div class="wrapper">
+        <ul class="content">
+          <li v-for="(item, index) of ms" :key="index">{{ item.c }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <p>查看歌词</p>
     </div>
     <!-- 底部 -->
     <div class="dibu">
@@ -32,9 +41,9 @@
             @click="dj = !dj"/>
           <van-icon name="like-o" size="30px" v-else @click="dj = !dj"
         /></span>
-        <van-icon name="down" size="30px" />
+        <van-icon name="down" size="30px" @click="flag = !flag" />
         <van-icon name="chat-o" size="30px" @click="tiaopinglun" />
-        <van-icon name="ellipsis" size="30px" />
+        <van-icon name="ellipsis" size="30px" @click="chakangeci" />
       </div>
     </div>
     <Pmusic></Pmusic>
@@ -75,8 +84,13 @@ export default {
       songLyrics: "",
       // 歌词 数组
       songLyricsarr: "",
+      flag: true,
       // 进度条
       value: 50,
+      Lrc: "",
+      ms: [],
+      song: "",
+      singer: "",
       note: {
         // backgroundImage: "url(" + this.picUrl + ")",
         // backgroundRepeat: "no-repeat",
@@ -88,6 +102,10 @@ export default {
     };
   },
   methods: {
+    chakangeci() {
+      this.$router.push("/geci");
+      // alert(111);
+    },
     change1() {
       this.$refs.on.style.display = "block";
       this.$refs.off.style.display = "none";
@@ -142,24 +160,49 @@ export default {
       }
     },
     // 获取歌词
-    async musicLyrics(id) {
-      const ids = this.$store.state.musicid;
-      console.log(ids);
+    async musicLyrics() {
+      const id = this.$store.state.musicid;
+      console.log(id);
       const result = await reqMusicLyrics({ id });
 
       if (result.status === 200) {
         // console.log(result.data.lrc.lyric);
+        // 歌词的lrc格式
         this.songLyrics = result.data.lrc.lyric;
+        var lrcs = this.songLyrics.split("\n"); //用回车拆分成数组
+        for (var i in lrcs) {
+          //遍历歌词数组
+          lrcs[i] = lrcs[i].replace(/(^\s*)|(\s*$)/g, ""); //去除前后空格
+          var t = lrcs[i].substring(
+            lrcs[i].indexOf("[") + 1,
+            lrcs[i].indexOf("]")
+          ); //取[]间的内容
+          var s = t.split(":"); //分离:前后文字
+          if (!isNaN(parseInt(s[0]))) {
+            //是数值
+            var arr = lrcs[i].match(/\[(\d+:.+?)\]/g); //提取时间字段，可能有多个
+            var start = 0;
+            for (var k in arr) {
+              start += arr[k].length; //计算歌词位置
+            }
+            var content = lrcs[i].substring(start); //获取歌词内容
+            for (var m in arr) {
+              var tt = arr[m].substring(1, arr[m].length - 1); //取[]间的内容
+              var ss = tt.split(":"); //分离:前后文字
+              this.ms.push({
+                //对象{t:时间,c:歌词}加入ms数组
+                t: (parseFloat(ss[0]) * 60 + parseFloat(ss[1])).toFixed(3),
+                c: content,
+              });
+            }
+          }
+        }
+
         // console.log(this.songLyrics);
-        const aaa = /(\[)[0-9]{2}:{1}[0-9]{2}.{1}[0-9]{3}(\])/g;
-        const dateStr = this.songLyrics.replace(aaa, ",");
-        // console.log(dateStr);
-        // console.log(dateStr.split(","));
-        this.songLyricsarr = dateStr.split(",");
-        // arr.splice(0, 9);
-        // console.log(arr.splice(0, 9));
+        // const aaa = /(\[)[0-9]{2}:{1}[0-9]{2}.{1}[0-9]{3}(\])/g;
+        // const dateStr = this.songLyrics.replace(aaa, ",");
+        // this.songLyricsarr = dateStr.split(",");
       }
-      // /必选参数 : id: 音乐 id
     },
     onChange(value) {
       // Toast("当前值：" + value);
@@ -196,7 +239,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 #app {
   margin: 0 auto;
   height: 100%;
@@ -218,7 +261,7 @@ export default {
   width: 15%;
 }
 .dibu {
-  background: #ec4141;
+  // background: #ec4141;
   height: 120px;
   overflow: hidden;
 }
@@ -268,6 +311,52 @@ export default {
   }
   100% {
     -webkit-transform: rotate(360deg);
+  }
+}
+.detail {
+  position: absolute;
+  top: 1rem;
+  bottom: 2.6rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #000000;
+  // background: violet;
+}
+.song-title {
+  width: 100%;
+  height: 2rem;
+  /* // background-color: #eeefff; */
+  p {
+    width: 100%;
+    line-height: 0.8rem;
+    font-size: 18px;
+    color: #ffd700;
+    margin-top: 0.1rem;
+    text-align: center;
+    // background-color #fff
+  }
+}
+.wrapper {
+  // overflow: hidden;
+  position: absolute;
+  top: 2rem;
+  right: 0;
+  left: 0;
+  height: 545px;
+  // background-color yellow
+  ul {
+    line-height: 32px;
+    width: 100%;
+    padding-bottom: 100px;
+    padding-top: 100px;
+    // background-color red
+    li {
+      font-size: 16px;
+      transition-duration: 1200ms;
+      // background-color skyblue
+      line-height: 25px;
+    }
   }
 }
 </style>

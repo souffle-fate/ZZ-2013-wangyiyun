@@ -29,8 +29,8 @@ const routes = [
     component: () => import("../views/Home/Toplist/index.vue"),
     meta: {
       showTabbar: false,
-      title: '排行榜'
-    }
+      title: "排行榜",
+    },
   },
   //首页--每日推荐
   {
@@ -39,8 +39,8 @@ const routes = [
     component: () => import("../views/Home/Dailyrec"),
     meta: {
       showTabbar: false,
-      title: '每日推荐'
-    }
+      title: "每日推荐",
+    },
   },
   //首页---歌单
   {
@@ -49,8 +49,8 @@ const routes = [
     component: () => import("../views/Home/Playlist"),
     meta: {
       showTabbar: false,
-      title: '歌单'
-    }
+      title: "歌单",
+    },
   },
   //歌单详情页面
   {
@@ -59,8 +59,8 @@ const routes = [
     component: () => import("../views/Listdetail"),
     meta: {
       showTabbar: false,
-      title: '歌单详情'
-    }
+      title: "歌单详情",
+    },
   },
   // 侧边栏
   //FM
@@ -71,16 +71,16 @@ const routes = [
   },
   //mv
   {
-    path: '/homeMv/:id',
-    name: 'HomeMv',
-    component: () => import('../views/Home/homeMv')
+    path: "/homeMv/:id",
+    name: "HomeMv",
+    component: () => import("../views/Home/homeMv"),
   },
 
   // 精品歌单详情列表
   {
-    path: '/jingpinList',
-    name: 'JingpinList',
-    component: () => import('../views/Home/jingpinList')
+    path: "/jingpinList",
+    name: "JingpinList",
+    component: () => import("../views/Home/jingpinList"),
   },
 
   // 音乐详情页面
@@ -147,11 +147,20 @@ const routes = [
       },
     ],
   },
-
+  // 歌曲评论
   {
     path: "/musiccomment",
     name: "Musiccomment",
     component: () => import("../views/Geqxiangqing/MusicComment.vue"),
+    meta: {
+      showTabbar: false, // false删除底部导航
+    },
+  },
+  // 歌词
+  {
+    path: "/geci",
+    name: "Geci",
+    component: () => import("../views/Geqxiangqing/GeCi.vue"),
     meta: {
       showTabbar: false, // false删除底部导航
     },
@@ -262,7 +271,7 @@ const routes = [
     component: () => import("../views/Rank/Singerdetail"),
     meta: {
       showTabbar: false, // false删除底部导航
-      title: '歌手详情'
+      title: "歌手详情",
     },
   },
 
