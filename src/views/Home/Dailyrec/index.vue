@@ -1,7 +1,7 @@
 <template>
   <div class="dailyrec">
     <div class="header">
-      <span><van-icon name="arrow-left" @click="gohome" /></span>
+      <span><van-icon name="arrow-left" @click="gohome" />返回</span>
     </div>
     <!-- <div v-for="item in data" :key="item.id" style="position: relative">
       <img :src="item.picUrl" alt="" style="width: 100%" />
@@ -72,7 +72,7 @@ export default {
   activated() {},
 };
 </script>
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .dailyrec {
   width: 100%;
   height: 100%;
